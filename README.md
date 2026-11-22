@@ -4,7 +4,7 @@ Applicazione web per consultare edizioni critiche digitali dei *capitula* biblic
 
 Usa solo HTML, CSS e JavaScript, senza librerie, server o database. Legge direttamente il file TEI nel browser e si pubblica su GitHub Pages insieme agli XML.
 
-## Cosa fa (e cosa risolve rispetto a EVT 2)
+## Cosa fa 
 
 | Problema incontrato con EVT 2 (working paper, Zenodo 16761174) | Soluzione nel viewer |
 |---|---|
