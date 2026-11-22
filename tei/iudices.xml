@@ -1,0 +1,2377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title>CAPITVLA IVDICVM in Tours Bibles</title>
+            </titleStmt>
+         <editionStmt>
+            <edition>Digital Critical Edition of the Chapter Summaries (Capitula) to Iudices in the Tours Bibles</edition>
+            <respStmt>
+               <resp>edited by</resp>
+               <name>Margherita Filippozzi</name>
+            </respStmt>
+         </editionStmt>
+         <publicationStmt>
+            <p>
+               <hi rend="bold">Welcome to the digital critical edition project of the Capitula to the Octateuch in the Tours Bibles!</hi>
+               <lb/>
+               <lb/>
+               The editions are part of the PRIN 2022 PNRR project
+               <hi rend="italic">DOBiPS – Data Oriented Biblical Paratext Studies</hi>
+               , awarded for the 2023–2025 period to the research units at the Universities of Udine (P.I. E. Colombi) and Cassino (P.I. R. Casavecchia), under the competitive PRIN PNRR call – National Recovery and Resilience Plan, Mission 4 "Education and Research", funded by the European Union’s NextGenerationEU programme (protocol no. P2022ZW4AW).
+               <lb/>
+               The Capitula prefixed to the Octateuch in the Tours Bibles have been encoded in XML/TEI and published using the software EVT (Edition Visualization Technology).
+               <lb/>
+               The editions were prepared by members of the Udine research unit: Emanuela Colombi, Margherita Filippozzi, and Silverio Franzoni.
+               <lb/>
+               Details of the encoding choices and related methodological reflections have been presented in the working paper: E. Colombi, M. Filippozzi, S. Franzoni,
+               <hi rend="italic">The Digital Critical Edition of the Capitula to the Octateuch in the Tours Bibles</hi>
+               ,
+               <ref target="https://zenodo.org/records/16761174">DOI: 10.5281/zenodo.16761173</ref>
+               .
+               <lb/>
+               Information on the individual editions is available by clicking the 'info' button at the top of the left-hand pane.
+            </p>
+         </publicationStmt>
+         <sourceDesc>
+            <listBibl>
+               <head>bibliographical abbreviations</head>
+               <bibl xml:id="de_Bruyne" corresp="#deBruyne">
+                  <author>Donatien de Bruyne</author>
+                  <title>Sommaires, divisions et rubriques de la Bible latine</title>
+                  <pubPlace>Namur</pubPlace>
+                  <date>1914</date>
+               </bibl>
+               <bibl xml:id="Fischer">
+                  <author>Bonifatius Fischer</author>
+                  <title>Lateinische Bibelhandschriften im frühen Mittelalter</title>
+                  <pubPlace>Freiburg; Basel; Wien</pubPlace>
+                  <date>1985</date>
+               </bibl>
+               <bibl xml:id="Bischoff">
+                  <author>Bernhard Bischoff</author>
+                  <title>Katalog der festländischen Handschriften des neunten Jahrhunderts (mit Ausnahme der wisigotischen)</title>
+                  <pubPlace>Wiesbaden</pubPlace>
+                  <date>1998-2017</date>
+               </bibl>
+               <bibl xml:id="Vulgata">
+                  <author>Robertus Weber</author>
+                  <author>Roger Gryson</author>
+                  <title>Biblia sacra iuxta Vulgatam versionem</title>
+                  <pubPlace>Stuttgart</pubPlace>
+                  <date>1969 (4th printing 1994)</date>
+               </bibl>
+               <bibl xml:id="VL100">
+                  <author>Ulysse Robert</author>
+                  <title>Heptateuchi. Versio latina antiquissima e codice Lugdunensi. Version latine du Deutéronome, de Josué et des Juges
+                     antérieure a Saint Jérôme, publiée d'après le manuscrit de Lyon</title>
+                  <pubPlace>Lyon</pubPlace>
+                  <date>1900</date>
+               </bibl>
+            
+            </listBibl>
+            <listWit>  
+               <witness xml:id="Am2">
+                  <msDesc>
+                     <msIdentifier>
+                        <settlement>Amiens</settlement>
+                        <repository>Bibliothèques d'Amiens Métropole [formerly Bibliothèque municipale]</repository>
+                        <idno>Ms. 7</idno>
+                        <altIdentifier type="external">
+                           <idno type="Biblissima">https://data.biblissima.fr/entity/Q121771</idno>
+                        </altIdentifier>
+                        <altIdentifier type="external">
+                           <idno type="TM">https://www.trismegistos.org/text/66875</idno>
+                        </altIdentifier>
+                     </msIdentifier>
+                     <head>Biblia latina (Iosue - Ruth). 2nd volume of Maurdramnus' Bible</head>
+                     <msContents>
+                        <msItem>
+                           <locus>ff. 59v-60r</locus>
+                           <title>
+                              capitula Iudicum
+                           </title>
+                        </msItem>
+                     </msContents>
+                     <physDesc>
+                        <objectDesc form="codex">
+                           <supportDesc material="parch">
+                              <extent>
+                                 II + 128 + II folios
+                                 <lb/>
+                                 <dimensions type="leaf" unit="mm">
+                                    <height quantity="300">height 300 mm</height>
+                                    <width quantity="200">width 200 mm</width>
+                                 </dimensions>
+                              </extent>
+                           </supportDesc>
+                           <layoutDesc>
+                              <layout columns="2">
+                                 <lb/>
+                                 2 cols.
+                              </layout>
+                           </layoutDesc>
+                        </objectDesc>
+                        <handDesc>
+                           <handNote script="minusculeCaroline">Maurdramnus minuscule</handNote>
+                        </handDesc>
+                     </physDesc>
+                     <history>
+                        <origin>
+                           <origDate from-custom="772" to-custom="781">772-781</origDate>
+                           <origPlace cert="medium">Corbie</origPlace>
+                        </origin>
+                     </history>
+                     <additional>
+                        <surrogates>
+                           <p>
+                           <bibl type="digital_facsimile" subtype="full">
+                              <ref target="https://gallica.bnf.fr/ark:/12148/btv1b84521895">
+                                 digital facsimile</ref>
+                                 </bibl>
+                                 <lb/>
+                                 <bibl type="description">
+                                    <ref target="https://archivesetmanuscrits.bnf.fr/ark:/12148/cc907943/ca59936330134759">
+                                    description
+                                 </ref>
+                                 </bibl>
+                                 <lb/>
+                                 <bibl type="IIIF_Manifest_URL">
+                                    <ref target="https://gallica.bnf.fr/iiif/ark:/12148/btv1b84521895/manifest.json">
+                                       IIIF Manifest
+                                    </ref>
+                                 </bibl>
+                                 <lb/>
+                                 <bibl type="CLA">
+                                    <ref target="https://elmss.nuigalway.ie/catalogue/1102">
+                                       CLA 6.707  
+                                    </ref>
+                                 </bibl>
+                           </p>
+                        </surrogates>
+                     </additional>
+                  </msDesc>  
+               </witness>
+               
+               <witness xml:id="Tu">
+                  <msDesc>
+                     <msIdentifier>
+                        <settlement>Tours</settlement>
+                        <repository>Bibliothèque municipale</repository>
+                        <idno>Ms. 10</idno>
+                        <altIdentifier type="external">
+                           <idno type="Biblissima">https://data.biblissima.fr/w/Item:Q422437</idno>
+                        </altIdentifier>
+                        <altIdentifier type="external">
+                           <idno type="TM">www.trismegistos.org/text/67614</idno>
+                        </altIdentifier>
+                        <altIdentifier type="external">
+                           <idno source="#Bischoff">Bischoff No. 6119</idno>
+                        </altIdentifier>
+                     </msIdentifier>
+                     <head>Biblia latina, Octateuchus (Tours Octateuchus)</head>
+                     <msContents>
+                        <msItem>
+                           <locus>f. 307r</locus>
+                           <title>capitula Iudicum</title>
+                        </msItem>
+                     </msContents>
+                     <physDesc>
+                        <objectDesc form="codex">
+                           <supportDesc material="parch">
+                              <extent>II + 351 folios
+                                 <lb/>
+                                 <dimensions type="leaf" unit="mm">
+                                    <height quantity="352">height 352 mm</height>
+                                    <width quantity="260">width 260 mm</width>
+                              </dimensions>
+                              </extent>
+                           </supportDesc>
+                           <layoutDesc>
+                              <layout columns="2">
+                                 <lb/>2 cols.</layout>
+                           </layoutDesc>
+                        </objectDesc>
+                        <handDesc>
+                           <handNote script="minusculeCaroline">Carolingian minuscule</handNote>
+                        </handDesc>
+                     </physDesc>
+                     <history>
+                        <origin>
+                           <origDate from-custom="790" to-custom="800">790-800</origDate>
+                           <origPlace cert="medium">Tours (?)</origPlace>
+                        </origin>
+                     </history>
+                     <additional>
+                        <adminInfo>
+                           <recordHist>
+                              <source>
+                                 <p>
+                                    Before the Alcuin's Bibles according to
+                                    <ref target="#Fischer">Fischer</ref>
+                                    's classification (p. 256).
+                                 </p>
+                              </source>
+                           </recordHist>
+                        </adminInfo>
+                        <surrogates>
+                           <p>
+                              <bibl type="digital_facsimile" subtype="full">
+                                 <ref target="https://arca.irht.cnrs.fr/ark:/63955/md45q811nc16">
+                                    digital facsimile</ref>
+                              </bibl>
+                              <lb/>
+                              <bibl type="description">
+                                 <ref target="https://ccfr.bnf.fr/portailccfr/jsp/index_view_direct_anonymous.jsp?record=eadcgm:EADC:D37A10321">
+                                    description</ref>
+                              </bibl>
+                              <lb/>
+                              <bibl type="IIIF_Manifest_URL">
+                                 <ref target="https://api.irht.cnrs.fr/ark:/63955/fet5llr80e75/manifest.json">
+                                    IIIF Manifest</ref>
+                              </bibl>
+                              <lb/>
+                              <bibl type="CLA">
+                                 <ref target="https://elmss.nuigalway.ie/catalogue/1252">CLA 6.837</ref>
+                              </bibl>
+                              <lb/>
+                           </p>
+                        </surrogates>
+                     </additional>
+                  </msDesc>
+               </witness>
+           
+               <witness xml:id="Sg1">
+               <msDesc>
+                  <msIdentifier>
+                     <settlement>Sankt Gallen</settlement>
+                     <repository>Stiftsbibliothek</repository>
+                     <idno>Cod. Sang. 75</idno>
+                     <altIdentifier type="external">
+                        <idno type="Biblissima">https://data.biblissima.fr/entity/Q188328</idno>
+                     </altIdentifier>
+                     <altIdentifier type="external">
+                        <idno type="TM">https://www.trismegistos.org/text/67048</idno>
+                     </altIdentifier>
+                     <altIdentifier source="#Bischoff">
+                        <idno>Bischoff No. 5547</idno>
+                     </altIdentifier>
+                  </msIdentifier>
+                  <head>Biblia latina Veteris et Novi Testamenti</head>
+                  <msContents>
+                     <msItem>
+                        <locus>p. 170</locus>
+                        <title>capitula Iudicum</title>
+                     </msItem>
+                  </msContents>
+                  <physDesc>
+                     <objectDesc form="codex">
+                        <supportDesc material="parch">
+                           <extent>840 pages 
+                              <lb/>
+                              <dimensions type="leaf" unit="mm">
+                                 <height quantity="550">height 550 mm</height>
+                                 <width quantity="400">width 400 mm</width>
+                           </dimensions></extent>
+                        </supportDesc>
+                        <layoutDesc>
+                           <layout columns="2">
+                              <lb/>2 cols.</layout>
+                        </layoutDesc>
+                     </objectDesc>
+                     <handDesc>
+                        <handNote script="minusculeCaroline">Carolingian minuscule by different hands</handNote>
+                     </handDesc>
+                  </physDesc>
+                  <history>
+                     <origin>
+                        <origDate from-custom="796" to-custom="804">796-804</origDate>
+                        <origPlace>Tours, Abbey St. Martin</origPlace>
+                     </origin>
+                  </history>
+                  <additional>
+                     <adminInfo>
+                        <recordHist>
+                           <source>
+                              <p>First period of the Turonian production according to
+                                 <ref target="#Fischer">Fischer</ref>
+                                 's classification (p. 257).</p>
+                           </source>
+                        </recordHist>
+                     </adminInfo>
+                     <surrogates>
+                        <p>
+                           <bibl type="digital_facsimile" subtype="full">
+                              <ref target="https://www.e-codices.unifr.ch/it/list/one/csg/0075">
+                                 digital facsimile</ref>
+                           </bibl>
+                           <lb/>
+                           <bibl type="description">
+                              <ref target="https://www.e-codices.unifr.ch/it/description/csg/0075/">
+                                 description</ref>
+                           </bibl>
+                           <lb/>
+                           <bibl type="IIIF_Manifest_URL">
+                              <ref target="https://www.e-codices.unifr.ch/metadata/iiif/csg-0075/manifest.json">
+                                 IIIF Manifest</ref>
+                           </bibl>
+                           <lb/>
+                        </p>
+                     </surrogates>
+                  </additional>
+               </msDesc>
+            </witness>
+               
+               <witness xml:id="Tr">
+                  <msDesc>
+                     <msIdentifier>
+                        <settlement>Troyes</settlement>
+                        <repository>Médiathèque Jacques-Chirac [formerly Bibliothèque Municipale]</repository>
+                        <idno>Ms. 29</idno>
+                        <altIdentifier type="external">
+                           <idno type="Biblissima">https://data.biblissima.fr/w/Item:Q416966</idno>
+                        </altIdentifier>
+                        <altIdentifier type="external">
+                           <idno source="#Bischoff">Bischoff No. 6240</idno>
+                        </altIdentifier>
+                     </msIdentifier>
+                     <head>Biblia latina Veteris Testamenti</head>
+                     <msContents>
+                        <msItem>
+                           <locus>f. 82r</locus>
+                           <title>capitula Iudicum</title>
+                        </msItem>
+                     </msContents>
+                     <physDesc>
+                        <objectDesc form="codex">
+                           <supportDesc material="parch">
+                              <extent>II + 214 folios
+                                 <lb/>
+                                 <dimensions type="leaf" unit="mm">
+                                    <height quantity="405">height 405 mm</height>
+                                    <width quantity="295">width 295 mm</width>
+                              </dimensions></extent>
+                           </supportDesc>
+                           <layoutDesc>
+                              <layout columns="2">
+                                 <lb/>2 cols.</layout>
+                           </layoutDesc>
+                        </objectDesc>
+                        <handDesc>
+                           <handNote script="minusculeCaroline">Carolingian minuscule
+                              by different hands (at least five)</handNote>
+                        </handDesc>
+                     </physDesc>
+                     <history>
+                        <origin>
+                           <origDate from-custom="801" to-custom="850">801-850</origDate>
+                           <origPlace>Tours, Abbey St. Martin</origPlace>
+                        </origin>
+                     </history>
+                     <additional>
+                        <adminInfo>
+                           <recordHist>
+                              <source>
+                                 <p>Not recorded in
+                                    <ref target="#Fischer">Fischer</ref>
+                                    's classification.
+                                    <!--  MF : Excluded from the Turonian production according to Fischer's classification, p. 252.  -->
+                                 </p>
+                              </source>
+                           </recordHist>
+                        </adminInfo>
+                        <surrogates>
+                           <p>
+                              <bibl type="digital_facsimile" subtype="full">
+                                 <ref target="https://arca.irht.cnrs.fr/ark:/63955/md9673667d1q"> digital facsimile </ref>
+                              </bibl>
+                              <lb/>
+                              <bibl type="description">
+                                 <ref target="https://bibale.irht.cnrs.fr/47063"> description </ref>
+                              </bibl>
+                              <lb/>
+                              <bibl type="description">
+                                 <ref target="https://ccfr.bnf.fr/portailccfr/jsp/index_view_direct_anonymous.jsp?record=eadcgm:EADC:D02A10280"> description 2 </ref>
+                              </bibl>
+                              <lb/>
+                              <bibl type="IIIF_Manifest_URL">
+                                 <ref target="https://api.irht.cnrs.fr/ark:/63955/fbc1ozmc3ik2/manifest.json"> IIIF Manifest </ref>
+                              </bibl>
+                              <lb/>
+                           </p>
+                        </surrogates>
+                     </additional>
+                  </msDesc>
+               </witness>
+               
+               <witness xml:id="P8">
+                  <msDesc>
+                     <msIdentifier>
+                        <settlement>Paris</settlement>
+                        <repository>Bibliothèque nationale de France</repository>
+                        <idno>latin 11514</idno>
+                        <altIdentifier type="external">
+                           <idno type="Biblissima">https://data.biblissima.fr/w/Item:Q59141</idno>
+                        </altIdentifier>
+                        <altIdentifier type="external">
+                           <idno source="#Bischoff">Bischoff No. 4685</idno>
+                        </altIdentifier>
+                     </msIdentifier>
+                     <head>Biblia latina Veteris Testamenti</head>
+                     <msContents>
+                        <msItem>
+                           <locus>f. 82v</locus>
+                           <title>capitula Iudicum</title>
+                        </msItem>
+                     </msContents>
+                     <physDesc>
+                        <objectDesc form="codex">
+                           <supportDesc material="parch">
+                              <extent>215 folios
+                                 <lb/>
+                                 <dimensions type="leaf" unit="mm">
+                                    <height quantity="490">height 490 mm</height>
+                                    <width quantity="355">width 355 mm</width>
+                              </dimensions></extent>
+                           </supportDesc>
+                           <layoutDesc>
+                              <layout columns="2">
+                                 <lb/>2 cols.</layout>
+                           </layoutDesc>
+                        </objectDesc>
+                        <handDesc>
+                           <handNote script="minusculeCaroline">Carolingian minuscule</handNote>
+                        </handDesc>
+                     </physDesc>
+                     <history>
+                        <origin>
+                           <origDate from-custom="807" to-custom="834">807-834</origDate>
+                           <origPlace>Tours, Abbey St. Martin</origPlace>
+                        </origin>
+                     </history>
+                     <additional>
+                        <adminInfo>
+                           <recordHist>
+                              <source>
+                                 <p>
+                                    Second period of the Turonian production according to
+                                    <ref target="#Fischer">Fischer</ref>
+                                    's classification (p. 259).
+                                 </p>
+                              </source>
+                           </recordHist>
+                        </adminInfo>
+                        <surrogates>
+                           <p>
+                              <bibl type="digital_facsimile" subtype="full">
+                                 <ref target="https://gallica.bnf.fr/ark:/12148/btv1b90808164">
+                                    digital facsimile</ref>
+                              </bibl>
+                              <lb/>
+                              <bibl type="description">
+                                 <ref target="https://archivesetmanuscrits.bnf.fr/ark:/12148/cc73059g">
+                                    description</ref>
+                              </bibl>
+                              <lb/>
+                              <bibl type="description">
+                                 <ref target="https://bibale.irht.cnrs.fr/46912">description 2</ref>
+                              </bibl>
+                              <lb/>
+                              <bibl type="IIIF_Manifest_URL">
+                                 <ref target="https://gallica.bnf.fr/iiif/ark:/12148/btv1b90808164/manifest.json">
+                                    IIIF Manifest</ref>
+                              </bibl>
+                              <lb/>
+                           </p>
+                        </surrogates>
+                     </additional>
+                  </msDesc>
+               </witness>
+               
+               <witness xml:id="P4">
+                  <msDesc>
+                     <msIdentifier>
+                        <settlement>Paris</settlement>
+                        <repository>Bibliothèque nationale de France</repository>
+                        <idno>latin 68</idno>
+                        <altIdentifier type="external">
+                           <idno type="Biblissima">https://data.biblissima.fr/entity/Q119117</idno>
+                        </altIdentifier>
+                        <altIdentifier type="external">
+                           <idno source="#Bischoff">Bischoff No. 3957</idno>
+                        </altIdentifier>
+                     </msIdentifier>
+                     <head>Biblia latina Veteris Testamenti (incomplete: from Ex 12:23 to Mi 4:9)</head>
+                     <msContents>
+                        <msItem>
+                           <locus>f. 59v</locus>
+                           <title>capitula Iudicum</title>
+                        </msItem>
+                     </msContents>
+                     <physDesc>
+                        <objectDesc form="codex">
+                           <supportDesc material="parch">
+                              <extent>
+                                 159 folios
+                                 <lb/>
+                                 <dimensions type="leaf" unit="mm">
+                                    <height quantity="515">height 515 mm</height>
+                                    <width quantity="385">width 385 mm</width>
+                                 </dimensions>
+                              </extent>
+                           </supportDesc>
+                           <layoutDesc>
+                              <layout columns="2">
+                                 <lb/>
+                                 2 cols.
+                              </layout>
+                           </layoutDesc>
+                        </objectDesc>
+                        <handDesc>
+                           <handNote script="minusculeCaroline">Carolingian minuscule of ca. twelve hands</handNote>
+                        </handDesc>
+                     </physDesc>
+                     <history>
+                        <origin>
+                           <origDate from-custom="815" to-custom="820">815-820</origDate>
+                           <origPlace>Tours, Abbey St. Martin</origPlace>
+                        </origin>
+                     </history>
+                     <additional>
+                        <adminInfo>
+                           <recordHist>
+                              <source>
+                                 <p>
+                                    Second period of the Turonian production according to
+                                    <ref target="#Fischer">Fischer</ref>
+                                    's classification (p. 259).
+                                 </p>
+                              </source>
+                           </recordHist>
+                        </adminInfo>
+                        <surrogates>
+                           <p>
+                              <bibl type="digital_facsimile" subtype="full">
+                                 <hi rend="underline">digital facsimile</hi>
+                                 : none
+                              </bibl>
+                              <lb/>
+                              <bibl type="description">
+                                 <ref target="https://archivesetmanuscrits.bnf.fr/ark:/12148/cc8452s">
+                                    description</ref>
+                              </bibl>
+                              <lb/>
+                           </p>
+                        </surrogates>
+                     </additional>
+                  </msDesc>   
+               </witness>
+               
+               <witness xml:id="L2">
+                  <msDesc>
+                     <msIdentifier>
+                        <settlement>London</settlement>
+                        <repository>British Library</repository>
+                        <idno>Harley MS 2805</idno>
+                        <altIdentifier type="external">
+                           <idno source="#Bischoff">Bischoff No. 3957</idno>
+                        </altIdentifier>
+                     </msIdentifier>
+                     <head>Biblia latina Veteris Testamenti (Genesis - Psalms)</head>
+                     <msContents>
+                        <msItem>
+                           <locus>f. 83v</locus>
+                           <title>capitula Iudicum</title>
+                        </msItem>
+                     </msContents>
+                     <physDesc>
+                        <objectDesc form="codex">
+                           <supportDesc material="parch">
+                              <extent>237 folios
+                                 <lb/>
+                                 <dimensions type="leaf" unit="mm">
+                                    <height quantity="525">height 525 mm</height>
+                                    <width quantity="365">width 365 mm</width>
+                              </dimensions></extent>
+                           </supportDesc>
+                           <layoutDesc>
+                              <layout columns="2">
+                                 <lb/>
+                                 2 cols.</layout>
+                           </layoutDesc>
+                        </objectDesc>
+                        <handDesc>
+                           <handNote script="minusculeCaroline">Carolingian minuscule of several different hands
+                           </handNote>
+                        </handDesc>
+                     </physDesc>
+                     <history>
+                        <origin>
+                           <origDate from-custom="815" to-custom="820">815-820</origDate>
+                           <origPlace>Tours, Abbey St. Martin</origPlace>
+                        </origin>
+                     </history>
+                     <additional>
+                        <adminInfo>
+                           <recordHist>
+                              <source>
+                                 <p>
+                                    Second period of the Turonian production according to
+                                    <ref target="#Fischer">Fischer</ref>
+                                    's classification (p. 260).
+                                 </p>
+                              </source>
+                           </recordHist>
+                        </adminInfo>
+                        <surrogates>
+                           <p>
+                              <bibl type="digital_facsimile" subtype="full">
+                                 <ref target="https://iiif.bl.uk/uv/#?manifest=https://bl.digirati.io/iiif/ark:/81055/vdc_100056042404.0x000001">
+                                    digital facsimile</ref>
+                              </bibl>
+                              <lb/>
+                              <bibl type="description">
+                                 <ref target="https://bibale.irht.cnrs.fr/46881">description</ref>
+                              </bibl>
+                              <lb/>
+                              <bibl type="IIIF_Manifest_URL">
+                                 <ref target="https://iiif.bl.uk/uv/#?manifest=https://bl.digirati.io/iiif/ark:/81055/vdc_100056042404.0x000001">
+                                    IIIF Manifest</ref>
+                              </bibl>
+                              <lb/>
+                           </p>
+                        </surrogates>
+                     </additional>
+                  </msDesc>
+               </witness>
+               
+               <witness xml:id="Br1">
+                  <msDesc>
+                     <msIdentifier>
+                        <settlement>Bern</settlement>
+                        <repository>Burgerbibliothek</repository>
+                        <idno>Cod. 3</idno>
+                        <altIdentifier type="external">
+                           <idno type="ARCA_IRHT">https://arca.irht.cnrs.fr/ark:/63955/md612n49wh9h</idno>
+                        </altIdentifier>
+                        <altIdentifier type="external">
+                           <idno source="#Bischoff">Bischoff No. 489</idno>
+                        </altIdentifier>
+                     </msIdentifier>
+                     <head>Biblia latina Veteris Testamenti (Genesis - Psalms)</head>
+                     <msContents>
+                        <msItem>
+                           <locus>f. 66r</locus>
+                           <title>capitula Iudicum</title>
+                        </msItem>
+                     </msContents>
+                     <physDesc>
+                        <objectDesc form="codex">
+                           <supportDesc material="parch">
+                              <extent>209 folios
+                                 <lb/>
+                                 <dimensions type="leaf" unit="mm">
+                                    <height quantity="460">height 460 mm</height>
+                                    <width quantity="350">width 350 mm</width>
+                              </dimensions></extent>
+                           </supportDesc>
+                           <layoutDesc>
+                              <layout columns="2">
+                                 <lb/>
+                                 2 cols.</layout>
+                           </layoutDesc>
+                        </objectDesc>
+                        <handDesc>
+                           <handNote script="minusculeCaroline">Carolingian minuscule by two hands</handNote>
+                        </handDesc>
+                     </physDesc>
+                     <history>
+                        <origin>
+                           <origDate from-custom="820" to-custom="830">820-830</origDate>
+                           <origPlace>Tours, Abbey St. Martin</origPlace>
+                        </origin>
+                     </history>
+                     <additional>
+                        <adminInfo>
+                           <recordHist>
+                              <source>
+                                 <p>
+                                    Second period of the Turonian production according to
+                                    <ref target="#Fischer">Fischer</ref>
+                                    's classification (p. 261).
+                                 </p>
+                              </source>
+                           </recordHist>
+                        </adminInfo>
+                        <surrogates>
+                           <p>
+                              <bibl type="digital_facsimile" subtype="full">
+                                 <ref target="https://www.e-codices.unifr.ch/en/list/one/bbb/0003"> digital facsimile </ref>
+                              </bibl>
+                              <lb/>
+                              <bibl type="description">
+                                 <ref target="https://bibale.irht.cnrs.fr/99517"> description </ref>
+                              </bibl>
+                              <lb/>
+                              <bibl type="IIIF_Manifest_URL">
+                                 <ref target="https://www.e-codices.unifr.ch/metadata/iiif/bbb-0003/manifest.json"> IIIF Manifest </ref>
+                              </bibl>
+                              <lb/>
+                           </p>
+                        </surrogates>
+                     </additional>
+                  </msDesc>
+               </witness>
+               
+               <witness xml:id="Z">
+                  <msDesc>
+                     <msIdentifier>
+                        <settlement>Zürich</settlement>
+                        <repository>Zentralbibliothek Zürich</repository>
+                        <idno>Car C 1</idno>
+                        <altIdentifier type="external">
+                           <idno source="#Bischoff">Bischoff No. 7589</idno>
+                        </altIdentifier>
+                     </msIdentifier>
+                     <head>Biblia latina Veteris et Novi Testamenti</head>
+                     <msContents>
+                        <msItem>
+                           <locus>f. 78v</locus>
+                           <title>capitula Iudicum</title>
+                        </msItem>
+                     </msContents>
+                     <physDesc>
+                        <objectDesc form="codex">
+                           <supportDesc material="parch">
+                              <extent>422 folios
+                                 <lb/>
+                                 <dimensions type="leaf" unit="mm">
+                                    <height quantity="480">height 480 mm</height>
+                                    <width quantity="360">width 360 mm</width>
+                              </dimensions></extent>
+                           </supportDesc>
+                           <layoutDesc>
+                              <layout columns="2">
+                                 <lb/>
+                                 2 cols.</layout>
+                           </layoutDesc>
+                        </objectDesc>
+                        <handDesc>
+                           <handNote script="minusculeCaroline">Carolingian minuscule by different hands</handNote>
+                        </handDesc>
+                     </physDesc>
+                     <history>
+                        <origin>
+                           <origDate from-custom="820" to-custom="830">820-830</origDate>
+                           <origPlace>Tours, Abbey St. Martin</origPlace>
+                        </origin>
+                     </history>
+                     <additional>
+                        <adminInfo>
+                           <recordHist>
+                              <source>
+                                 <p>
+                                    Third period of the Turonian production under Fridugisus (periode II) according to
+                                    <ref target="#Fischer">Fischer</ref>
+                                    's classification (p. 261).
+                                 </p>
+                              </source>
+                           </recordHist>
+                        </adminInfo>
+                        <surrogates>
+                           <p>
+                              <bibl type="digital_facsimile" subtype="full">
+                                 <ref target="https://www.e-manuscripta.ch/zuz/content/zoom/1956415">
+                                    digital facsimile</ref>
+                              </bibl>
+                              <lb/>
+                              <bibl type="description">
+                                 <ref target="https://doi.org/10.7891/e-manuscripta-71492">description</ref>
+                              </bibl>
+                              <lb/>
+                              <bibl type="description">
+                                 <ref target="https://bibale.irht.cnrs.fr/99581">description 2</ref>
+                              </bibl>
+                              <lb/>
+                              <bibl type="IIIF_Manifest_URL">
+                                 <ref target="https://www.e-manuscripta.ch/i3f/v20/1956411/manifest">
+                                    IIIF Manifest</ref>
+                              </bibl>
+                              <lb/>
+                           </p>
+                        </surrogates>
+                     </additional>
+                  </msDesc>
+               </witness>
+               
+                  <witness xml:id="Mb2">
+                     <msDesc>
+                        <msIdentifier>
+                           <settlement>München</settlement>
+                           <repository>Bayerische Staatsbibliothek</repository>
+                           <idno>Clm 12741</idno>
+                           <altIdentifier type="external">
+                              <idno type="Biblissima">https://data.biblissima.fr/entity/Q173853</idno>
+                           </altIdentifier>
+                           <altIdentifier type="external">
+                              <idno source="#Bischoff">Bischoff No. 3117</idno>
+                           </altIdentifier>
+                        </msIdentifier>
+                        <head>Biblia latina Veteris et Novi Testamenti</head>
+                        <msContents>
+                           <msItem>
+                              <locus>f. 74r</locus>
+                              <title>capitula Iudicum</title>
+                           </msItem>
+                        </msContents>
+                        <physDesc>
+                           <objectDesc form="codex">
+                              <supportDesc material="parch">
+                                 <extent>
+                                    353 folios
+                                    <lb/>
+                                    <dimensions type="leaf" unit="mm">
+                                       <height quantity="550">height 550 mm</height>
+                                       <width quantity="375">width 375 mm</width>
+                                    </dimensions>
+                                 </extent>
+                              </supportDesc>
+                              <layoutDesc>
+                                 <layout columns="2">
+                                    <lb/>
+                                    2 cols.
+                                 </layout>
+                              </layoutDesc>
+                           </objectDesc>
+                           <handDesc>
+                              <handNote script="minusculeCaroline">Carolingian minuscule</handNote>
+                           </handDesc>
+                        </physDesc>
+                        <history>
+                           <origin>
+                              <origDate from-custom="830" to-custom="834">830-834</origDate>
+                              <origPlace>Tours, Abbey St. Martin</origPlace>
+                           </origin>
+                        </history>
+                        <additional>
+                           <adminInfo>
+                              <recordHist>
+                                 <source>
+                                    <p>
+                                       Fourth period of the Turonian production under Fridugisus (periode II) according to
+                                       <ref target="#Fischer">Fischer</ref>
+                                       's classification (p. 262).
+                                    </p>
+                                 </source>
+                              </recordHist>
+                           </adminInfo>
+                           <surrogates>
+                              <p>
+                                 <bibl type="digital_facsimile" subtype="full">
+                                    <ref target="https://app.digitale-sammlungen.de/bookshelf/bsb00047279/view">
+                                       digital facsimile</ref>
+                                 </bibl>
+                                 <lb/>
+                                 <bibl type="description">
+                                    <ref target="https://handschriftenportal.de/search?hspobjectid=HSP-d5e8e9bf-c89f-3314-b4ba-443efed6a1b8">
+                                       description</ref>
+                                 </bibl>
+                                 <lb/>
+                                 <bibl type="IIIF_Manifest_URL">
+                                    <ref target="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00047279/manifest">
+                                       IIIF Manifest</ref>
+                                 </bibl>
+                                 <lb/>
+                              </p>
+                           </surrogates>
+                        </additional>
+                     </msDesc>
+                  </witness>
+               
+               <witness xml:id="B2">
+                  <msDesc>
+                     <msIdentifier>
+                        <settlement>Berlin</settlement>
+                        <repository>Staatsbibliothek zu Berlin - Preussischer Kulturbesitz</repository>
+                        <idno>Hamilton 82</idno>
+                        <altIdentifier type="external">
+                           <idno type="Biblissima">https://data.biblissima.fr/entity/Q131043</idno>
+                        </altIdentifier>
+                        <altIdentifier type="external">
+                           <idno source="#Bischoff">Bischoff No. 352</idno>
+                        </altIdentifier>
+                     </msIdentifier>
+                     <head>Biblia latina Veteris et Novi Testamenti</head>
+                     <msContents>
+                        <msItem>
+                           <locus>f. 83v</locus>
+                           <title>capitula Iudicum</title>
+                        </msItem>
+                     </msContents>
+                     <physDesc>
+                        <objectDesc form="codex">
+                           <supportDesc material="parch">
+                              <extent>
+                                 435 folios
+                                 <lb/>
+                                 <dimensions type="leaf" unit="mm">
+                                    <height quantity="490">height 490 mm</height>
+                                    <width quantity="370">width 370 mm</width>
+                                 </dimensions>
+                              </extent>
+                           </supportDesc>
+                           <layoutDesc>
+                              <layout columns="2">
+                                 <lb/>
+                                 2 cols.
+                              </layout>
+                           </layoutDesc>
+                        </objectDesc>
+                        <handDesc>
+                           <handNote script="minusculeCaroline">Carolingian minuscule</handNote>
+                        </handDesc>
+                     </physDesc>
+                     <history>
+                        <origin>
+                           <origDate from-custom="830" to-custom="830">830</origDate>
+                           <origPlace>
+                              Tours, Abbey St. Martin or Marmoutier (
+                              <ref target="#Fischer">Fischer</ref>
+                              , p. 263)
+                           </origPlace>
+                        </origin>
+                     </history>
+                     <additional>
+                        <adminInfo>
+                           <recordHist>
+                              <source>
+                                 <p>
+                                    Fourth period of the Turonian production under Fridugisus (periode II) according to
+                                    <ref target="#Fischer">Fischer</ref>
+                                    's classification (p. 263).
+                                 </p>
+                              </source>
+                           </recordHist>
+                        </adminInfo>
+                        <surrogates>
+                           <p>
+                              <bibl type="digital_facsimile" subtype="full">
+                                 <ref target="http://resolver.staatsbibliothek-berlin.de/SBB0001505900000000">
+                                    digital facsimile</ref>
+                              </bibl>
+                              <lb/>
+                              <bibl type="description">
+                                 <ref target="https://bibale.irht.cnrs.fr/9536">description</ref>
+                              </bibl>
+                              <lb/>
+                              <bibl type="IIIF_Manifest_URL">
+                                 <ref target="https://content.staatsbibliothek-berlin.de/dc/778676021/manifest">IIIF Manifest</ref>
+                              </bibl>
+                              <lb/>
+                           </p>
+                        </surrogates>
+                     </additional>
+                  </msDesc>
+               </witness>
+               
+               <witness xml:id="P2">
+                  <msDesc>
+                     <msIdentifier>
+                        <settlement>Paris</settlement>
+                        <repository>Bibliothèque nationale de France</repository>
+                        <idno>latin 3</idno>
+                        <altIdentifier type="external">
+                           <idno type="Biblissima">https://data.biblissima.fr/w/Item:Q63610</idno>
+                        </altIdentifier>
+                        <altIdentifier type="external">
+                           <idno source="#Bischoff">Bischoff No. 3953</idno>
+                        </altIdentifier>
+                     </msIdentifier>
+                     <head>Biblia latina Veteris et Novi Testamenti</head>
+                     <msContents>
+                        <msItem>
+                           <locus>f. 75v</locus>
+                           <title>capitula Iudicum</title>
+                        </msItem>
+                     </msContents>
+                     <physDesc>
+                        <objectDesc form="codex">
+                           <supportDesc material="parch">
+                              <extent>
+                                 409 folios
+                                 <lb/>
+                                 <dimensions type="leaf" unit="mm">
+                                    <height quantity="490">height 490 mm</height>
+                                    <width quantity="380">width 380 mm</width>
+                                 </dimensions>
+                              </extent>
+                           </supportDesc>
+                           <layoutDesc>
+                              <layout columns="2">
+                                 <lb/>
+                                 2 cols.
+                              </layout>
+                           </layoutDesc>
+                        </objectDesc>
+                        <handDesc>
+                           <handNote script="minusculeCaroline">Carolingian minuscule</handNote>
+                        </handDesc>
+                     </physDesc>
+                     <history>
+                        <origin>
+                           <origDate from-custom="834" to-custom="843">
+                              834-843 (835 according to
+                              <ref target="#Fischer">Fischer</ref>
+                              , p. 264)
+                           </origDate>
+                           <origPlace>Tours, Abbey St. Martin</origPlace>
+                        </origin>
+                     </history>
+                     <additional>
+                        <adminInfo>
+                           <recordHist>
+                              <source>
+                                 <p>
+                                    Second period of the Turonian production under Adelard (periode III) according to
+                                    <ref target="#Fischer">Fischer</ref>
+                                    's classification (p. 264).
+                                 </p>
+                              </source>
+                           </recordHist>
+                        </adminInfo>
+                        <surrogates>
+                           <p>
+                              <bibl type="digital_facsimile" subtype="full">
+                                 <ref target="https://gallica.bnf.fr/ark:/12148/btv1b8426789n">
+                                    digital facsimile</ref>
+                              </bibl>
+                              <lb/>
+                              <bibl type="description">
+                                 <ref target="https://archivesetmanuscrits.bnf.fr/ark:/12148/cc84492">
+                                    description</ref>
+                              </bibl>
+                              <lb/>
+                              <bibl type="IIIF_Manifest_URL">
+                                 <ref target="https://gallica.bnf.fr/iiif/ark:/12148/btv1b8426789n/manifest.json">
+                                    IIIF Manifest</ref>
+                              </bibl>
+                              <lb/>
+                           </p>
+                        </surrogates>
+                     </additional>
+                  </msDesc>
+               </witness>
+                              
+               <witness xml:id="L1">
+                  <msDesc>
+                     <msIdentifier>
+                        <settlement>London</settlement>
+                        <repository>British Library</repository>
+                        <idno>Add. 10546</idno>
+                        <altIdentifier type="external">
+                           <idno type="ARCA_IRHT">https://arca.irht.cnrs.fr/ark:/63955/md139019vp3t</idno>
+                        </altIdentifier>
+                        <altIdentifier type="external">
+                           <idno source="#Bischoff">Bischoff No. 2360</idno>
+                        </altIdentifier>
+                     </msIdentifier>
+                     <head>Biblia latina Veteris et Novi Testamenti (The Moutier-Grandval Bible)</head>
+                     <msContents>
+                        <msItem>
+                           <locus>f. 89v</locus>
+                           <title>capitula Iudicum</title>
+                        </msItem>
+                     </msContents>
+                     <physDesc>
+                        <objectDesc form="codex">
+                           <supportDesc material="parch">
+                              <extent>
+                                 449 folios
+                                 <lb/>
+                                 <dimensions type="leaf" unit="mm">
+                                    <height quantity="510">height 510 mm</height>
+                                    <width quantity="375">width 375 mm</width>
+                                 </dimensions>
+                              </extent>
+                           </supportDesc>
+                           <layoutDesc>
+                              <layout columns="2">
+                                 <lb/>
+                                 2 cols.
+                              </layout>
+                           </layoutDesc>
+                        </objectDesc>
+                        <handDesc>
+                           <handNote script="minusculeCaroline">Carolingian minuscule</handNote>
+                        </handDesc>
+                     </physDesc>
+                     <history>
+                        <origin>
+                           <origDate from-custom="834" to-custom="843">834-843</origDate>
+                           <origPlace>Tours, Abbey St. Martin</origPlace>
+                        </origin>
+                     </history>
+                     <additional>
+                        <adminInfo>
+                           <recordHist>
+                              <source>
+                                 <p>
+                                    Third period of the Turonian production according to
+                                    <ref target="#Fischer">Fischer</ref>
+                                    's classification (pp. 264-265).
+                                 </p>
+                              </source>
+                           </recordHist>
+                        </adminInfo>
+                        <surrogates>
+                           <p>
+                              <bibl type="digital_facsimile" subtype="full">
+                                 <ref target="https://iiif.bl.uk/uv/#?manifest=https://bl.digirati.io/manifests/ark:/81055/man_10000009.0x000001">
+                                    digital facsimile</ref>
+                              </bibl>
+                              <lb/>
+                              <bibl type="description">
+                                 <ref target="https://bibale.irht.cnrs.fr/46996">description</ref>
+                              </bibl>
+                              <lb/>
+                              <bibl type="IIIF_Manifest_URL">
+                                 <ref target="https://iiif.bl.uk/uv/#?manifest=https://bl.digirati.io/manifests/ark:/81055/man_10000009.0x000001">
+                                    IIIF Manifest</ref>
+                              </bibl>
+                              <lb/>
+                           </p>
+                        </surrogates>
+                     </additional>
+                  </msDesc>
+               </witness>
+               
+               <witness xml:id="Bm">
+                  <msDesc>
+                     <msIdentifier>
+                        <settlement>Bamberg</settlement>
+                        <repository>Staatsbibliothek</repository>
+                        <idno>Msc.Bibl.1 (A.I.5)</idno>
+                        <altIdentifier type="external">
+                           <idno type="ARCA_IRHT">https://arca.irht.cnrs.fr/ark:/63955/md46qz20wd82</idno>
+                        </altIdentifier>
+                        <altIdentifier type="external">
+                           <idno source="#Bischoff">Bischoff No. 190</idno>
+                        </altIdentifier>
+                     </msIdentifier>
+                     <head>Biblia latina Veteris et Novi Testamenti (Alcuin's Bible)</head>
+                     <msContents>
+                        <msItem>
+                           <locus>f. 85r</locus>
+                           <title>capitula Iudicum</title>
+                        </msItem>
+                     </msContents>
+                     <physDesc>
+                        <objectDesc form="codex">
+                           <supportDesc material="parch">
+                              <extent>
+                                 423 folios
+                                 <lb/>
+                                 <dimensions type="leaf" unit="mm">
+                                    <height quantity="470">heigth 470 mm</height>
+                                    <width quantity="355">width 355 mm</width>
+                                 </dimensions>
+                              </extent>
+                           </supportDesc>
+                           <layoutDesc>
+                              <layout columns="2">
+                                 <lb/>
+                                 2 cols.
+                              </layout>
+                           </layoutDesc>
+                        </objectDesc>
+                        <handDesc>
+                           <handNote script="minusculeCaroline">Carolingian minuscule</handNote>
+                        </handDesc>
+                     </physDesc>
+                     <history>
+                        <origin>
+                           <origDate from-custom="834" to-custom="843">834-843</origDate>
+                           <origPlace>Tours, Marmoutier Abbey</origPlace>
+                        </origin>
+                     </history>
+                     <additional>
+                        <adminInfo>
+                           <recordHist>
+                              <source>
+                                 <p>
+                                    Third period of the Turonian production according to
+                                    <ref target="#Fischer">Fischer</ref>
+                                    's classification (p. 265).
+                                 </p>
+                              </source>
+                           </recordHist>
+                        </adminInfo>
+                        <surrogates>
+                           <p>
+                              <bibl type="digital_facsimile" subtype="full">
+                                 <ref target="https://www.digitale-sammlungen.de/en/details/bsb00140662">
+                                    digital facsimile</ref>
+                              </bibl>
+                              <lb/>
+                              <bibl type="description">
+                                 <ref target="https://bibale.irht.cnrs.fr/43718">description</ref>
+                              </bibl>
+                              <lb/>
+                              <bibl type="description">
+                                 <ref target="https://opacplus.bsb-muenchen.de/title/BV035334719">description 2</ref>
+                              </bibl>
+                              <lb/>
+                              <bibl type="IIIF_Manifest_URL">
+                                 <ref target="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00140662/manifest">
+                                    IIIF Manifest</ref>
+                              </bibl>
+                              <lb/>
+                           </p>
+                        </surrogates>
+                     </additional>
+                  </msDesc>
+               </witness>
+               
+               <witness xml:id="P1">
+                  <msDesc>
+                     <msIdentifier>
+                        <settlement>Paris</settlement>
+                        <repository>Bibliothèque nationale de France</repository>
+                        <idno>latin 1</idno>
+                        <altIdentifier type="external">
+                           <idno type="Biblissima">https://data.biblissima.fr/entity/Q62750</idno>
+                        </altIdentifier>
+                        <altIdentifier type="external">
+                           <idno source="#Bischoff">Bischoff No. 3951</idno>
+                        </altIdentifier>
+                     </msIdentifier>
+                     <head>Biblia latina (First Bible of Charles the Bald)</head>
+                     <msContents>
+                        <msItem>
+                           <locus>f. 81r</locus>
+                           <title>capitula Iudicum</title>
+                        </msItem>
+                     </msContents>
+                     <physDesc>
+                        <objectDesc form="codex">
+                           <supportDesc material="parch">
+                              <extent>
+                                 I + 423 folios
+                                 <lb/>
+                                 <dimensions type="leaf" unit="mm">
+                                    <height quantity="495">height 495 mm</height>
+                                    <width quantity="375">width 375 mm</width>
+                                 </dimensions>
+                              </extent>
+                           </supportDesc>
+                           <layoutDesc>
+                              <layout columns="2">
+                                 <lb/>
+                                 2 cols.
+                              </layout>
+                           </layoutDesc>
+                        </objectDesc>
+                        <handDesc>
+                           <handNote script="minusculeCaroline">Carolingian minuscule</handNote>
+                        </handDesc>
+                     </physDesc>
+                     <history>
+                        <origin>
+                           <origDate from-custom="845" to-custom="851">845-851</origDate>
+                           <origPlace>Tours, Abbey St. Martin</origPlace>
+                        </origin>
+                     </history>
+                     <additional>
+                        <adminInfo>
+                           <recordHist>
+                              <source>
+                                 <p>
+                                    Fourth period (Abbot Vivian, 843-851) of the Turonian production according to
+                                    <ref target="#Fischer">Fischer</ref>
+                                    's classification (p. 267).
+                                 </p>
+                              </source>
+                           </recordHist>
+                        </adminInfo>
+                        <surrogates>
+                           <p>
+                              <bibl type="digital_facsimile" subtype="full">
+                                 <ref target="https://gallica.bnf.fr/ark:/12148/btv1b8455903b">
+                                    digital facsimile</ref>
+                              </bibl>
+                              <lb/>
+                              <bibl type="description">
+                                 <ref target="https://archivesetmanuscrits.bnf.fr/ark:/12148/cc8447n">
+                                    description</ref>
+                              </bibl>
+                              <lb/>
+                              <bibl type="IIIF_Manifest_URL">
+                                 <ref target="https://gallica.bnf.fr/iiif/ark:/12148/btv1b8455903b/manifest.json">
+                                    IIIF Manifest</ref>
+                              </bibl>
+                              <lb/>
+                           </p>
+                        </surrogates>
+                     </additional>
+                  </msDesc>
+               </witness>              
+           
+               <witness xml:id="K">
+                  <msDesc>
+                     <msIdentifier>
+                        <settlement>Köln</settlement>
+                        <repository>Erzbischöfliche Diözesan- und Dombibliothek</repository>
+                        <idno>1</idno>
+                        <altIdentifier type="external">
+                           <idno source="#Bischoff">Bischoff No. 1867</idno>
+                        </altIdentifier>
+                     </msIdentifier>
+                     <head>Biblia latina Veteris et Novi Testamenti</head>
+                     <msContents>
+                        <msItem>
+                           <locus>f. 73v</locus>
+                           <title>capitula Iudicum</title>
+                        </msItem>
+                     </msContents>
+                     <physDesc>
+                        <objectDesc form="codex">
+                           <supportDesc material="parch">
+                              <extent>
+                                 I + 382 + I folios
+                                 <lb/>
+                                 <dimensions type="leaf" unit="mm">
+                                    <height quantity="495">height 495 mm</height>
+                                    <width quantity="350">width 350 mm</width>
+                                 </dimensions>
+                              </extent>
+                           </supportDesc>
+                           <layoutDesc>
+                              <layout columns="2">
+                                 <lb/>
+                                 2 cols.
+                              </layout>
+                           </layoutDesc>
+                        </objectDesc>
+                        <handDesc>
+                           <handNote script="minusculeCaroline">Carolingian minuscule by one hand</handNote>
+                        </handDesc>
+                     </physDesc>
+                     <history>
+                        <origin>
+                           <origDate from-custom="857" to-custom="862">857-862</origDate>
+                           <origPlace>Tours, Abbey St. Martin</origPlace>
+                        </origin>
+                     </history>
+                     <additional>
+                        <adminInfo>
+                           <recordHist>
+                              <source>
+                                 <p>
+                                    Fifth period (853-c.900) of the Turonian production according to
+                                    <ref target="#Fischer">Fischer</ref>
+                                    's classification (p. 268).
+                                 </p>
+                              </source>
+                           </recordHist>
+                        </adminInfo>
+                        <surrogates>
+                           <p>
+                              <bibl type="digital_facsimile" subtype="full">
+                                 <ref target="https://resolver.staatsbibliothek-berlin.de/HSP00068AD900000000">
+                                    digital facsimile</ref>
+                              </bibl>
+                              <lb/>
+                              <bibl type="description">
+                                 <ref target="https://nbn-resolving.org/urn:nbn:de:hbz:kn28-3-3052">
+                                    description</ref>
+                              </bibl>
+                              <lb/>
+                              <bibl type="IIIF_Manifest_URL">
+                                 <ref target="https://digital.dombibliothek-koeln.de/i3f/v20/273024/manifest">
+                                    IIIF Manifest</ref>
+                              </bibl>
+                           </p>
+                        </surrogates>
+                     </additional>
+                  </msDesc>
+               </witness>
+               
+               <witness xml:id="deBruyne" corresp="#de_Bruyne">
+                  text of the A series as printed by
+                  <ref target="#de_Bruyne">D. de Bruyne</ref>
+                  , p. 46.
+                  <bibl type="digital_facsimile" subtype="full">
+                     <lb/>
+                     <ref target="https://gallica.bnf.fr/ark:/12148/bpt6k8537228/f16.item">
+                        digital facsimile</ref>
+                  </bibl>
+               </witness>
+            </listWit>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <tagsDecl>
+            <rendition xml:id="CU">mixed capital and uncial letters</rendition>
+            <rendition xml:id="U">uncial letters</rendition>
+            <rendition xml:id="Ca">capital letters</rendition>
+            <rendition xml:id="red">red color letter(s)</rendition>
+            <rendition xml:id="textink"/>
+            <rendition xml:id="bw">the digital reproduction is b/w, impossible to determine color</rendition>
+            <rendition xml:id="gold">golden letter(s)</rendition>
+            <rendition xml:id="blue">blue color letter(s)</rendition>
+            <rendition xml:id="green">green color letter(s)</rendition>
+         </tagsDecl>
+      </encodingDesc>
+      <profileDesc>
+         <handNotes>
+            <handNote xml:id="m">main scribe (scribe)</handNote>
+            <handNote xml:id="l">later hand</handNote>
+            <handNote xml:id="u">uncertainty whether in the scribe’s hand or added later</handNote>
+         </handNotes>   
+      </profileDesc>
+   </teiHeader>
+   <text>
+      <front>
+         <p>
+               This digital edition presents the reconstruction of the capitula of Series A (according to
+               <ref target="#de_Bruyne">Donatien de Bruyne's</ref> classification) that precede the Book of Iudices, in the textual form known from the
+               <hi rend="bold">Tours scriptorium</hi>.
+               <lb/>
+               <lb/>
+               To enhance the clarity of the critical apparatus, certain <hi rend="bold">graphical and commentary devices</hi> have been adopted:
+               <lb/>
+               <lb/>– In the reconstructed text, readings characteristic of the Turonian textual form
+               are highlighted in comparison with those of the Maurdramnus' Bible (Amiens, Bibliothèques d'Amiens Métropole, Ms. 7, Corbie, 772-781 =
+            <ref target="https://portail.biblissima.fr/en/ark:/43093/mdataa193ae0e5a10a6afa379de5fe1d79eb61d30b065">Am2</ref>)
+               and the Tours Octateuch (Tours, Bibliothèque municipale, Ms. 10, Tours, 790-800 =
+               <ref target="https://portail.biblissima.fr/fr/ark:/43093/mdatacff46095b9311c44034c6eaba347d4f09d83d460">Tu</ref>).
+               <lb/><hi rend="bold">Bold text</hi> indicates adiaphoric readings, i.e. readings equivalent to those attested in Am2 and/ or Tu;
+            whenever the Turonian corpus (= &#934;) preserves the better reading over the inferior one found in Am2/ Tu, that reading is also highlighted in bold.
+               <lb/><hi rend="italic">Italicised text</hi> signals readings that are clearly erroneous, either exclusive
+               to the Tours Bibles (to the entire corpus or at least to the majority of the Turonian witnesses)
+               or shared with Am2 and/ or Tu; these readings have been included in the main text,
+               as the aim is to reconstruct the archetypal form of the chapter headings from which the Tours Bibles descend.
+               <lb/>Lemmas in the main text, which are highlighted in various colors depending on the cause of the variation, flag readings
+               that differ, showing either a divergence between the Turonian corpus (= &#934;) and one or both of the other branches (Am2, Tu),
+               or a divergence from the reading chosen by <ref target="#de_Bruyne">D. de Bruyne</ref> in his edition of the biblical summaries.
+               <lb/>
+               <lb/>- Additionally, in the left window displaying the reconstructed text, <hi rend="bold">clickable red dots</hi> provide brief annotations indicating
+               whether a reading is adiaphoric (adiaph.) or erroneous (error), and whether it is attested only in the Tours Bibles (= &#934;) or also in Am2 or Tu.
+               The opposing witness is introduced with the abbreviation "<hi rend="bold">vs</hi>".
+               <lb/>Innovations of Am2 or Tu that are not shared with the Tours Bibles are not specifically marked, but can be identified through
+               the apparatus displayed in the right-hand window.
+               <lb/>
+               <lb/>– The Critical Apparatus includes notes, accessible via the "<hi rend="bold">Critical note</hi>" tab when present, which comment
+               where necessary on remarkable textual choices and the possible genesis of certain variants; 
+               for this purpose, a careful examination has been conducted not only of the <ref target="#Vulgata">Vulgate text</ref>, but also of the Septuagint and
+               the Old Latin text of Iudices, as attested in the
+               <ref target="https://portail.biblissima.fr/fr/ark:/43093/mdata64231eb12e5e05d26b09080c84d3000cb769c74e">Codex Lugdunensis</ref>
+              (Lyon, Bibliothèque municipale, 403, 6th cent. = VL 100, edited by <ref target="#VL100">U. Robert, Paris, 1900</ref>).
+               <lb/>
+               <lb/>- Furthermore, brief annotations on the paleographic features of the witnesses are included as "<hi rend="bold">witDetail</hi>" element,
+               accessible via the XML tab in the Critical Apparatus, where they are deemed useful to clarify the codification.
+               <lb/>
+               <lb/>- Finally, the "<hi rend="bold">Analogues</hi>" tab - located near the "Critical Apparatus" tab in the top-right pane - lists the biblical passages
+               (quoted from the <ref target="#Vulgata">Vulgate</ref>) to which
+               each chapter heading refers based on the marginal numbering in the manuscripts
+               - with the positioning of these numerals in Am1, Tu, and Sg1 serving as the primary reference.
+               These passages are also accessible by clicking the small icon preceding each heading's numeral in the reconstructed text on the left.
+               Additional commentary on the textual relationship between the headings and the biblical text, or on peculiar lexical choices,
+               is provided where necessary and accessible via the "<hi rend="bold">Bibliographic Reference</hi>" tab within the Analogues' apparatus.            
+               <lb/>
+               <lb/>These features allow users to quickly grasp the most salient textual phenomena and
+               their philological implications. 
+               <lb/>
+            <lb/>This series of <hi rend="italic">capitula</hi> appears to have been modelled on the Vulgate translation of Iudices.   
+            The evidence comes from lexical choices - specific words that match the <ref target="#Vulgata">Vulgate</ref> in comparison with the Old Latin version of the
+            <ref target="#VL100">Codex Lugdunensis</ref> (VL 100) (e.g., ch. 7 <hi rend="italic">aestiuo cenaculo</hi> : VL 100 <hi rend="italic">superiori aestiuali</hi>;
+            ch. 9 <hi rend="italic">clauum</hi> : VL 100 <hi rend="italic">palum</hi>; ch. 17 <hi rend="italic"> adulescens</hi> : VL 100 <hi rend="italic">puer</hi>)
+            - and from entire sentences that recall the exact phrasing of the <ref target="#Vulgata">Vulgate</ref> (e.g., ch. 3 <hi rend="italic">malum in conspectu domini</hi> :
+            VL 100 <hi rend="italic">malignum ante dominum</hi>; ch. 5 <hi rend="italic">hae sunt gentes quas dominus dereliquit</hi> : VL 100
+            <hi rend="italic">et hae gentes quas reliquit iesus</hi>).
+            The sole exception is in ch. 4, where the verb <hi rend="italic">excitantur</hi> seems to echo the Old Latin reading (VL 100 <hi rend="italic">et excitauit dominus</hi>),
+            rather than the Vulgate's <hi rend="italic">suscitauitque dominus</hi>.
+            <lb/>Regarding the textual transmission, it is possible, firstly, to conjecture a common archetype prior to the Tours Octateuch, the Maurdramnus' Bible, and the entire Turonian corpus.
+            This archetype would be responsible for certain alterations affecting the whole manuscript tradition: the erroneous numeral <hi rend="italic">XXX</hi> in ch. 7,
+            the meaningless transposition of <hi rend="italic">et barac</hi> in ch. 8, and the <hi rend="italic">deterior</hi> reading <hi rend="italic">his</hi> in ch. 10.
+            Moreover, the flourish of variants of <hi rend="italic">ipsos spreuerunt</hi> in ch. 4, where the exact reading is preserved in the Tours Octateuch and in two
+            Turonian Bibles (P1, K) can be traced back to a common exemplar in which the abbreviation mark was ambiguously positioned over two letters.
+            Similarly, the discordance among witnesses regarding the orthography of <hi rend="italic">adoliscente</hi> in ch. 17 may stem from a common exemplar
+            in which both alternating variants (<hi rend="italic">ad*le-/ ad*li-</hi>) were preserved.
+            <lb/>In examining the relationship between the three branches of the manuscript tradition, it should first be noted that the Tours Octateuch attests to a different
+            textual tradition, which involves the headings from ch. 11 to ch. 18 (except ch. 13 and 15). In comparison with the series transmitted by the Maurdramnus' Bible
+            and the almost entire Turonian corpus, Tu’s headings provide a more precise reference to the biblical narration, adding details that are omitted in the standard series.
+            In the current state of research, Tu’s variants have no other attestations, and their dependence on other series of <hi rend="italic">capitula</hi> edited by
+            <ref target="#de_Bruyne">D. de Bruyne</ref> can be ruled out. Their wording and phrasing are not so distinctly marked that the biblical text on which they were modelled
+            can be determined with certainty, although ch. 12, 16, and 18 seem to suggest the Vulgate as their source (see the critical notes <hi rend="italic">ad loc</hi>.).
+            <lb/>On this basis, a direct dependence of &#934; on the Tours Octateuch can be ruled out, with the exception of Troyes, Médiathèque Jacques-Chirac, Ms. 29 (Tr),
+            which, on the contrary, follows the peculiar tradition of Tu - not only in ch. 11–18, but also in some unique adiaphoric readings that characterise Tu in the previous
+            headings (e.g., the transposition in ch. 2, the omission of <hi rend="italic">et</hi> in ch. 7, the Old Latin orthography of the Jewish name <hi rend="italic">sisarrae</hi>
+            in ch. 9, <hi rend="italic">lambierunt</hi> instead of <hi rend="italic">-erant</hi> in ch. 10).
+            Tr follows Tu’s new series strictly in ch. 14 and 16–18, only partially in ch. 11; in ch. 12, the standard heading is written over an erasure, a fact that suggests
+            an adherence to Tu’s series in the inferior layer of writing (see the critical notes in the apparatus).
+            <lb/>The position of the Maurdramnus' Bible in the manuscript tradition stands out as quite ambiguous, as it shares innovations with both Tu (the altered Jewish
+            names <hi rend="italic">inahel/ inhael</hi> in ch. 9 and <hi rend="italic">iebethe</hi> in ch. 13, and the inferior reading <hi rend="italic">micha</hi> instead of
+            <hi rend="italic">micham</hi> in ch. 17) and &#934; (<hi rend="italic">iar</hi> in ch. 12, where the sole Z within the Turonian corpus has the better form
+            <hi rend="italic">iair</hi>, and the inferior reading <hi rend="italic">revocito</hi> in ch. 17, where - however - no comparison with Tu is possible).
+            Am2 also shows some unique errors (ch. 5, 8, 15), but these are not relevant, as they could be easily emended.
+            <lb/>Within &#934;, there are no shared innovations that define sub-groups; rather, the Turonian Bibles appear as independent apographs of a common exemplar.
+            The unique innovations of each witness are insignificant, consisting mainly of slips and orthographical variations.
+         </p>
+      </front>
+    
+      <body><head>
+         <pb facs="data/images/single/Am2_59v.jpg" n="Am2_59v"/>
+         <pb facs="data/images/single/Tu_307r.jpg" n="Tu_307r"/>
+         <pb facs="data/images/single/Sg1_170.jpg" n="Sg1_170"/>
+         <pb facs="data/images/single/Tr_82r.jpg" n="Tr_82r"/>
+         <pb facs="data/images/single/P8_82v.jpg" n="P8_82v"/>
+         <pb facs="data/images/single/P4_59v.jpg" n="P4_59v"/>
+         <pb facs="data/images/single/L2_83v.jpg" n="L2_83v"/>
+         <pb facs="data/images/single/Br1_66r.jpg" n="Br1_66r"/>
+         <pb facs="data/images/single/Z_78v.jpg" n="Z_78v"/>
+         <pb facs="data/images/single/Mb2_74r.jpg" n="Mb2_74r"/>
+         <pb facs="data/images/single/B2_83v.jpg" n="B2_83v"/>
+         <pb facs="data/images/single/P2_75v.jpg" n="P2_75v"/>
+         <pb facs="data/images/single/L1_89v.jpg" n="L1_89v"/>
+         <pb facs="data/images/single/Bm_85r.jpg" n="Bm_85r"/>
+         <pb facs="data/images/single/P1_81r.jpg" n="P1_81r"/>
+         <pb facs="data/images/single/K_73v.jpg" n="K_73v"/>         
+         <lb n="[Am2_59v] [Tu_307r] [Sg1_170] [Tr_82r] [P8_82v] [P4_59v] [L2_83v] [Br1_66r] [Z_78v] [Mb2_74r] [B2_83v] [P2_75v] [L1_89v] [Bm_85r] [P1_81r] [K_73v]"/> 
+       <lb/>
+         <app><lem>INCIPIVNT CAPITVLA</lem>            
+               <rdgGrp>
+                  <rdg wit="#Am2" type="omission" cause="unknown"/>
+                  <rdg wit="#Tu" rendition="#Ca #red #textink">INCIPIVNT CAPITVLA IVDICVM</rdg>
+                  <rdg wit="#Sg1" rendition="#CU #red">INCIPIVNT CAPiTuLa IN IVDICVM</rdg>
+                  <rdg wit="#Tr" rendition="#U #bw">INCiPiuNT CAPituLa IN LIBRO IVDICVM</rdg>
+                  <rdg wit="#P8" rendition="#Ca #bw">INCiPiuNT CAPituLa LIBRI IVDICum</rdg>
+                  <rdg wit="#P4" rendition="#CU #red">INCiPiuNT CAPiTuLa LIBRI IVDICVm</rdg>
+                  <rdg wit="#L2" rendition="#Ca #red">INCiPiuNT CAPituLa IVDICVm</rdg>
+                  <rdg wit="#Br1" rendition="#U #red">INCIPIVNT CAPITVLA IVDICVM</rdg>
+                  <rdg wit="#Z" rendition="#U #red">INCiPiuNT CAPituLa LIBRI IVDICVM</rdg>
+                  <rdg wit="#Mb2" rendition="#U #red">INCiPiuNT CAPitula LIBRI IVDICVM</rdg>
+                  <rdg wit="#B2" rendition="#U #red">INCIPIVNT CaPituLa IVDICVM</rdg>
+                  <rdg wit="#P2" rendition="#U #red">INCiPiuNT CAPITVLa LIBRI IVDICVm</rdg>
+                  <rdg wit="#L1" rendition="#Ca #red">INCIPIVNT CAPITuLa IVDICVM</rdg>
+                  <rdg wit="#Bm" rendition="#U #red">INCiPiuNT CAPITVLA IVDICVm</rdg>
+                  <rdg wit="#P1" rendition="#U #red">INCiPiuNT CAPiTuLa IN LIBRO IVDICVM</rdg>
+                  <rdg wit="#K" rendition="#U #red">INCIPIVNT CAPITVLA LIBRI IVDICVM</rdg>
+                  <rdg wit="#deBruyne" type="omission" cause="unknown"/>
+               </rdgGrp>
+            </app></head>
+        
+         <list>           
+            <item n="1">
+               <num>
+                  <ref type="parallelPassage">
+                     <bibl>
+                        <title>Idc 1:1 Post mortem iosue [...] et erit dux belli</title>
+                     </bibl>
+                  </ref>
+                  <app><lem>I</lem>
+               <rdg wit="#Tr" type="unclear" cause="digitisation">?</rdg>
+               </app>
+            </num>
+               <title>Iudas
+                  <app><lem>eligitur</lem>
+                  <rdg wit="#Tu #Sg1 #Tr #P4" type="minor" cause="grammatical">elegitur</rdg>
+               </app>
+                  <app><lem>dux</lem>
+                     <rdg wit="#P8" type="medium" cause="misspelling">iudex</rdg>
+                  </app>
+                  belli</title>
+            </item>
+            
+            <item n="2">
+               <num>
+                  <ref type="parallelPassage">
+                     <bibl>
+                        <title>Idc 2:1 Ascenditque angelus domini de galgal</title>
+                     </bibl>
+                  </ref>
+                  <app><lem>II</lem>
+                  <rdg wit="#Tr" type="unclear" cause="digitisation">??</rdg>
+                  </app></num>
+               <title>Increpat
+                  <app><lem>populum dominus</lem>
+                  <rdg wit="#Tu #Tr" type="transposition" subtype="adiaphoric" cause="unknown">dominus populum</rdg>
+                  </app>
+                  <note>&#934; praeter Tr + Am1 (adiaph.) vs Tu</note>
+                  pro excessu idolorum</title>
+            </item>
+            
+            <item n="3">
+               <num>
+                  <ref type="parallelPassage">
+                     <bibl>
+                        <title>Idc 2:8 Mortuus est autem iosue</title>
+                        <note>. Cfr. Idc 2:11 feceruntque filii israhel malum in conspectu domini; 2:14 iratusque dominus contra israhel 
+                           tradidit eos in manibus diripientium. The marginal numeral is omitted in the Maurdramnus' Bible.</note>
+                     </bibl>
+                  </ref>
+                  <app><lem>III</lem>
+                  <witDetail wit="#Tu">The rubricated numeral is faint due to faded ink.</witDetail>
+                  <rdg wit="#Tr" type="unclear" cause="digitisation">???</rdg>
+                  <rdg wit="#B2" type="minor" subtype="error" cause="numbering">IIII</rdg>
+               </app></num>
+               <title>Post obitum
+                  <app><lem>iosue</lem>
+                     <rdg wit="#P4" type="minor" cause="orthographic" ana="hebrew">iosuae</rdg></app>
+                  fecerunt
+                  <app><lem cause="orthographic" ana="hebrew">israhelitae</lem>
+                     <rdg wit="#Am2 #Tu #Tr #L2" type="minor" cause="orthographic" ana="hebrew">israhelite</rdg>
+                     <rdg wit="#Br1" type="minor" cause="orthographic" ana="hebrew">israhelit&#230;</rdg></app>
+                  malum in conspectu domini
+                  <app><lem>quos</lem>
+                     <rdg wit="#Am2 #Br1" varSeq="1" type="minor" cause="slip">qos</rdg>
+                     <rdg wit="#Am2 #Br1" varSeq="2" type="lem" cause="correction" rend="above" hand="#m">quos</rdg>
+                  </app>
+                  tradidit inimicis suis in
+                  <app><lem>praedam</lem>
+                     <rdg wit="#Sg1" varSeq="1" type="minor" subtype="error" cause="slip" cert="low">praed?m</rdg>
+                     <rdg wit="#Sg1" varSeq="2" type="lem" cause="correction" rend="overstrike" hand="#m">praedam</rdg>
+                     <rdg wit="#K" type="minor" cause="orthographic">pr&#553;dam</rdg></app></title>
+            </item>
+            
+            <item n="4">
+               <num>
+                  <ref type="parallelPassage">
+                     <bibl>
+                        <title>Idc 2:16 Suscitauitque dominus iudices : VL100
+                           et excitauit dominus iudices</title>
+                        <note>. The opening of the chapter heading apparently conserves the Old Latin version, as attested in the
+                           <ref target="#VL100">Codex Lugdunensis</ref>, while the remainder follows the Vulgate text quite closely
+                           (cf. Idc 2:21-22 et ego non delebo gentes [...] ut in ipsis experiar israhel : VL100  
+                        et ego non adponam auferre virum [...] ad temptandum in eo israhel).</note>
+                     </bibl>
+                  </ref>
+                  <app><lem>IIII</lem>
+                  <witDetail wit="#Tu">The rubricated numeral is faint due to faded ink.</witDetail>
+                  <rdg wit="#Tr" type="unclear" cause="digitisation">????</rdg>
+                  <rdg wit="#B2" type="substantive" subtype="error" cause="numbering">V</rdg>
+               </app></num>
+               <title>Excitantur a domino iudices
+                  <app><lem>ad</lem>
+               <rdg wit="#Sg1" type="minor" subtype="error" cause="slip">a</rdg></app>
+                  liberationem israhel etiam
+                  <app><lem cause="haplography"><hi rend="italic">ipso</hi></lem>
+                 <rdg wit="#Tu #Tr #Bm #P1 #K #deBruyne" type="minor" cause="grammatical">ipsos</rdg>
+                 </app>
+                  <note>&#934; praeter Tr Bm P1 K + Am2 (error) vs Tu</note>
+                  <app><lem cause="slip" cert="medium"><hi rend="italic">spuenerunt</hi></lem>
+                     <witDetail wit="#Tr #P8 #P4 #Br1 #Z #Mb2 #B2 #P2 #L1">Written with the abbreviation <q>spu&#x0304;er-</q></witDetail>
+                     <rdg wit="#Am2 #Sg1" type="minor" cause="grammatical" cert="medium">spuenerant</rdg>
+                     <witDetail wit="#Am2 #Sg1">spu&#x0304;erant</witDetail>
+                     <rdg wit="#Tu #P1 #K" type="minor" cause="unknown">spreuerunt</rdg>
+                     <witDetail wit="#Tu #L2">sp&#x0304;uerunt</witDetail>
+                     <rdg wit="#L2" varSeq="1" type="medium" subtype="error" cause="slip" rend="erasure" cert="low">?preuerunt</rdg>
+                     <rdg wit="#L2" varSeq="2" type="minor" cause="falseEmendation" rend="overstrike" hand="#m">spreuerunt</rdg>
+                     <rdg wit="#L1" varSeq="1" type="minor" cause="grammatical" rend="subpunctuated" cert="medium">spuenerant</rdg>
+                     <rdg wit="#L1" varSeq="2" type="lem" cause="correction" rend="above" hand="#u" cert="medium">spuenerunt</rdg>
+                     <rdg wit="#Bm" type="medium" cause="falseEmendation">praeuenerunt</rdg>
+                     <witDetail wit="#Bm">Written with the abbreviation <q>p&#x0304;uenerunt</q></witDetail>
+                     <rdg wit="#deBruyne" type="medium" cause="slip">spreueruut</rdg>
+                     <note>The correct reading is preserved in the Tours Octateuch and a few Turonian Bibles (L2 p.c., P1, K);
+                        indeed, the chapter heading refers to Idc 2:16 <q>sed nec illos audire voluerunt</q> in the Vulgate.
+                        The more widely attested reading within the Turonian corpus, and also that found in the Maurdramnus' Bible and Cod. Sang. 75 -
+                        may have resulted from a misplacement of the abbreviation mark (perhaps placed over -p and -u in the common exemplar),
+                        from <q>sp&#x0304;uer-</q> to <q>spu&#x0304;er-</q> (see the reading of the Alcuin's Bible [Bm]).
+                        While this explains how the error could have arisen, the intended meaning of the abbreviation mark in the manuscript witnesses, however, remains uncertain.
+               </note>
+                  </app>
+                  <note>&#934; praeter Sg1 L2 Bm P1 K (error) vs Am2 vs Tu</note>
+                  quibus reseruauit gentes
+                  ut in ipsis
+                  <app><lem>experiatur</lem>
+                     <rdg wit="#Sg1" type="minor" cause="slip_grammatical">expiriantur</rdg>
+                     <rdg wit="#L1" varSeq="1" type="minor" cause="grammatical" rend="subpunctuated">experiantur</rdg>
+                     <rdg wit="#L1" varSeq="2" type="lem" cause="correction" hand="#u">experiatur</rdg></app>
+                  israhel</title>
+            </item>
+            
+            <item n="5">
+               <num>
+                  <ref type="parallelPassage">
+                     <bibl>
+                        <title>Idc 2:23 Dimisit ergo dominus omnes has nationes</title>
+                        <note>. The marginal numeral appears at this point in the manuscripts. Cfr. Idc 3:1 Hae sunt gentes quas dominus dereliquit.</note>
+                     </bibl>
+                  </ref>
+                  <app><lem>V</lem>
+                  <rdg wit="#B2" type="minor" subtype="error" cause="numbering">VI</rdg></app>
+               </num>
+               <title><app><lem cause="grammatical">Hae</lem> 
+               <rdg wit="#Am2 #Sg1 #P8 #P4 #L2 #L1 #deBruyne" type="minor" cause="grammatical">haec</rdg> 
+               <rdg wit="#Mb2" varSeq="1" type="minor" cause="grammatical" rend="erasure" cert="low">haec</rdg>
+               <rdg wit="#Mb2" varSeq="2" type="lem" cause="correction" hand="#u">hae</rdg>
+                     <note>The feminine plural nominative <q>haec</q> is a later form that supplanted the classical <q>hae</q>
+                        to become standard in Medieval Latin (cf. ThLL, 2700, s.v. hic, haec, hoc).</note></app>
+                  sunt gentes quas dominus
+                  <app><lem>dereliquit</lem>
+                     <rdg wit="#Am2" type="minor" cause="slip">dereliquid</rdg>
+                     <rdg wit="#Sg1" varSeq="1" type="minor" subtype="error" cause="slip" cert="low">derelin</rdg>
+                     <rdg wit="#Sg1" varSeq="2" type="lem" cause="correction" rend="overstrike">dereliquit</rdg>
+                     <witDetail wit="#Sg1">Sg1 was perhaps about to write "derelin[quit]", but stopped and corrected it.</witDetail>
+                    <rdg wit="#Tr" varSeq="1" type="minor" cause="slip">reliquit</rdg>
+                     <rdg wit="#Tr" varSeq="2" type="lem" cause="correction" rend="above" hand="#u">dereliquit</rdg></app>
+                  </title>
+            </item>
+            
+            <item n="6">
+               <num>
+                  <ref type="parallelPassage">
+                     <bibl>
+                        <title>Idc 3:5 Itaque filii israhel habitaverunt</title>
+                     </bibl>
+                  </ref>
+                  <app><lem>VI</lem>
+                  <rdg wit="#Tr" type="unclear" cause="digitisation">??</rdg>
+                  <rdg wit="#B2" type="minor" subtype="error" cause="numbering">VII</rdg></app></num>
+               <title>Pro excessu
+                  <app><lem>idolorum</lem>
+                  <rdg wit="#P4" type="minor" subtype="error" cause="haplography">idorum</rdg></app>
+                  captiuati sunt a rege
+                  <app><lem cause="orthographic" ana="hebrew">cusan</lem>
+                     <witDetail wit="#P8">Apparently corrected from an earlier reading, but this is not clearly detectable from the digital facsimile.</witDetail>
+                  <rdg wit="#Tu #Tr #K #deBruyne" type="minor" cause="orthographic" ana="hebrew">chusan</rdg>
+                  </app>
+                  <note>&#934; praeter Tr K + Am2 (adiaph.) vs Tu</note>
+                  <app><lem>mesopotamiae</lem>
+                     <rdg wit="#Am2 #B2" type="minor" cause="orthographic">mesopotami&#230;</rdg>
+                     <rdg wit="#Bm" type="minor" cause="orthographic">mesopotami&#553;</rdg></app></title>
+            </item>
+            
+            <item n="7">
+               <num>
+                  <ref type="parallelPassage">
+                     <bibl>
+                        <title>Idc 3:12 Addiderunt autem filii israhel facere malum</title>
+                     </bibl>
+                  </ref>
+                  <app><lem>VII</lem>
+                  <rdg wit="#Tr" type="unclear" cause="digitisation">???</rdg>
+                  <rdg wit="#B2" type="minor" subtype="error" cause="numbering">VIII</rdg></app>
+               </num>
+               <title>Item pro malis traduntur eglon regi moab quem interfecit
+                  <app><lem>ahoth</lem>
+                     <rdg wit="#B2" type="minor" cause="orthographic" ana="hebrew">ahot</rdg></app>
+                  in
+                  <app><lem>cenaculo</lem>
+                     <rdg wit="#Mb2 #P1" type="minor" cause="orthographic">caenaculo</rdg>
+                     <rdg wit="#L1" type="minor" subtype="error" cause="slip">cenabulo</rdg></app>
+                  suo cum arte interfectis etiam
+                  <app><lem>decem</lem>
+                     <rdg wit="#Z" type="substantive" subtype="adiaphoric" cause="orthographic">X</rdg></app>
+                  milibus
+                  <app><lem>moabitarum</lem>
+                     <rdg wit="#P8" type="minor" cause="orthographic" ana="hebrew">mohabitarum</rdg>
+                     <rdg wit="#P4" type="minor" cause="orthographic" ana="hebrew">moabitharum</rdg></app>
+                  <app><lem>et</lem>
+                  <rdg wit="#Tu #Tr" type="omission" cause="unknown"/></app>
+                  <note>&#934; praeter Tr + Am2 (adiaph.) vs Tu</note>
+                  quieuit terra
+                  <app><lem cause="slip"><hi rend="italic">XXX</hi></lem>
+                     <rdg wit="#Mb2 #B2 #P2 #L1 #P1 #K" type="substantive" subtype="adiaphoric" cause="orthographic">triginta</rdg>
+                     <rdg wit="#deBruyne" type="substantive" subtype="adiaphoric" cause="Vulgate">octoginta</rdg>
+                     <note>As the numeral <q>triginta</q> is unsupported by any other evidence, it should be considered an error (perhaps due to the accidental loss of the first letter 
+                        in <q>LXXX</q>) that originated in the common exemplar from which the three branches of the tradition stem.
+                        Both the Old Latin version as attested by the <ref target="#VL100">Codex Lugdunensis (VL 100)</ref> and the Vulgate read <q>octoginta</q>,
+                        aligning with the Septuagint (Idc 3:30 <q>καὶ ἡσύχασεν ἡ γῆ ὀγδοήκοντα ἔτη</q>).
+                     </note></app>
+                  annis</title>
+            </item>
+            
+            <item n="8">
+               <num>
+                  <ref type="parallelPassage">
+                     <bibl>
+                        <title>Idc 3:31 Post hunc fuit samgar</title>
+                     </bibl>
+                  </ref>
+                  <app><lem>VIII</lem>
+                  <rdg wit="#Tr" type="unclear" cause="digitisation">????</rdg>
+                  <rdg wit="#B2" type="minor" subtype="error" cause="numbering">VIIII</rdg></app></num>
+               <title>Samgar qui occidit
+                  <app><lem>sexcentos</lem>
+                     <rdg wit="#Am2" type="minor" subtype="error" cause="misspelling">se centos</rdg>
+                     <rdg wit="#K" type="minor" cause="orthographic">sescentos</rdg></app>
+                  uiros 
+                  <app><lem>uomere</lem>
+                     <witDetail wit="#P8">The letter m- appears subpunctuated,
+                        though it is not clear if this mark is intentional.</witDetail></app>
+               </title>
+            </item>
+            
+            <item n="9">
+               <num>
+                  <ref type="parallelPassage">
+                     <bibl>
+                        <title>Idc 4:1 Addideruntque filii israhel facere malum</title>
+                        <note>. Cfr. Idc 4:21 Tulit itaque iahel uxor aber clavum [...]
+                           posuit supra tempus capitis eius clavum.</note>
+                     </bibl>
+                  </ref>
+                  <app><lem>VIIII</lem>
+                  <rdg wit="#Tr" type="unclear" cause="digitisation">?????</rdg>
+                  <rdg wit="#B2" type="substantive" subtype="error" cause="numbering">X</rdg></app></num>
+               <title>Constantia
+                  <app><lem>mulieris</lem>
+                  <rdg wit="#B2" type="minor" subtype="error" cause="grammatical">mulieri</rdg></app>
+                  <app><lem><hi rend="bold">iahel</hi></lem>
+                     <rdg wit="#Am2" type="minor" subtype="error" cause="misspelling">inahel</rdg>
+                     <rdg wit="#Tu #Tr" type="medium" subtype="error" cause="misspelling">inhael</rdg>
+                     <rdg wit="#Z" type="minor" cause="unknown">i&#183;ahel</rdg></app>
+                  <note>&#934; praeter Tr Z (recte) vs Am2 vs Tu</note>
+                  <app><lem>quae</lem>
+                     <rdg wit="#Am2 #Br1" type="minor" cause="orthographic">qu&#230;</rdg></app>
+                  <app><lem>clauo</lem>
+                     <rdg wit="#P8" varSeq="1" type="minor" subtype="error" cause="slip">clau</rdg>
+                     <rdg wit="#P8" varSeq="2" type="lem" cause="correction" rend="above" hand="#u">clauo</rdg></app>
+                  infixo
+                  <app><lem cause="orthographic"><hi rend="bold">timpore</hi></lem>
+                     <rdg wit="#Am2 #deBruyne" type="minor" cause="orthographic">tempore</rdg>
+                     <rdg wit="#Tu #Tr" type="minor" cause="orthographic">tympore</rdg>
+                     <rdg wit="#L2" varSeq="1" type="minor" cause="orthographic" rend="erasure" cert="low">tempore</rdg>
+                     <rdg wit="#L2" varSeq="2" type="lem" cause="correction" rend="overstrike" hand="#m">timpore</rdg>
+                  </app><note>&#934; praeter Tr (adiaph.) vs Am2 vs Tu</note>
+                  <app><lem cause="orthographic" ana="hebrew">sisarae</lem>
+                     <rdg wit="#Am2 #L2 #Bm #K" type="minor" cause="orthographic" ana="hebrew">sisare</rdg>
+                     <rdg wit="#Tu #Tr" type="minor" cause="orthographic" ana="hebrew">sisarrae</rdg>
+                     <rdg wit="#P8" varSeq="1" type="medium" subtype="error" cause="unknown" rend="erasure" cert="low">sis??r&#553;</rdg>
+                     <rdg wit="#P8" varSeq="2" type="minor" cause="falseEmendation_orthographic" rend="overstrike" hand="#u">sisar&#553;</rdg>
+                     <witDetail wit="#P8">Probably corrected from an earlier reading, but this is not clearly detectable from the digital facsimile.</witDetail>
+                     <rdg wit="#Br1 #B2" type="minor" cause="orthographic" ana="hebrew">sisar&#553;</rdg>
+                     <rdg wit="#L1" varSeq="1" type="minor" subtype="error" cause="slip" rend="subpunctuated">sisareae</rdg>
+                     <rdg wit="#L1" varSeq="2" type="minor" cause="falseEmendation_orthographic" rend="overstrike" hand="#u">sisar&#553;</rdg>
+                     <note>The variant of the Jewish name found in the Maurdramnus' Bible and the Turonian Bibles (with slight orthographical differences,
+                        and excepting Cod. Turon. 29) matches the form in the Greek text (e.g. Idc 4:2 <q>ὁ ἄρχων τῆς δυνάμεως αὐτοῦ Σισαρα</q>)
+                        and the Vulgate. In contrast, the variant in the Tours Octateuch (followed by Cod. Turon. 29) corresponds to the form
+                        found in the Old Latin version of the <ref target="#VL100">Codex Lugdunensis (VL 100)</ref>.</note></app>
+                  sequitur canticum
+                  <app><lem type="transposition" subtype="error" cause="unknown"><hi rend="italic">et</hi>
+                        <app><lem cause="orthographic" ana="hebrew"><hi rend="italic">barac</hi></lem>
+                    <rdg wit="#Tu #Tr #K" type="minor" cause="orthographic" ana="hebrew">barach</rdg>
+                    <rdg wit="#Z" type="minor" subtype="error" cause="slip">bara</rdg>
+                  </app></lem>
+                     <rdg wit="#Tu #Tr #K" type="minor" cause="orthographic" ana="hebrew">et barach</rdg>
+                     <rdg wit="#Z" type="minor" subtype="error" cause="slip">et bara</rdg>
+                    <rdg wit="#deBruyne" type="transposition" cause="falseEmendation">barac et</rdg>
+                     <note>The corruption in the word order is evident (cf. Idc 5:1 <q>cecineruntque debbora et barac</q> in the Vulgate)
+                        and must have originated in the common exemplar, since it is found in all three branches of the manuscript tradition.
+                        This misplacement occurred possibly because the syntagm <q>et barac</q> was added marginally in the archetype without 
+                        clear marks to guide its proper insertion into the main text.
+                        The chapter heading should be restored as <q>canticum debbore et barac</q>, according to the biblical text, rather than
+                        <q>canticum barac et debborae</q> as <ref target="#de_Bruyne">D. de Bruyne</ref> did in his edition.
+                </note></app>
+                  <app><lem cause="orthographic" ana="hebrew">debbore</lem>
+                     <rdg wit="#Am2" varSeq="1" type="minor" subtype="error" cause="diplography" rend="erasure" cert="low">debobore</rdg>
+                     <rdg wit="#Am2" varSeq="2" type="lem" cause="correction" hand="#u">debbore</rdg>
+                     <rdg wit="#Tu #Tr #P4 #deBruyne" type="minor" cause="orthographic" ana="hebrew">debborae</rdg>
+                     <rdg wit="#Z" type="minor" cause="orthographic" ana="hebrew">debore</rdg></app>
+               </title>
+            </item>
+            
+            <item n="10">
+               <num>
+                  <ref type="parallelPassage">
+                     <bibl>
+                        <title>Idc 6:1 Fecerunt autem filii israhel malum</title>
+                        <note>. The marginal numeral appears at this point in the Tours Octateuch; in the Maurdramnus' Bible it is omitted,
+                           in Cod. Sang. 75 it is at Idc 6:8 <q>haec dicit dominus deus israhel</q>,
+                           as it does in two of the most ancient bibles within the Turonian corpus (Tr and P8).
+                           Cfr. Idc 6:11 Venit autem angelus domini et sedit.</note>
+                     </bibl>
+                  </ref>
+                  <app><lem>X</lem>
+                  <rdg wit="#Tr" type="unclear" cause="digitisation">?</rdg>
+                  <rdg wit="#B2" type="minor" subtype="error" cause="numbering">XI</rdg></app></num>
+               <title>Post
+                  <app><lem>excessus</lem>
+                  <rdg wit="#P4" type="minor" subtype="error" cause="slip">excelsus</rdg></app>
+                  populi
+                  <app><lem>consuetos</lem>
+                     <rdg wit="#deBruyne" type="minor" subtype="error" cause="slip">consueto</rdg></app>
+                  apparuit angelus domini 
+                  <app><lem>gedeon</lem>
+                     <rdg wit="#P4" type="minor" subtype="error" cause="misspelling">degedeon</rdg>
+                     <rdg wit="#Bm" varSeq="1" type="minor" subtype="error" cause="slip" cert="low">ge?eon</rdg>
+                     <rdg wit="#Bm" varSeq="2" type="lem" cause="correction" rend="overstrike" hand="#m">gedeon</rdg>
+                     <witDetail wit="#Bm">Probably corrected from an earlier reading, but this is not clearly detectable from the digital facsimile.</witDetail></app>
+                  confortans ad
+                  <app><lem cause="orthographic">proeliandum</lem>
+                     <rdg wit="#Sg1 #P4 #Z #B2 #L1 #K #deBruyne" type="minor" cause="orthographic">praeliandum</rdg></app>
+                  <app><lem>subuertit</lem>
+                     <rdg wit="#P8" type="minor" subtype="error" cause="slip">subuetit</rdg></app>
+                  etiam
+                  <app><lem cause="orthographic" ana="hebrew">bahal</lem>
+                   <rdg wit="#Am2 #Tu #Tr #P4 #Z #L1 #deBruyne" type="minor" cause="orthographic" ana="hebrew">baal</rdg>
+                   <rdg wit="#Mb2" varSeq="1" type="minor" subtype="error" cause="slip" rend="erasure" cert="low">bal</rdg>
+                  <rdg wit="#Mb2" varSeq="2" type="lem" cause="correction" rend="inline" hand="#m">bahal</rdg>
+                  <note>The variant of the Jewish name transmitted by the majority of the Turonian witnesses aligns with the Old Latin orthography of the
+                     <ref target="#VL100">Codex Lugdunensis</ref>(e.g. Idc 6:25 <q>euerte aram bahal</q>).
+                     In contrast, the remainder of the Turonian corpus, in accordance with the Maurdramnus' Bible and the Tours Octateuch, follows the Vulgate's form.
+                  </note></app>
+                  et
+                  <app><lem cause="orthographic">optulit</lem>
+                     <rdg wit="#Am2 #Tu #Sg1 #Tr #P8 #P4 #B2 #L1 #deBruyne" type="minor" cause="orthographic">obtulit</rdg></app>
+                  sacrificium domino
+                  ipsius
+                  <app><lem>uiri</lem>
+                  <rdg wit="#P8" varSeq="1" type="minor" subtype="error" cause="slip">uri</rdg>
+                  <rdg wit="#P8" varSeq="2" type="lem" cause="correction" rend="above" hand="#u">uiri</rdg></app>
+                  <app><lem>trecenti</lem>
+                     <rdg wit="#Am2" type="substantive" subtype="adiaphoric" cause="orthographic">CCC</rdg>
+                     <rdg wit="#P8" type="minor" cause="orthographic">tricenti</rdg></app>
+                  <app><lem cause="grammatical">lambierant</lem>
+                     <rdg wit="#Tu #Tr" type="minor" subtype="adiaphoric" cause="grammatical">lambierunt</rdg>
+                     <witDetail wit="#Tr">Written with the abbreviation lambier&#x0304;</witDetail>
+                     <rdg wit="#P8" varSeq="1" type="minor" subtype="adiaphoric" cause="grammatical" rend="erasure" cert="low">lambierunt</rdg>
+                     <rdg wit="#P8" varSeq="2" type="lem" cause="correction" rend="overstrike" hand="#u">lambierant</rdg>
+                     <note>The manuscript tradition attests unanimously the verb <q>lambi-</q>, which appears as a later form of <q>lambere</q>
+                        (cfr. ThLL, 898, s.v. lambo).                        
+                     </note>
+                  </app><note>&#934; praeter Tr + Am2 (adiaph.) vs Tu</note>
+                  aquas ut canes
+                  <app><lem cause="orthographic"><hi rend="italic">his</hi></lem>
+                     <rdg wit="#K #deBruyne" type="minor" cause="orthographic">is</rdg>
+                     <witDetail wit="#K">A blank space appears between <q>canes.</q> and <q>is</q> with no visible traces of correction.</witDetail>
+                  <note>The subject of <q>excessit</q> is Gedeon (Idc 8:27 <q>fecitque ex eo gedeon</q> in the Vulgate)
+                     , therefore a masculine pronoun is expected.
+                     The form <q>his</q> for the masculine nominative of <q>is</q> is attested (cfr. ThLL, 456, s.v. is, ea, id);
+                     nonetheless, this reading - which was apparently already present in the common exemplar, as the manuscript tradition is nearly unanimous -
+                     appears to be a deterior lectio. The better reading <q>is</q> was likely conjecturally restored in K.
+                  </note></app>
+                  postmodum excessit cum
+                  <app><lem>israhel</lem>
+                     <witDetail wit="#Sg1 #Tr #Br1 #Z #B2 #P2 #L1 #Bm #P1 #K">isrl&#x0304;</witDetail>
+                     <rdg wit="#deBruyne" type="minor" subtype="error" cause="slip">israel</rdg>
+                     </app></title>
+            </item>
+            
+            <item n="11">
+               <num>
+                  <ref type="parallelPassage">
+                     <bibl>
+                        <title>Idc 8:29 Abiit itaque hierobbaal filius ioas</title>
+                        <note>. The marginal numeral is at this point in the manuscripts. The birth of Abimelech is mentioned shortly after, at
+                           Idc 8:31 <q>genuit ei filium nomine abimelech</q>.</note>
+                     </bibl>
+                  </ref>                   
+                  <app><lem>XI</lem>
+                  <rdg wit="#Tr" type="unclear" cause="digitisation">??</rdg>
+                  <rdg wit="#B2" type="minor" subtype="error" cause="numbering">XII</rdg>
+                  <witDetail wit="#Z">A later hand (XV saec.?) added an exegetical note about the death of Abimelech in the inner margin.</witDetail></app></num>
+              <title>De regno abimelech 
+                  <app><lem>infirmo</lem>
+                  <rdg wit="#Tu" type="omission" cause="unknown"/>
+                  <rdg wit="#Tr" varSeq="1" type="omission" cause="unknown" cert="low"/>
+                  <rdg wit="#Tr" varSeq="2" type="lem" cause="correction" rend="inline" hand="#u">infirmo</rdg>
+                  <witDetail wit="#Tr">The reading is written over an erasure.</witDetail>
+                  </app>
+                 <note>&#934; praeter Tr a.c. + Am2 vs Tu</note>
+                  qui
+                  <app><lem/>
+                     <rdg wit="#Tu" type="addition" cause="unknown">occidit super unam petram septuaginta fratres suos et</rdg>
+                     <rdg wit="#Tr" varSeq="1" type="addition" cause="unknown" rend="erasure" cert="low">occidit super unam petram septuaginta fratres suos et</rdg>
+                  <rdg wit="#Tr" varSeq="2" type="lem" cause="correction" hand="#u"/>
+                  <note>Since ch. 11 the Tours Octateuch represents a textual tradition that differs considerably from the series transmitted by the Maurdramnus' Bible and
+                     the Turonian corpus. In the current state of research, it has no other witnesses (except for Cod. Turon. 29, which apparently follows the Tours Octateuch
+                     for the summary of Judges). The source of this tradition is therefore unknown, as the wording of the heading mirrors exactly neither the Vulgate
+                     nor the Old Latin version as attested in the <ref target="#VL100">Codex Lugdunensis (VL 100)</ref>;
+                     a direct descent of the Tours Octateuch variants from other series edited by
+                     <ref target="#de_Bruyne">D. de Bruyne</ref> can be excluded.
+                     Here the adjective <q>infirmo</q>, which qualifies the kingship of Abimelech,
+                     is replaced by an explicit reference to Idc 9:5 <q>et occidit fratres suos filios hierobbaal (VL 100: gedeon) septuaginta uiros super lapidem unum</q>,
+                     which recounts how Abimelech obtained his power unjustly - that is to say, the cause that leads to God's curse and, subsequently, the fall and death of Abimelech.
+                     For the other divergences in this heading as transmitted by the Tours Octateuch, see the following critical notes.
+                  </note></app>
+                 moritur
+                  <app><lem/>
+                     <rdg wit="#Tu" type="addition" cause="unknown">ipse</rdg>
+                     <rdg wit="#Tr" varSeq="1" type="addition" cause="unknown" rend="erasure" cert="low">ipse</rdg>
+                     <rdg wit="#Tr" varSeq="2" type="lem" cause="correction" hand="#u"/>
+                     <note>The addition of the pronoun <q>ipse</q> is necessary in the heading's syntactic structure of this heading as transmitted by the Tours Octateuch,
+                        as it serves to highlight Abimelech's death by contrasting it with the death of his seventy brothers mentioned previously.
+                  </note></app>
+                  de
+                  <app><lem>fragmento</lem>
+                     <rdg wit="#Sg1" type="minor" subtype="error" cause="slip">fragnento</rdg>
+                     <witDetail wit="#Sg1">Written with the abbreviation <q>fragn&#x0304;to</q></witDetail>
+                     <rdg wit="#P8" type="minor" cause="slip">flagmento</rdg></app>
+                  <app><lem>petrae</lem>
+                     <rdg wit="#Sg1 #B2" type="minor" cause="orthographic">petre</rdg>
+                     <rdg wit="#L2 #K" type="minor" cause="orthographic">petr&#553;</rdg>
+                     <rdg wit="#Z" type="minor" cause="orthographic">petr&#230;</rdg></app>
+                  <app><lem>molae</lem>
+                  <rdg wit="#Am2 #Z" type="minor" cause="orthographic">mol&#230;</rdg>   
+                  <rdg wit="#Tu" type="medium" subtype="adiaphoric" cause="unknown">molaris</rdg>
+                  <rdg wit="#Tr" varSeq="1" type="medium" subtype="adiaphoric" cause="unknown" rend="erasure" cert="low">molaris</rdg>
+                  <rdg wit="#Tr" varSeq="2" type="minor" cause="falseEmendation_orthographic">mol&#553;</rdg>
+                  <rdg wit="#B2" type="minor" cause="orthographic">mole</rdg>
+                  <rdg wit="#K" type="minor" cause="orthographic">mol&#553;</rdg>
+                     <note>The reading transmitted (with slight orthographic differences) by the Maurdramnus' Bible and the Turonian corpus closely echoes the biblical text:
+                        Idc 9:53 <q>fragmen (VL 100: fragmentum) molae</q>. However, the addition of <q>petrae</q> is redundant, as <q>molae</q> is itself a noun.
+                        In this sense, the reading of the Tours Octateuch, where it is replaced by the adjective <q>molaris</q>, represents a stylistic improvement.
+                     </note>
+                 </app>
+                 <note>&#934; praeter Tr a.c. + Am2 (adiaph.) vs Tu</note>
+               <app><lem/>
+                  <rdg wit="#Tu" type="addition" cause="unknown">a muliere proiecto et de iudice thoa et iahir</rdg>
+                  <witDetail wit="#Tr">The erasure extends to the end of the line, but it is difficult to determine whether the space would have been sufficient for the variant of the heading as attested in Tu (s. below, ch. 12).</witDetail>
+                  <note>In the final part of ch. 11, the Tours Octateuch adds specific details from the biblical narrative that are omitted in the summary found in the Maurdramnus' Bible and
+                     the Turonian corpus series: namely, that the millstone was dropped by a woman (Idc 9:53) and the kingship of Thola - erroneously written as <q>thoa</q> in the manuscript
+                     (Idc 10:1). Furthermore, the mention within this same chapter of the kingship of Iair, which the following chapter heading refers to in the standard series, 
+                     necessitates the substitution of the entire ch. 12 (see below, and the critical note).
+                     Regarding Cod. Turon. 29, which apparently follows the peculiar readings of the Tours Octateuch in the summary of Judges,
+                     it is noteworthy that parts of this heading (specifically those where Tu differs from the standard series) and the entire following heading
+                     appear to have been written over an erasure (see the <q>witDetail</q> element by clicking the XML button in the apparatus).
+                     Consequently, although it is difficult to determine whether the erased space would have been sufficient
+                     for the variant chapter heading as attested in Tu, it seems very likely that the Tr scribe first wrote the heading from the Tours Octateuch
+                     and subsequently replaced it with the version from the standard Turonian series.
+               </note>
+               </app></title>
+            </item>
+            
+            <item n="12">
+               <num>
+                  <ref type="parallelPassage">
+                     <bibl>
+                        <title>Idc 10:3 Huic successit iair galaadites</title>
+                     </bibl>
+                  </ref>
+                  <app><lem>XII</lem>
+                  <rdg wit="#B2" type="minor" subtype="error" cause="numbering">XIII</rdg></app></num>
+                <title><app><lem>Regnum
+                         <app><lem cause="orthographic" ana="hebrew">iar</lem>
+                   <rdg wit="#Tu" type="omission" cause="unknown"/>
+                   <rdg wit="#P8" type="minor" cause="orthographic" ana="hebrew">air</rdg>
+                   <rdg wit="#Z" type="minor" cause="orthographic" ana="hebrew">iair</rdg>
+                            <note>The form of this Jewish name is <q>iair</q> in both the Vulgate and the <ref target="#VL100">Codex Lugdunensis (VL 100)</ref>.
+                               This form was preserved - perhaps conjecturally restored - by Z alone among the Turonian Bibles.
+                         </note></app>     
+                </lem>
+                   <rdg wit="#Tu" type="substantive" subtype="adiaphoric" cause="Vulgate">item filii israhel peccatis ueteribus noua iungentes traditi sunt
+                      in manu phylisthiim et filiorum amon</rdg>
+                   <witDetail wit="#Tr">The chapter is written over an erasure, but it is difficult to determine whether the space would have been sufficient for the variant of the heading as attested in Tu (s. above, ch. 11).</witDetail>
+                      <note>As anticipated above, the kingship of Iair is mentioned in the previous heading according to the peculiar textual tradition of the Tours Octateuch.
+                         Consequently, the present heading has been modified to refer to Idc 10:6-7 instead of Idc 10:3 (nonetheless, the marginal rubricated numbering in Tu is still
+                         placed at 10:3, as it is in the Maurdramnus' Bible and Cod. Sang. 75). In contrast to the modification concerning ch. 11
+                         (see the critical notes above), the wording in this instance closely echoes the Vulgate text: <q>filii autem israhel peccatis ueteribus iungentes
+                            noua fecerunt malum in conspectu domini [...] tradidit eos in manu philisthim et filiorum ammon</q>.
+                         In Cod. Turon. 29 the entire heading is written over an erasure and aligned with the end of the preceding one.
+                         It is difficult to determine whether the Tr scribe first wrote the peculiar variant of the Tours Octateuch (as was very probably done
+                         for the preceding heading: see the critical note at ch. 11) or wrote the standard version of this heading directly over the erasure,
+                         which may have contained only the Tu variant of ch. 11.
+                </note>
+                </app></title>
+            </item>
+            
+            <item n="13">
+               <num>
+                  <ref type="parallelPassage">
+                     <bibl>
+                        <title>Idc 11:1 Fuit illo tempore iepthae galaadites</title>
+                     </bibl>
+                  </ref>
+                  <app><lem>XIII</lem>
+                  <rdg wit="#Sg1" varSeq="1" type="omission" cause="numbering"/>
+                  <rdg wit="#Sg1" varSeq="2" type="lem" cause="correction" rend="transpMarks" hand="#l">XIII</rdg>
+                  <rdg wit="#Tr" type="unclear" cause="digitisation">????</rdg>
+                  <rdg wit="#B2" type="minor" subtype="error" cause="numbering">XIIII</rdg></app></num>
+               <title>
+                  <app><lem>Regnum</lem>
+                     <rdg wit="#Sg1" varSeq="1" type="omission" cause="homeoarchy"/>
+                     <rdg wit="#Sg1" type="lem" cause="correction" rend="inline" hand="#m">regnum</rdg>
+                     <witDetail wit="#Sg1">The scribe accidentally skipped the whole chapter, but corrected the error by adding it in the blank space at the end of ch. 12 and 14.</witDetail>
+                  </app>
+                  <app><lem cause="orthographic" ana="hebrew"><hi rend="bold">iepthe</hi></lem>
+                  <rdg wit="#Am2 #Tu #Tr" type="minor" cause="orthographic" ana="hebrew">iebethe</rdg>
+                  <rdg wit="#Sg1" varSeq="1" type="omission" cause="slip"/>
+                  <rdg wit="#Sg1" varSeq="2" type="lem" cause="correction" rend="inline" hand="#m">iepthe</rdg>
+                  <rdg wit="#P4" type="minor" cause="orthographic" ana="hebrew">iephthe</rdg>
+                  <rdg wit="#L2" varSeq="1" type="minor" subtype="error" cause="slip" rend="erasure" cert="low">iepthe?</rdg>
+                  <rdg wit="#L2" varSeq="2" type="lem" cause="correction" hand="#u">iepthe</rdg>
+                  <rdg wit="#K" type="minor" cause="orthographic" ana="hebrew">iept&#553;</rdg>
+                  <rdg wit="#deBruyne" type="minor" cause="orthographic" ana="hebrew">iepte</rdg>
+                  <note>Within the Turonian corpus, this Jewish name appears, with slight orthographic variants, as <q>iepthe</q> - a form consistent with the Vulgate and the
+                     Old Latin version <ref target="#VL100">(VL 100)</ref>, <q>Ιεφθαε</q> in the Septuagint. 
+                     I could not find any source for the reading found in the Maurdramnus' Bible and the Tours Octateuch (followed by Cod. Turon. 29).
+                  </note></app>
+                  <app><lem>is</lem>
+                  <rdg wit="#Sg1" varSeq="1" type="omission" cause="slip"/>
+                  <rdg wit="#Sg1" varSeq="2" type="lem" cause="correction" rend="inline" hand="#m">is</rdg>
+                  <rdg wit="#B2" type="omission" cause="unknown"/></app>
+                  <app><lem>occidit filiam suam et fecit</lem>
+                     <rdg wit="#Sg1" varSeq="1" type="omission" cause="slip"/>
+                     <rdg wit="#Sg1" varSeq="2" type="lem" cause="correction" rend="inline" hand="#m">occidit filiam suam et fecit</rdg></app>
+                  <app><lem>consuetudinem</lem>
+                     <rdg wit="#Sg1" varSeq="1" type="omission" cause="slip"/>
+                     <rdg wit="#Sg1" varSeq="2" type="lem" cause="correction" rend="inline" hand="#m">consuetudinem</rdg>
+                     <rdg wit="#P4" type="minor" subtype="error" cause="slip">consuetudine</rdg></app>
+                  <app><lem>malam</lem>
+                     <rdg wit="#Sg1" varSeq="1" type="omission" cause="slip"/>
+                     <rdg wit="#Sg1" varSeq="2" type="minor" cause="falseEmendation" rend="inline" hand="#m">malum</rdg>
+                     <rdg wit="#B2" varSeq="1" type="minor" subtype="error" cause="grammatical" cert="low">malum</rdg>
+                     <rdg wit="#B2" varSeq="2" type="lem" cause="correction" rend="overstrike" hand="#m">malam</rdg>
+                     <witDetail wit="#Z">A later hand (XV saec.?) added a note providing nearly exactly the Vulgate text of Idc 11:40 to the heading.</witDetail>
+                  </app>
+               </title>
+            </item>
+            
+            <item n="14">
+               <num>
+                  <ref type="parallelPassage">
+                     <bibl>
+                        <title>Idc 12:8 Post hunc iudicavit israhel abessan</title>
+                     </bibl>
+                  </ref>
+                  <app><lem>XIIII</lem>
+                  <rdg wit="#Sg1" varSeq="1" type="minor" subtype="error" cause="numbering">XIII</rdg>
+                  <rdg wit="#Sg1" varSeq="2" type="lem" cause="correction" rend="transpMarks" hand="#l">XIIII</rdg>
+                  <rdg wit="#Tr" type="unclear" cause="digitisation">?????</rdg>
+                  <rdg wit="#B2" type="substantive" subtype="error" cause="numbering">XV</rdg></app></num>
+               <title>
+                <app><lem>Iudex</lem>
+               <rdg wit="#Tu" type="substantive" subtype="adiaphoric" cause="unknown">de iudice</rdg>
+                   <rdg wit="#Tr" varSeq="1" type="substantive" subtype="adiaphoric" cause="unknown" rend="erasure" cert="low">de iudice</rdg>
+                  <rdg wit="#Tr" varSeq="2" type="minor" cause="falseEmendation" rend="overstrike" hand="#u">iudiex</rdg></app>
+                  <note>&#934; praeter Tr a.c. + Am2 (adiaph.) vs Tu</note>
+                  <app><lem>abessan</lem>
+                  <rdg wit="#L1" type="minor" subtype="error" cause="paleographicConfusion">abessari</rdg></app>
+                  <app><lem/>
+                     <rdg wit="#Tu #Tr" type="addition" cause="unknown">qui fuit super israhel et post eum hailon et post hunc abdon</rdg>
+                     <witDetail wit="#Z">A later hand (XV saec.?) added a note providing further references to the biblical text to the chapter heading.</witDetail>
+                     <rdg wit="#L1" type="addition" cause="slip">iudex manue</rdg>
+                     <witDetail wit="#L1">Mistakenly transposed from the following chapter heading.</witDetail>  
+                    <note>As seen in ch. 11, the distinctive heading of the Tours Octateuch includes references to biblical passages that are absent from the standard series
+                       of the Turonian corpus and the Maurdramnus' Bible. Specifically, it mentions the kingship of Ahialon - erroneously written as <q>hailon</q> -
+                       (Idc 12:11) and Abdon (Idc 12:13). While these same references appear in other summaries published by <ref target="#de_Bruyne">D. de Bruyne</ref>
+                       (e.g. series C, B, Is),
+                       a direct textual filiation of the Tours Octateuch heading from any of these other series can be ruled out.
+                       Cod. Turon. 29 follows the peculiar text of the Tours Octateuch, as it typically does in the summary of Judges; however, it apparently
+                       restores (albeit imperfectly) the standard reading <q>iudex</q> in place of Tu's <q>de iudice</q>. 
+                  </note>
+                  </app></title>
+            </item>
+            
+            <item n="15">
+               <num>
+                  <ref type="parallelPassage">
+                     <bibl>
+                        <title>Idc 13:2 Erat autem uir quidam [...] nomine manue.</title>
+                     </bibl>
+                  </ref>
+                  <app><lem>XV</lem>
+                  <witDetail wit="#Am2">The rubricated numeral is faint due to faded ink.</witDetail>
+               <rdg wit="#Sg1" varSeq="1" type="substantive" subtype="error" cause="numbering">XIIII</rdg>   
+               <rdg wit="#Sg1" type="lem" cause="correction" rend="inline" hand="#l">XV</rdg>
+               <witDetail wit="#Sg1">A later hand added the proper numbering next to the chapter when correcting the numbering errors caused by the omission of chapter 13.
+               </witDetail> 
+               <rdg wit="#Tr" type="unclear" cause="digitisation">??</rdg>
+                  <rdg wit="#B2" type="minor" subtype="error" cause="numbering">XVI</rdg></app></num>               
+               <title>Iudex
+                  <app><lem>manue</lem>
+                     <rdg wit="#P8" type="minor" subtype="error" cause="slip">manu</rdg>
+                  </app>
+                  <app><lem>cuius</lem>
+                     <rdg wit="#Am2" type="medium" subtype="error" cause="paleographicConfusion">cum</rdg>
+                     <rdg wit="#Z" varSeq="1" type="minor" subtype="error" cause="slip" rend="subpunctuated_erasure" cert="low">cum fius</rdg>
+                     <rdg wit="#Z" varSeq="2" type="lem" cause="correction" rend="overstrike" hand="#m" cert="low">cuius</rdg>
+                     <note>In Z two distinct layers of correction seem to be distinguishable:
+                        the first, by the main hand, which corrected - as it seems - <q>cu&#x0304; fius</q> to <q>cuius</q>,
+                        and the second, by a later hand (XV saec.?), which changed conjecturally the lemma to <q>cui fuit</q>. 
+                        This is the same hand that restored the name of Manue's son - accidentally omitted - at the end of the heading, 
+                        and added the marginal annotations to ch. 11, 13, and 14 (see above, and the <q>witDetail</q> element by clicking the XML button in the apparatus).</note>
+                  </app>
+                  filius famosus
+                  <app><lem>samson</lem>
+                  <rdg wit="#Z" varSeq="1" type="omission" cause="unknown"/>
+                  <rdg wit="#Z" varSeq="2" type="minor" cause="falseEmendation" rend="inline" hand="#l">sampson</rdg></app></title>
+            </item>
+            
+            <item n="16">
+               <num>
+                  <ref type="parallelPassage">
+                     <bibl>
+                        <title>Idc 17:1 Fuit eo tempere vir quidam [...] nomine michas</title>
+                     </bibl>
+                  </ref>
+                  <app><lem>XVI</lem>
+                  <rdg wit="#Tr" type="unclear" cause="digitisation">???</rdg>
+                  <rdg wit="#B2" type="minor" subtype="error" cause="numbering">XVII</rdg></app></num>
+               <title><app><lem>Excessus
+                  <app><lem>michae</lem>
+               <rdg wit="#Am2" type="minor" cause="orthographic" ana="hebrew">mich&#230;</rdg>
+               <rdg wit="#Tu #Tr" type="omission" cause="unknown"/>
+               <rdg wit="#B2" type="minor" subtype="error" cause="slip">mach&#553;</rdg>
+               <rdg wit="#L1" type="minor" cause="orthographic" ana="hebrew">miche</rdg>
+                  </app>
+               </lem>
+                     <rdg wit="#Tu" type="substantive" subtype="adiaphoric" cause="unknown">de micha cuius mater de ducentis argenteis fecit sculptile filiumque suum idolo constituit sacerdotem</rdg>
+                     <rdg wit="#Tr" type="substantive" subtype="adiaphoric" cause="unknown">de micha cuius mater de ducentis argenteis fecit scultile filiumque suum idolo constituit sacerdotem</rdg>
+                     <note>This heading, as transmitted by the Maurdramnus' Bible and the Turonian corpus (except Cod. Turon. 29), is quite generic, summarizing
+                        the story of Micah with the term <q>excessus</q>. On the contrary, the peculiar version of the heading found in the Tours Octateuch
+                        (followed by Cod. Turon. 29) provides more details and exact references to the biblical narrative: it mentions the idol that Micah's mother
+                        had made from two hundred pieces of silver (Idc 17:4) and Micah's son, whom he installed as a priest (Idc 17:5).
+                        The source of the Tours Octateuch tradition is difficult to detect, as it does not seem to be attested elsewhere. However, the term
+                        <q>argenteis</q> may indicate the Vulgate as the biblical version to which the heading refers, since it corresponds exactly to Jerome's translation
+                        (Idc 14:4 <q>ducentos argenteos</q>) of <q>διακοσίους ἀργυρίου</q>, while the Old Latin's <q>CC argenti</q> in <ref target="#VL100">Cod. Lugdunensis (VL 100)</ref>
+                        closely echoes the Greek construct. Also <q>idolo</q> echoes the Vulgate's <q>fecit [...] uestem sacerdotalem et idola</q>.
+                  </note>
+               </app></title>
+            </item>
+            
+            <item n="17">
+               <num>
+                  <ref type="parallelPassage">
+                     <bibl>
+                        <title>Idc 17:7 Fuit quoque alter adulescens</title>
+                     </bibl>
+                  </ref>
+                  <app><lem>XVII</lem>
+                  <witDetail wit="#Am2">The rubricated numeral is barely visible due to faded ink.</witDetail>
+                  <rdg wit="#Tr" type="unclear" cause="digitisation">????</rdg>
+                  <rdg wit="#B2" type="minor" subtype="error" cause="numbering">XVIII</rdg>
+                  <rdg wit="#deBruyne" type="minor" subtype="error" cause="slip">XII</rdg>
+               </app></num>
+               <title>De
+                  <app><lem cause="orthographic">adoliscente</lem>
+                     <rdg wit="#Am2 #P4 #L2 #Z #Bm" type="minor" cause="orthographic">aduliscente</rdg>
+                     <rdg wit="#Tu #Tr" type="minor" cause="orthographic">adulescente</rdg>
+                    <rdg wit="#B2" type="medium" subtype="error" cause="falseEmendation">adulesicente</rdg>
+                     <witDetail wit="#B2">The scribe may have read <q>adulescente</q> in the main text of his exemplar and the variant <q>aduliscente</q> added as an -i in the interline above.</witDetail>
+                     <rdg wit="#L1" varSeq="1" type="lem" cause="orthographic">adoliscente</rdg>
+                     <rdg wit="#L1" varSeq="2" type="minor" cause="falseEmendation" rend="overstrike" hand="#m">adolescente</rdg>
+                     <rdg wit="#P1 #K #deBruyne" type="minor" cause="orthographic">adolescente</rdg>
+                     <note>The alternance between <q>adolescens</q> and<q>adul-</q> is well attested in the history of the Latin language since its earliest phases (cfr. ThLL, 794, s.v.).
+                        Regarding the variants <q>ad*le-</q> and <q>ad*li-</q>, the erroneous reading <q>adulesicente</q> in B2 (which may have stemmed from an exemplar containing
+                        both forms - perhaps the one with -e in the main text and the other with -i as a variant added in the interlinear space),
+                        together with the discordance between the three branches of the manuscript tradition and within the Turonian corpus, suggests that the common exemplar
+                        may have preserved both forms in some way.
+                 </note></app>
+                  leuita 
+                  <app><lem>agnito</lem>
+                     <rdg wit="#Tu #Tr" type="substantive" subtype="adiaphoric" cause="unknown">quem cognoscentes uiri de tribu dan</rdg>
+                  </app>
+                  <app><lem>apud</lem>
+                  <rdg wit="#Sg1" varSeq="1" type="minor" subtype="error" cause="slip" cert="low">ad</rdg>
+                  <rdg wit="#Sg1" varSeq="2" type="lem" cause="correction" rend="overstrike" hand="#m" cert="low">apud</rdg></app> 
+                  <app><lem cause="grammatical"><hi rend="bold">micham</hi></lem>
+                     <rdg wit="#Am2 #Tu #Tr" type="minor" cause="grammatical">micha</rdg>
+                     <rdg wit="#L2 #P2" type="minor" cause="orthographic" ana="hebrew">micheam</rdg>
+                     <rdg wit="#Z" type="minor" subtype="error" cause="misspelling">mich&#230;</rdg></app>
+                  <app><lem/>
+                     <rdg wit="#Tu" type="addition" cause="unknown">alienigena qui eum idolo suo fecerat sacerdotem tulerunt una cum ipso idolo</rdg>
+                     <rdg wit="#Tr" type="addition" cause="unknown">alienigena qui eum idolo suo fecerat sacerdote tulerunt una cum ipso idolo</rdg>
+                    </app>
+                  <app><lem>et</lem>
+                     <rdg wit="#Z" type="omission" subtype="error" cause="misspelling"/></app>
+                  <app><lem cause="grammatical"><hi rend="italic">reuocito</hi></lem>
+                     <rdg wit="#Tu #Tr" type="omission" cause="unknown"/>
+                     <rdg wit="#P4" type="substantive" subtype="error" cause="falseEmendation">reuocatio cito</rdg>
+                     <witDetail wit="#P4">The reading likely originated from an exemplar with both the variants <q>reuocato</q> and <q>-cito</q>.</witDetail>
+                    <rdg wit="#L1" varSeq="1" type="minor" subtype="adiaphoric" cause="grammatical" rend="subpunctuated">reuocato</rdg>
+                     <rdg wit="#L1" varSeq="2" type="lem" cause="correction" rend="above" hand="#u">reuocito</rdg>
+                     <rdg wit="#deBruyne" type="minor" cause="falseEmendation">reuocato</rdg>
+                     <note>The reading <q>reuocito</q>, which has no exact biblical correspondent, is attested almost unanimously in the manuscript tradition.
+                        While it is probably a deterior lectio, its appearance in written evidence is documented (cf. Oxford Latin Dictionary, s.v. voco).
+                     </note>
+                  </app>
+                    <app><lem>a tribu</lem>
+                       <rdg wit="#Tu #Tr #L2" type="minor" subtype="error" cause="grammatical">ad tribu</rdg>
+                    </app>
+                      <app><lem>dan</lem>
+                     <rdg wit="#Z" type="omission" subtype="error" cause="paleographicConfusion"/>
+                     <witDetail wit="#Z">The scribe - perhaps misled by the layout of his exemplar - copied the last part of this heading inline at the end of the following one (s. below, ch. 18).</witDetail></app>
+                    <app><lem>in sacerdotio idoli</lem>
+                       <rdg wit="#Tu #Tr" type="substantive" subtype="adiaphoric" cause="unknown">perduxerunt</rdg>
+                       <rdg wit="#Z" type="omission" subtype="error" cause="paleographicConfusion"/> 
+                       <witDetail wit="#Z">The scribe - likely misled by the layout of his exemplar - copied the last part of this heading inline at the end of the following one (s. below, ch. 18).</witDetail>
+                       <note>As seen in the previous chapter headings, the peculiar tradition represented by the Tours Octateuch (and followed only by Cod. Turon. 29
+                          within the Turonian corpus) contains more detailed references to the biblical text. However, both this series and the standard one found
+                          in the Maurdramnus' Bible and the Turonian corpus (except Tr) appear to be based on the Vulgate, as certain lexical choices suggest:
+                          Idc 18:3 <q>et agnoscentes uocem adulescentis leuitae</q> (but Tu's <q>cognoscentes</q> may have a precedent in <ref target="#VL100">
+                             Codex Lugdunensis [VL 100]</ref>: <q>et ipsi cognouerunt uocem pueri leuitae</q>);
+                          18:18 <q>tulerunt igitur qui intrauerant [...] idola</q>; 18:27 <q>tulerunt sacerdotem</q>.
+                         </note></app>
+               <app><lem/>
+                  <rdg wit="#Tu #Tr" type="addition" cause="unknown">et de ciuitate lahis quam obtinuerunt in possessione</rdg>
+                  <note>The reference to the conquest of the city of Laish, which concludes the episode of Micah (Idc 18:27-31), is absent from the standard version
+                     of this heading. The phrasing of the Tours Octateuch tradition does not seem to provide significant clues for detecting its source.
+               </note></app>
+               </title>  
+            </item> 
+            
+            <item n="18">
+               <num>
+                  <ref type="parallelPassage">
+                     <bibl>
+                        <title>Idc 19:1 Fuit quidam vir levites habitans</title>
+                        <note>. The Maurdramnus' Bible mistakenly has the numeral 19 at this point, whereas the numeral 18 is found at Idc 20:22
+                           <q>rursum filii israhel et fortitudine et numero</q>.</note>
+                     </bibl>
+                  </ref>
+                  <app><lem>XVIII</lem>
+                  <witDetail wit="#Am2 #Tu">The rubricated numeral is barely visible due to faded ink.</witDetail>
+                  <rdg wit="#Tr" type="unclear" cause="digitisation">?????</rdg>
+                  <rdg wit="#B2" type="minor" subtype="error" cause="numbering">XVIIII</rdg></app></num>
+               <title><app><lem>Vir leuites</lem>
+               <rdg wit="#Tu #Tr" type="medium" subtype="adiaphoric" cause="unknown">de uiro leuita</rdg>
+             </app>
+                  <app><lem>cui
+                     <app><lem>contigit</lem>
+                        <rdg wit="#Tu #Tr" type="omission" cause="unknown"/>
+                     <rdg wit="#Sg1" varSeq="1" type="minor" cause="grammatical" rend="strikethrough">contingit</rdg>
+                     <rdg wit="#Sg1" varSeq="2" type="lem" cause="correction" hand="#u">contigit</rdg>
+                     <rdg wit="#Z" type="minor" cause="grammatical">contingit</rdg></app>
+                     nefas</lem>
+                     <rdg wit="#Tu #Tr" type="substantive" subtype="adiaphoric" cause="unknown">
+                        qui uxorem suam defunctam per scelus gabaonitarum in duodecim partibus frustra
+                        concidens singulas partes per duodecim tribus misit</rdg>
+                     <note>While the heading in its standard form - found in the Maurdramnus' Bible and the Turonian corpus (except Cod. Turon. 29) - is very concise and vague,
+                        the version transmitted by the Tours Octateuch contains precise references to the biblical narrative. Its lexical choices and phrasing suggest the Vulgate
+                        as its source: it uses <q>scelus</q> (Idc 19:24, 20:3), instead of <q>stultitiam</q> and <q>malitia</q> of the
+                        <ref target="#VL100">Codex Lugdunensis (VL 100)</ref>;
+                        it quotes Idc 19:29 (<q>in duodecim partes ac frusta [VL 100: membratim] concidens</q>) almost verbatim, except for the corrupted <q>frustra</q>;
+                        and, although the Vulgate's <q>terminos</q> (Idc 19:29) is replaced by <q>tribus</q>, which aligns with the Old Latin version, the concept is
+                        readily recalled from the context (moreover, the same term <q>tribus</q> is also found in the Vulgate at Idc 20:2).
+                        The episode is also summarized in detail in other series edited by <ref target="#de_Bruyne">D. de Bruyne</ref>, but a textual relation with
+                        the Tours Octateuch's version can be excluded.
+                     </note></app>
+               <app><lem/>
+                  <rdg wit="#Z" type="transposition" subtype="error" cause="paleographicConfusion">dan in sacerdotio idoli</rdg>
+                  <note>The Z scribe - perhaps misled by the layout of his exemplar - copied the last part of the previous heading inline at the end of this one
+                     (s. above, ch. 17).
+                  </note> 
+               </app></title>
+            </item>  
+            <pb facs="data/images/single/Am2_60r.jpg" n="Am2_60r"/>         
+            <lb n="[Am2_60r]"/>            
+           </list>
+           
+         <trailer><app><lem>EXPLICIVNT CAPITVLA</lem>
+                  <rdg wit="#Am2" rendition="#U #red">EXPLICIVNT CAPITVLA</rdg>
+                  <rdg wit="#Tu" type="omission" cause="unknown"/>
+                  <rdg wit="#Sg1" rendition="#Ca #textink">EXPLiciunt CAPITuLa</rdg>
+                  <rdg wit="#Tr" rendition="#Ca #bw">EXPLiciuNT CAPituLa IN LIBRO IVDICVM</rdg>
+                  <rdg wit="#P8" rendition="#Ca #bw">EXPLICIVNT CAPITVLATIO</rdg>
+                  <rdg wit="#P4 #Z #K" rendition="#Ca #textink">EXPLICIVNT CAPITVLA</rdg>
+                  <rdg wit="#L2 #Br1" rendition="#Ca #textink">EXPLiciuNT CAPITuLa</rdg>
+                  <rdg wit="#Mb2" rendition="#Ca #textink">EXPLICVERVNT CAPITVLA</rdg>
+                  <rdg wit="#B2" rendition="#Ca #textink">EXPLiciT</rdg>
+                  <rdg wit="#P2" rendition="#Ca #red">EXPLICIVNT CAPiTuLa</rdg>
+                  <rdg wit="#L1" rendition="#Ca #textink">EXPLICIVNT CAPITVLA IN LIBRO IVDICVM</rdg>
+                  <rdg wit="#Bm" rendition="#Ca #textink #red">EXPLICIVNT CAPITVLA IN LIBRO IVDICVM</rdg>
+                  <rdg wit="#P1" rendition="#Ca #red #textink">EXPLICIVNT CAPiTuLa IN LIBRO IVDICVM</rdg>
+                  <rdg wit="#deBruyne" type="omission" cause="unknown"></rdg>
+         </app></trailer>
+         
+      </body>
+
+   </text>
+</TEI>

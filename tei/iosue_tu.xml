@@ -1,0 +1,567 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+	<teiHeader>
+		<fileDesc>
+			<titleStmt>
+				<title>CAPITVLA IOSVE in Tours' Octateuch (Tours, BM, 10)</title>
+			</titleStmt>
+			<editionStmt>
+				<edition>Digital Critical Edition of the Chapter Summaries (Capitula) to Iosue in
+					the Tours' Octateuch (Tours, BM, 10)</edition>
+				<respStmt>
+					<resp>Critical Edition by</resp>
+					<name>Silverio Franzoni</name>
+				</respStmt>
+			</editionStmt>
+			<publicationStmt>
+				<p><hi rend="bold">Welcome to the digital critical edition project of the Capitula
+						to the Octateuch in the Tours Bibles!</hi>
+					<lb/><lb/>The editions are part of the PRIN 2022 PNRR project <hi rend="italic"
+						>DOBiPS – Data Oriented Biblical Paratext Studies</hi>, awarded for the
+					2023–2025 period to the research units at the Universities of Udine (P.I. E.
+					Colombi) and Cassino (P.I. R. Casavecchia), under the competitive PRIN PNRR call
+					– National Recovery and Resilience Plan, Mission 4 "Education and Research",
+					funded by the European Union’s NextGenerationEU programme (protocol no.
+					P2022ZW4AW).<lb/> The Capitula prefixed to the Octateuch in the Tours Bibles
+					have been encoded in XML/TEI and published using the software EVT (Edition
+					Visualization Technology). <lb/>The editions were prepared by members of the
+					Udine research unit: Emanuela Colombi, Margherita Filippozzi, and Silverio
+					Franzoni. <lb/>Details of the encoding choices and related methodological
+					reflections have been presented in the working paper: E. Colombi, M. Filippozzi,
+					S. Franzoni, <hi rend="italic">The Digital Critical Edition of the Capitula to
+						the Octateuch in the Tours Bibles</hi>, <ref
+						target="https://zenodo.org/records/16761174">DOI:
+						10.5281/zenodo.16761173</ref>. <lb/>Information on the individual editions
+					is available by clicking the 'info' button at the top of the left-hand pane.</p>
+			</publicationStmt>
+			<sourceDesc>
+				<listBibl>
+					<head>bibliographical abbreviations</head>
+					<bibl xml:id="de_Bruyne" corresp="#deBruyne">
+						<author>Donatien de Bruyne</author>
+						<title>Sommaires, divisions et rubriques de la Bible latine</title>
+						<pubPlace>Namur</pubPlace>
+						<date>1914</date></bibl>
+					<bibl xml:id="Fischer">
+						<author>Bonifatius Fischer</author>
+						<title>Lateinische Bibelhandschriften im frühen Mittelalter</title>
+						<pubPlace>Freiburg; Basel; Wien</pubPlace>
+						<date>1985</date></bibl>
+					<bibl xml:id="Bischoff">
+						<author>Bernhard Bischoff</author>
+						<title>Katalog der festländischen Handschriften des neunten Jahrhunderts
+							(mit Ausnahme der wisigotischen)</title>
+						<pubPlace>Wiesbaden</pubPlace>
+						<date>1998-2017</date>
+					</bibl>
+					<bibl xml:id="BenIos">
+						<editor>Monachi abbatiae pontificiae Sancti Hieronymi in Urbe</editor>
+						<title>Biblia Sacra iuxta Latinam vulgatam versionem ad codicum fidem...
+							Libri Iosue Iudicum Ruth ex interpretatione sancti Hieronymi cum
+							praefatione et variis capitulorum seriebus</title>
+						<pubPlace>Romae</pubPlace>
+						<date>1939</date>
+					</bibl>
+				</listBibl>
+				<listWit>
+					<witness xml:id="Tu">
+						<msDesc>
+							<msIdentifier>
+								<settlement>Tours</settlement>
+								<repository>Bibliothèque municipale</repository>
+								<idno>Ms. 10</idno>
+								<altIdentifier type="external">
+									<idno type="Biblissima"
+										>https://data.biblissima.fr/w/Item:Q422437</idno>
+								</altIdentifier>
+								<altIdentifier type="external">
+									<idno type="TM">www.trismegistos.org/text/67614</idno>
+								</altIdentifier>
+								<altIdentifier type="external">
+									<idno source="#Bischoff">Bischoff No. 6119</idno>
+								</altIdentifier>
+							</msIdentifier>
+							<head>Tours' Octateuchus</head>
+							<msContents>
+								<msItem>
+									<locus>ff. 271rb-271vb</locus>
+									<title>capitula Iosue</title>
+								</msItem>
+							</msContents>
+							<physDesc>
+								<objectDesc form="codex">
+									<supportDesc material="parch">
+										<extent>II + 351 folios <lb/><dimensions type="leaf"
+												unit="mm">
+												<height quantity="352">height 352 mm</height>
+												<width quantity="260">width 260 mm</width>
+											</dimensions></extent>
+									</supportDesc>
+									<layoutDesc>
+										<layout columns="2"><lb/>2 cols.</layout>
+									</layoutDesc>
+								</objectDesc>
+								<handDesc>
+									<handNote script="minusculeCaroline">Carolingian
+										minuscule</handNote>
+								</handDesc>
+							</physDesc>
+							<history>
+								<origin>
+									<origDate from-custom="801" to-custom="825">801-825</origDate>
+									<origPlace cert="medium">Tours (?)</origPlace>
+								</origin>
+							</history>
+							<additional>
+								<surrogates>
+									<p>
+										<bibl type="digital_facsimile" subtype="full"><hi
+												rend="bold"><ref
+												target="https://arca.irht.cnrs.fr/ark:/63955/md45q811nc16"
+												>digital facsimile</ref></hi>
+										</bibl>
+										<lb/>
+										<bibl type="description"><hi rend="bold"><ref
+												target="https://ccfr.bnf.fr/portailccfr/jsp/index_view_direct_anonymous.jsp?record=eadcgm:EADC:D37A10321"
+												>description</ref></hi><ref/></bibl>
+										<lb/>
+										<bibl type="IIIF_Manifest_URL"><hi rend="bold"><ref
+												target="https://api.irht.cnrs.fr/ark:/63955/fet5llr80e75/manifest.json"
+												>IIIF Manifest</ref></hi>
+										</bibl>
+										<lb/>
+										<bibl type="CLA"><hi rend="bold"><ref
+												target="https://elmss.nuigalway.ie/catalogue/1252"
+												>CLA 6.837</ref></hi></bibl>
+									</p></surrogates>
+							</additional>
+						</msDesc>
+					</witness>
+					<witness xml:id="A">Text of the A series as edited in the DOBiPS project (<ref
+							target="https://ai4ch-uniud.github.io/Tours_capitula/evt_Iosue/"
+							>here</ref>)</witness>
+				</listWit>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<tagsDecl>
+				<rendition xml:id="CU">mixed capital and uncial letters</rendition>
+				<rendition xml:id="U">uncial letters</rendition>
+				<rendition xml:id="Ca">capital letters</rendition>
+				<rendition xml:id="red">red color letter(s)</rendition>
+				<rendition xml:id="textink"/>
+				<rendition xml:id="bw">the digital reproduction is b/w, impossible to determine
+					color</rendition>
+				<rendition xml:id="gold">golden letter(s)</rendition>
+			</tagsDecl>
+		</encodingDesc>
+		<profileDesc>
+			<handNotes>
+				<handNote xml:id="m">main scribe</handNote>
+				<handNote xml:id="l">later hand</handNote>
+				<handNote xml:id="u">unknown, impossible to determine</handNote>
+			</handNotes>
+		</profileDesc>
+	</teiHeader>
+	<text>
+		<front>
+			<p>This digital edition presents the reconstruction of the capitula of series <hi
+					rend="bold">Λ(c)</hi> (according to the classification adopted in the <ref
+					target="#BenIos">Benedictine edition</ref> of the Vulgate; <ref
+					target="#de_Bruyne">de Bruyne's repertory</ref> does not include it) that
+				precede the Book of Iosue in the so-called Tours' Octateuch (Tours, BM, 10).
+				<lb/><lb/> This series is generally close to <ref target="#de_Bruyne">de
+					Bruyne</ref>'s A series (p. <ref
+					target="https://gallica.bnf.fr/ark:/12148/bpt6k8537228/f56">42</ref>; edited
+				from Tours Bibles <ref
+					target="https://ai4ch-uniud.github.io/Tours_capitula/evt_Iosue/">here</ref>),
+				with which most of the <hi rend="italic">capitula</hi> coincide without variation
+				(see, e.g., cap. 7-22). By contrast with the A series, Tu's one occasionally has
+				some more details (cap. 2, 3, 6, 23, 24), and includes two further <hi rend="italic"
+					>capitula</hi> at the end (34, 35). Since the <hi rend="italic">capitula</hi>
+				are generally laconic and more elaborate summaries appear only sporadically in Tu,
+				the direction of the transformation is probably from the A series to Tu's one (which
+				adds details in a somewhat inconsistent manner), rather than the other way round. <lb/>
+				<lb/>Throughout the text, remarkable readings – especially discrepancies against the
+				text of the A series as transmitted by Tours Bibles (siglum Φ; <ref
+					target="https://ai4ch-uniud.github.io/Tours_capitula/evt_Iosue/">here</ref>) –
+				are marked as follows: <list>
+					<item><hi rend="italic">italic type</hi> indicates readings that are
+						grammatically incorrect;</item>
+					<item>pink color indicates a grammatical cause for the reading;</item>
+					<item>blue color indicates an orthographic cause for the reading;</item>
+					<item>yellow color indicates a discrepancy due to the different version of the
+							<hi rend="italic">capitula</hi> followed by Tu and Φ.</item>
+				</list>Note that, for technical reasons, the <hi rend="bold">filter tool</hi>
+				("Filtri" button below the text) cannot be customized by the reader, but it is
+				permanently active to display the features mentioned above.<lb/>The point in the
+				text of Iosue where Tu places the chapter number corresponding to each <hi
+					rend="italic">capitulum</hi> can be accessed either by clicking on the two-page
+				icon next to each <hi rend="italic">capitulum</hi> number, or by clicking on the
+				"Passi paralleli" thumbnail (in the right-hand panel of the "Testo di lettura"
+				screen).</p>
+		</front>
+		<body>
+			<head>
+				<pb facs="data/images/single/Tu_271r.jpeg" n="Tu_271r"/>
+				<lb n="[Tu_271r]"/>
+				<lb/>
+				<app>
+					<lem wit="#Tu" rendition="#CU #red">INCiPiunt CAPituLa</lem>
+				</app>
+			</head>
+			<list>
+				<item n="1">
+					<ref type="parallelPassage"><bibl><title>Iosue 1:1 et factum
+							est</title></bibl><num>I</num></ref>
+					<title>Promittit deus iosue dicens <q type="spoken">sicut fui cum <app>
+								<lem cause="grammatical"><hi rend="italic">moysen</hi></lem>
+								<rdg wit="#A" type="minor" cause="grammatical">moyse</rdg>
+							</app> ero et tecum</q></title></item>
+				<item n="2">
+					<ref type="parallelPassage"><bibl><title>Iosue 1:10 praecepitque
+							Iosue</title></bibl><num>II</num></ref>
+					<title>
+						<app>
+							<lem cause="version">Iubet iosue <app>
+									<lem>populo</lem>
+									<rdg wit="#Tu" varSeq="1" type="minor" cause="grammatical"
+										rend="erasure" cert="low">populum</rdg>
+									<rdg wit="#Tu" varSeq="2" type="lem" cause="correction"
+										rend="overstrike" hand="#m">populo</rdg>
+								</app> ut praeparet sibi cibaria</lem>
+							<rdg wit="#A" type="susbstantive" subtype="adiaphoric" cause="version"
+								>praeparare cibaria iubetur populo</rdg>
+						</app><app>
+							<lem cause="grammatical"><hi rend="italic">et</hi></lem>
+							<rdg wit="#A" type="maior" subtype="adiaphoric" cause="grammatical"
+								>ut</rdg>
+						</app> transeant iordanem <app>
+							<lem cause="version">ammonens etiam rubenetas et gadditas et dimidiam
+								tribum manasse ut conlocantes familias suas in terram quam <app>
+									<lem wit="#Tu">tradiderat</lem>
+									<rdg wit="#Tu" varSeq="1" type="minor" cause="grammatical"
+										rend="subpunctuated">tradiderit</rdg>
+									<rdg wit="#Tu" varSeq="2" type="lem" cause="correction"
+										hand="#m" rend="above">tradiderat</rdg>
+								</app> eis moyses et praecederent armati sicut moyse
+								promiserant</lem>
+							<rdg wit="#A" type="omission" cause="version"/>
+						</app></title>
+				</item>
+				<item n="3">
+					<ref type="parallelPassage"><bibl><title>Iosue 2:1 misit igitur
+							Iosue</title></bibl><num>III</num></ref>
+					<title><app>
+							<lem cause="version">Mittuntur a iosue de sethim duo uiri exploratores </lem>
+							<rdg wit="#A" type="substantive" subtype="adiaphoric" cause="version"
+								>Destinantur exploratores a iosue</rdg>
+						</app> in hiericho <app>
+							<lem cause="version">quos recipiens domo raab meretrix celabit</lem>
+							<rdg wit="#A" type="omssion" cause="version"/>
+						</app></title>
+				</item>
+				<item n="4">
+					<ref type="parallelPassage"><bibl><title>Iosue 3:7 dixitque Dominus ad
+								Iosue</title></bibl><num>IIII</num></ref>
+					<title><app>
+							<lem cause="version">Dixit</lem>
+							<rdg wit="#A" type="substantive" subtype="adiaphoric" cause="version"
+								>promittit</rdg>
+						</app> dominus <app>
+							<lem cause="version">ad</lem>
+							<rdg wit="#A" type="omission" cause="version"/>
+						</app> iosue <app>
+							<lem cause="version"/>
+							<rdg wit="#A" type="addition" cause="version">dicens</rdg>
+						</app>
+						<q type="spoken">hodie incipiam exaltare te coram omni israhel <lb/>ut
+							sciant <app>
+								<lem cause="grammatical">quia</lem>
+								<note>The Vulgate (Ios 3:7) reads here <q>quod</q> instead of
+										<q>quia</q> (no variant is recorded in Weber-Gryson's
+									apparatus).</note>
+							</app> sicut fui cum moyse <app>
+								<lem/>
+								<rdg wit="#Tu" varSeq="1" type="addition" cause="unknown"
+									rend="erasure">s</rdg>
+								<rdg wit="#Tu" varSeq="2" type="lem" cause="correction" hand="#u"/>
+							</app>ita et tecum <app>
+								<lem cause="grammatical">sum</lem>
+								<note>Cf. app. Weber-Gryson ad Ios 3:7 (<q>ita et tecum sim</q>):
+									sim] sum CΣT (C = Cava, Badia, 1 (14), 9th c. 2/2, Spain; Σ =
+									Madrid, BN, Vitr. 13-1, 10th c., Spain; T = our Tu).</note>
+							</app></q></title>
+				</item>
+				<item n="5">
+					<ref type="parallelPassage"><bibl><title>Iosue 3:14 igitur egressus est
+								populus</title></bibl><num>V</num></ref>
+					<title>Iubente domino siccauit alueus iordanis <app>
+							<lem cause="grammatical">transeunte</lem>
+							<rdg wit="#A" type="substantive" subtype="adiaphoric" cause="version"
+								>euntis</rdg>
+							<note>See the note ad loc. in the edition of the A series.</note>
+						</app> israhel</title>
+				</item>
+				<item n="6">
+					<ref type="parallelPassage"><bibl><title>Iosue 4:1 quibus
+							transgressis</title></bibl><num>VI</num></ref>
+					<title>Duodecim <app>
+							<lem cause="version">electi lapides</lem>
+							<rdg wit="#A" type="transposition" cause="version">lapides electi</rdg>
+							<note>Since the difference consists only in the transposition of two
+								contiguous words, it may be an accidental error rather than the
+								result of a conscious reworking.</note>
+						</app>
+						<app>
+							<lem cause="version">leuati sunt</lem>
+							<rdg wit="#A" type="omssion" cause="version"/>
+						</app> de iordanis alueo <app>
+							<lem cause="version">a duodecim uiris de duodecim tribubus quos posuit
+								iosue in galgalis</lem>
+							<rdg wit="#A" type="omission" cause="version"/>
+						</app><app>
+							<lem cause="version">pro commemoratione</lem>
+							<rdg wit="#A" type="maior" subtype="adiaphoric" cause="version">ob
+								commemorationem</rdg>
+						</app> futuri <lb/>temporis <app>
+							<lem cause="version">reuersusque est fluuius ad cursum suum et ascendit
+								populus de iordanne decimo mensis prima die</lem>
+							<rdg wit="#A" type="omission" cause="version"/>
+						</app></title>
+				</item>
+				<item n="7">
+					<ref type="parallelPassage"><bibl><title>Iosue 5:1 postquam ergo
+								audierunt</title></bibl><num>VII</num></ref>
+					<title>Introeunte israhel terram chanaan territi sunt cuncti reges</title>
+				</item>
+				<item n="8">
+					<ref type="parallelPassage"><bibl><title>Iosue 5:2 eo tempore ait
+								Dominus</title></bibl><num>VIII</num></ref>
+					<title>Haec autem causa est secundae circumcisionis</title>
+				</item>
+				<item n="9">
+					<ref type="parallelPassage"><bibl><title>Iosue 5:9 dixitque Dominus ad Iosue
+								(series A: 5:12 defecitque
+						manna)</title></bibl><num>VIIII</num></ref>
+					<title>Hucusque comederunt manna</title>
+				</item>
+				<item n="10">
+					<ref type="parallelPassage"><bibl><title>Iosue 5:13 cum autem esset
+								Iosue</title></bibl><num>X</num></ref>
+					<title>Ostendit se angelus domini iosue qui dixit <q type="spoken">princeps
+							exercitus domini sum</q></title>
+				</item>
+				<item n="11">
+					<ref type="parallelPassage"><bibl><title>Iosue 6:1 Iericho autem
+							clausa</title></bibl><num>XI</num></ref>
+					<title>De obsidione uel subuersione muri hiericho</title>
+				</item>
+				<item n="12">
+					<ref type="parallelPassage"><bibl><title>Iosue 6:25 in tempore illo
+								imprecatus</title></bibl><num>XII</num></ref>
+					<title> Inpraecatio iosue</title>
+				</item>
+				<item n="13">
+					<ref type="parallelPassage"><bibl><title>Iosue 7:1 filii autem Israel
+								praevaricati</title></bibl><num>XIII</num></ref>
+					<title>Praeuaricatio populi</title>
+				</item>
+				<item n="14">
+					<ref type="parallelPassage"><bibl><title>Iosue 8:1 dixit autem
+							Dominus</title></bibl><num>XIIII</num></ref>
+					<title>Confortat dominus iosue ad proeliandum </title>
+				</item>
+				<item n="15">
+					<ref type="parallelPassage"><bibl><title>Iosue 9:1 quibus auditis cuncti
+								reges</title></bibl><num>XV</num></ref>
+					<title>Perturbatio regum</title>
+				</item>
+				<item n="16">
+					<ref type="parallelPassage"><bibl><title>Iosue 9:3 at hi qui
+							habitabant</title></bibl><num>XVI</num></ref>
+					<title>Simulatio gabaonitarum</title>
+				</item>
+				<item n="17">
+					<ref type="parallelPassage"><bibl><title>Iosue 10:1 quae cum
+							audisset</title></bibl><num>XVII</num></ref>
+					<title>Conglobati quinque reges contra iosue ascenderunt tunc imperauit soli et
+						stetit spatium diei unius </title>
+				</item>
+				<item n="18">
+					<ref type="parallelPassage"><bibl><title>Iosue 10:8 dixitque
+							Dominus</title></bibl><num>XVIII</num></ref>
+					<title>Iuuante domino extincti sunt reges cum exercitu suo</title>
+				</item>
+				<item n="19">
+					<ref type="parallelPassage"><bibl><title>Iosue 12:6 Moyses famulus
+								Domini</title></bibl><num>XVIIII</num></ref>
+					<title>Ruben gad et dimidiae <app>
+							<lem>tribui</lem>
+							<rdg wit="#Tu" varSeq="1" type="minor" cause="grammatical" cert="low"
+								>tribu?</rdg>
+							<rdg wit="#Tu" varSeq="2" type="lem" cause="correction" hand="#m"
+								rend="overstrike">tribui</rdg>
+						</app> manasse terram sibi dari postulantes a moyse</title>
+				</item>
+				<pb facs="data/images/single/Tu_271v.jpeg" n="Tu_271v"/>
+				<lb n="[Tu_271v]"/>
+				<item n="20">
+					<ref type="parallelPassage"><bibl><title>Iosue 12:7 hi sunt
+							reges</title></bibl><num>XX</num></ref>
+					<title><app>
+							<lem cause="orthographic">Hii</lem>
+							<rdg wit="#A" type="minor" cause="orthographic">hi</rdg>
+						</app> sunt reges terrae quos percussit iosue et filii israhel</title>
+				</item>
+				<item n="21">
+					<ref type="parallelPassage"><bibl><title>Iosue 13:1 Iosue senex provectaeque
+								(series A: 13:6 ego sum qui)</title></bibl><num>XXI</num></ref>
+					<title>Diuidere terras populis hortatur dominus iosue</title>
+				</item>
+				<item n="22">
+					<ref type="parallelPassage"><bibl><title>Iosue 14:6 accesserunt itaque
+								filii</title></bibl><num>XXII</num></ref>
+					<title>Promissum repetit chaleb montem in quo hebron hic legis adam
+						situm</title>
+				</item>
+				<item n="23">
+					<ref type="parallelPassage"><bibl><title>Iosue 15:1 igitur sors
+							filiorum</title></bibl><num>XXIII</num></ref>
+					<title><app>
+							<lem cause="version">Possessio filiorum iudae per sortem et quia
+								gebuseum habitatorem hierusalem non potuerunt filii iuda delere sed
+								habitauit cum eis usque in presentem diem</lem>
+							<rdg wit="#A" type="substantive" subtype="adiaphoric" cause="version"
+								>sors iudae</rdg>
+						</app>
+					</title>
+				</item>
+				<item n="24">
+					<ref type="parallelPassage"><bibl><title>Iosue 16:1 cecidit quoque
+							sors</title></bibl><num>XXIIII</num></ref>
+					<title><app>
+							<lem cause="version">Possessio filiorum ioseph efraim et manasse per
+								sortem et quia chananeum qui habitabat in gazer non potuerunt filii
+								ephraim delere sed habitauit cum eis usque in presentem diem
+								tributarius et quia filiabus salphaad dedit iosue possessionem iuxta
+								imperium domini in medio fratrum patris earum</lem>
+							<rdg wit="#A" type="substantive" subtype="adiaphoric" cause="version"
+								>sors filiorum ioseph ephraim et manasse</rdg>
+						</app></title>
+				</item>
+				<item n="25">
+					<ref type="parallelPassage"><bibl><title>Iosue 17:14 locutique sunt
+								filii</title></bibl><num>XXV</num></ref>
+					<title>Filii ioseph <app>
+							<lem cause="grammatical"><hi rend="italic">petent</hi></lem>
+							<rdg wit="#A" type="minor" cause="grammatical">petunt</rdg>
+							<note>Note that the erroneous <q>petent</q> also occurs in Am2, thus
+								suggesting a possible relationship between the two witnesses, or at
+								least indicating that it is an ancient error.</note>
+						</app> sibi augmentari funiculum a iosue quibus ait <q type="spoken"
+							>ascendite in montem et succidite siluam et mundate uobis ad habitandum
+							spatia </q></title>
+				</item>
+				<item n="26">
+					<ref type="parallelPassage"><bibl><title>Iosue 18:1 congregatique sunt
+								omnes</title></bibl><num>XXVI</num></ref>
+					<title>Congregatique sunt omnes filii israhel in silo</title>
+				</item>
+				<item n="27">
+					<ref type="parallelPassage"><bibl><title>Iosue 18:8 cumque surrexissent
+								viri</title></bibl><num>XXVII</num></ref>
+					<title>Destinantur <app>
+							<lem>uiri</lem>
+							<rdg wit="#Tu" varSeq="1" type="lem" rend="erasure" cert="low"
+								>uir*</rdg>
+							<rdg wit="#Tu" varSeq="2" type="minor"
+								cause="grammatical_falseEmendation" hand="#u" cert="low">uir</rdg>
+						</app> ad <app>
+							<lem cause="orthographic">discribendam</lem>
+							<rdg wit="#A" type="minor" cause="orthographic">describendam</rdg>
+						</app> terram reuersique <app>
+							<lem cause="orthographic">discriptionem</lem>
+							<rdg wit="#A" type="minor" cause="orthographic">descriptionem</rdg>
+						</app> tradunt iosue qui misit sortes coram domino in silo diuisitque terram
+						filiis israhel in <lb/>septem partes</title>
+				</item>
+				<item n="28">
+					<ref type="parallelPassage"><bibl><title>Iosue 20:1 et locutus est dominus
+								(series A: 20:1 loquere
+						filiis)</title></bibl><num>XXVIII</num></ref>
+					<title>Urbes fugitiuorum</title>
+				</item>
+				<item n="29">
+					<ref type="parallelPassage"><bibl><title>Iosue 21:1 accesseruntque principes
+								(series A: 21:2 locutique sunt ad
+							eos)</title></bibl><num>XXVIIII</num></ref>
+					<title>Urbes leuitarum</title>
+				</item>
+				<item n="30">
+					<ref type="parallelPassage"><bibl><title>Iosue 21:42 dataque est ab
+							eo</title></bibl><num>XXX</num></ref>
+					<title>Post bellorum turbines data est et requies a domino</title>
+				</item>
+				<item n="31">
+					<ref type="parallelPassage"><bibl><title>Iosue 22:10 cumque
+							venissent</title></bibl><num>XXXI</num></ref>
+					<title>Inconsulta re facta a tribu ruben altare <app>
+							<lem cause="orthographic">inmense</lem>
+							<rdg wit="#A" type="minor" cause="orthographic">inmensae</rdg>
+						</app> magnitudinis</title>
+				</item>
+				<item n="32">
+					<ref type="parallelPassage"><bibl><title>Iosue 23:1 evoluto
+							autem</title></bibl><num>XXXII</num></ref>
+					<title>Replicat a principio iosue cuncta israheli cum obtestatione ne discedant
+						a praeceptis domini adpropinquante die obitus sui</title>
+				</item>
+				<item n="33">
+					<ref type="parallelPassage"><bibl><title>Iosue 24:1 congregavitque
+							Iosue</title></bibl><num>XXXIII</num></ref>
+					<title>Unde natus sit abraham uel ubi perductus item congregatis cum pacto
+						obtestationis adloquitur eos iosue</title>
+				</item>
+				<item n="34">
+					<ref type="parallelPassage"><bibl><title>Iosue ? (this capitulum has no
+								corresponding chapter number throughout the text of Iosue in Tu; it
+								should probably have fallen around Ios 24:22)</title></bibl><app>
+							<lem cause="version"><num>XXXIIII</num></lem>
+							<rdg wit="#A" type="omission" cause="version"/>
+						</app></ref>
+					<title><app>
+							<lem cause="version">Congregatum israhel iosue sub pacto obtestationis
+								adloquitur et scribens uerba sua in uolumine tulit lapidem grandem
+								et posuit eum supter quercum in testimonio</lem>
+							<rdg wit="#A" type="omission" cause="version"/>
+						</app></title>
+				</item>
+				<item n="35">
+					<ref type="parallelPassage"><bibl><title>Iosue 24:29 et post haec mortuus est
+								Iosue</title></bibl><app>
+							<lem cause="version"><num>XXXV</num></lem>
+							<rdg wit="#A" type="omission" cause="version"/>
+						</app></ref>
+					<title><app>
+							<lem cause="version">Mortuus est iosue centum decem annorum et sepultus
+								est in possessione sua in monte ephraim ossa quoque ioseph quae
+								tulerant filii israhel de aegypto sepelierunt in sichem in partem
+								agri quem emerat iacob a filiis emmor centum nouellis ouibus nam et
+								eleazar filius aaron mortuus est et sepelierunt eum in gabaath in
+								monte efraim</lem>
+							<rdg wit="#A" type="omission" cause="version"/>
+						</app></title>
+				</item>
+			</list>
+			<trailer>
+				<app>
+					<lem wit="#Tu" rendition="#Ca #red">EXPLiciunt CAPituLa</lem>
+				</app>
+			</trailer>
+		</body>
+	</text>
+</TEI>

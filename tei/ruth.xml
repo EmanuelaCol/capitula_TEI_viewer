@@ -1,0 +1,1593 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+	<teiHeader>
+		<fileDesc>
+			<titleStmt>
+				<title>CAPITVLA RVTH in Tours Bibles</title>
+			</titleStmt>
+			<editionStmt>
+				<edition>Digital Critical Edition of the Chapter Summaries (Capitula) to Ruth in the
+					Tours Bibles </edition>
+				<respStmt>
+					<resp>Critical Edition by</resp>
+					<name>Silverio Franzoni</name>
+				</respStmt>
+			</editionStmt>
+			<publicationStmt>
+				<p><hi rend="bold">Welcome to the digital critical edition project of the Capitula
+						to the Octateuch in the Tours Bibles!</hi>
+					<lb/><lb/>The editions are part of the PRIN 2022 PNRR project <hi rend="italic"
+						>DOBiPS – Data Oriented Biblical Paratext Studies</hi>, awarded for the
+					2023–2025 period to the research units at the Universities of Udine (P.I. E.
+					Colombi) and Cassino (P.I. R. Casavecchia), under the competitive PRIN PNRR call
+					– National Recovery and Resilience Plan, Mission 4 "Education and Research",
+					funded by the European Union’s NextGenerationEU programme (protocol no.
+					P2022ZW4AW).<lb/> The Capitula prefixed to the Octateuch in the Tours Bibles
+					have been encoded in XML/TEI and published using the software EVT (Edition
+					Visualization Technology). <lb/>The editions were prepared by members of the
+					Udine research unit: Emanuela Colombi, Margherita Filippozzi, and Silverio
+					Franzoni. <lb/>Details of the encoding choices and related methodological
+					reflections have been presented in the working paper: E. Colombi, M. Filippozzi,
+					S. Franzoni, <hi rend="italic">The Digital Critical Edition of the Capitula to
+						the Octateuch in the Tours Bibles</hi>, <ref
+						target="https://zenodo.org/records/16761174">DOI:
+						10.5281/zenodo.16761173</ref>. <lb/>Information on the individual editions
+					is available by clicking the 'info' button at the top of the left-hand pane.</p>
+			</publicationStmt>
+			<sourceDesc>
+				<listBibl>
+					<head>bibliographical abbreviations</head>
+					<bibl xml:id="de_Bruyne" corresp="#deBruyne">
+						<author>Donatien de Bruyne</author>
+						<title>Sommaires, divisions et rubriques de la Bible latine</title>
+						<pubPlace>Namur</pubPlace>
+						<date>1914</date></bibl>
+					<bibl xml:id="Fischer">
+						<author>Bonifatius Fischer</author>
+						<title>Lateinische Bibelhandschriften im frühen Mittelalter</title>
+						<pubPlace>Freiburg; Basel; Wien</pubPlace>
+						<date>1985</date></bibl>
+					<bibl xml:id="Bischoff">
+						<author>Bernhard Bischoff</author>
+						<title>Katalog der festländischen Handschriften des neunten Jahrhunderts
+							(mit Ausnahme der wisigotischen)</title>
+						<pubPlace>Wiesbaden</pubPlace>
+						<date>1998-2017</date>
+					</bibl>
+				</listBibl>
+				<listWit>
+					<witness xml:id="Tu">
+						<msDesc>
+							<msIdentifier>
+								<settlement>Tours</settlement>
+								<repository>Bibliothèque municipale</repository>
+								<idno>Ms. 10</idno>
+								<altIdentifier type="external">
+									<idno type="Biblissima"
+										>https://data.biblissima.fr/w/Item:Q422437</idno>
+								</altIdentifier>
+								<altIdentifier type="external">
+									<idno type="TM">www.trismegistos.org/text/67614</idno>
+								</altIdentifier>
+								<altIdentifier type="external">
+									<idno source="#Bischoff">Bischoff No. 6119</idno>
+								</altIdentifier>
+							</msIdentifier>
+							<head>Tours' Octateuchus</head>
+							<msContents>
+								<msItem>
+									<locus>f. 345v</locus>
+									<title>capitula Ruth</title>
+								</msItem>
+							</msContents>
+							<physDesc>
+								<objectDesc form="codex">
+									<supportDesc material="parch">
+										<extent>II + 351 folios <lb/><dimensions type="leaf"
+												unit="mm">
+												<height quantity="352">height 352 mm</height>
+												<width quantity="260">width 260 mm</width>
+											</dimensions></extent>
+									</supportDesc>
+									<layoutDesc>
+										<layout columns="2"><lb/>2 cols.</layout>
+									</layoutDesc>
+								</objectDesc>
+								<handDesc>
+									<handNote script="minusculeCaroline">Carolingian
+										minuscule</handNote>
+								</handDesc>
+							</physDesc>
+							<history>
+								<origin>
+									<origDate from-custom="801" to-custom="825">801-825</origDate>
+									<origPlace cert="medium">Tours (?)</origPlace>
+								</origin>
+							</history>
+							<additional>
+								<surrogates>
+									<p>
+										<bibl type="digital_facsimile" subtype="full"><hi
+												rend="bold"><ref
+												target="https://arca.irht.cnrs.fr/ark:/63955/md45q811nc16"
+												>digital facsimile</ref></hi>
+										</bibl>
+										<lb/>
+										<bibl type="description"><hi rend="bold"><ref
+												target="https://ccfr.bnf.fr/portailccfr/jsp/index_view_direct_anonymous.jsp?record=eadcgm:EADC:D37A10321"
+												>description</ref></hi><ref/></bibl>
+										<lb/>
+										<bibl type="IIIF_Manifest_URL"><hi rend="bold"><ref
+												target="https://api.irht.cnrs.fr/ark:/63955/fet5llr80e75/manifest.json"
+												>IIIF Manifest</ref></hi>
+										</bibl>
+										<lb/>
+										<bibl type="CLA"><hi rend="bold"><ref
+												target="https://elmss.nuigalway.ie/catalogue/1252"
+												>CLA 6.837</ref></hi></bibl>
+									</p></surrogates>
+							</additional>
+						</msDesc>
+					</witness>
+
+					<witness xml:id="Sg1">
+						<msDesc>
+							<msIdentifier>
+								<settlement>Sankt Gallen</settlement>
+								<repository>Stiftsbibliothek</repository>
+								<idno>Cod. Sang. 75</idno>
+								<altIdentifier type="external">
+									<idno type="Biblissima"
+										>https://data.biblissima.fr/entity/Q188328</idno>
+								</altIdentifier>
+								<altIdentifier type="external">
+									<idno type="TM">https://www.trismegistos.org/text/67048</idno>
+								</altIdentifier>
+								<altIdentifier source="#Bischoff">
+									<idno>Bischoff No. 5547</idno>
+								</altIdentifier>
+							</msIdentifier>
+							<head>Biblia latina Veteris et Novi Testamenti</head>
+							<msContents>
+								<msItem>
+									<locus>p. 186b</locus>
+									<title>capitula Ruth</title>
+								</msItem>
+							</msContents>
+							<physDesc>
+								<objectDesc form="codex">
+									<supportDesc material="parch">
+										<extent>840 pages <lb/><dimensions type="leaf" unit="mm">
+												<height quantity="550">height 550 mm</height>
+												<width quantity="400">width 400 mm</width>
+											</dimensions></extent>
+									</supportDesc>
+									<layoutDesc>
+										<layout columns="2">2 cols.</layout>
+									</layoutDesc>
+								</objectDesc>
+								<handDesc>
+									<handNote script="minusculeCaroline">Carolingian minuscule by
+										different hands</handNote>
+								</handDesc>
+							</physDesc>
+							<history>
+								<origin>
+									<origDate from-custom="796" to-custom="804">796-804</origDate>
+									<origPlace>Tours, Abbey St. Martin</origPlace>
+								</origin>
+							</history>
+							<additional>
+								<adminInfo>
+									<recordHist>
+										<source>
+											<p>First period of the Turonian production according to
+												Fischer's classification (<bibl><ref
+												target="#Fischer">p. 257</ref></bibl>). </p>
+										</source>
+									</recordHist>
+								</adminInfo>
+								<surrogates>
+									<p>
+										<bibl subtype="full" type="digital_facsimile"><hi
+												rend="bold"><ref
+												target="https://www.e-codices.unifr.ch/it/list/one/csg/0075"
+												>digital facsimile</ref></hi>
+										</bibl><lb/>
+										<bibl type="description"><hi rend="bold"><ref
+												target="https://www.e-codices.unifr.ch/it/description/csg/0075/"
+												>description</ref></hi>
+										</bibl><lb/>
+										<bibl type="IIIF_Manifest_URL"><hi rend="bold"><ref
+												target="https://www.e-codices.unifr.ch/metadata/iiif/csg-0075/manifest.json"
+												>IIIF Manifest</ref></hi>
+										</bibl>
+										<lb/>
+									</p>
+								</surrogates>
+							</additional>
+						</msDesc>
+					</witness>
+
+					<!-- witness xml:id="Mz1">Monza, Biblioteca Capitolare, G. 1<note>ff.</note><note>NON ONLINE</note></witness -->
+
+					<witness xml:id="Tr">
+						<msDesc>
+							<msIdentifier>
+								<settlement>Troyes</settlement>
+								<repository>Médiathèque Jacques-Chirac [formerly Bibliothèque
+									Municipale]</repository>
+								<idno>Ms. 29</idno>
+								<altIdentifier type="external">
+									<idno type="Biblissima"
+										>https://data.biblissima.fr/entity/Q416966</idno>
+								</altIdentifier>
+								<altIdentifier type="external">
+									<idno source="#Bischoff">Bischoff No. 6240</idno>
+								</altIdentifier>
+							</msIdentifier>
+							<head>Biblia latina Veteris Testamenti</head>
+							<msContents>
+								<msItem>
+									<locus>f. 91rb</locus>
+									<title>capitula Ruth</title>
+								</msItem>
+							</msContents>
+							<physDesc>
+								<objectDesc form="codex">
+									<supportDesc material="parch">
+										<extent>II + 214 folios <lb/><dimensions type="leaf"
+												unit="mm">
+												<height quantity="405">height 405 mm</height>
+												<width quantity="295">width 295 mm</width>
+											</dimensions></extent>
+									</supportDesc>
+									<layoutDesc>
+										<layout columns="2"><lb/>2 cols.</layout>
+									</layoutDesc>
+								</objectDesc>
+								<handDesc>
+									<handNote script="minusculeCaroline">Carolingian minuscule by
+										different hands (at least five)</handNote>
+								</handDesc>
+							</physDesc>
+							<history>
+								<origin>
+									<origDate from-custom="801" to-custom="850">801-850</origDate>
+									<origPlace>Tours, Abbey St. Martin</origPlace>
+								</origin>
+							</history>
+							<additional>
+								<adminInfo>
+									<recordHist>
+										<source>
+											<p>Excluded from the Turonian production according to
+												Fischer's classification (<bibl><ref
+												target="#Fischer">p. 252</ref></bibl>). </p>
+										</source>
+									</recordHist>
+								</adminInfo>
+								<surrogates>
+									<p>
+										<bibl type="digital_facsimile" subtype="full"><hi
+												rend="bold"><ref
+												target="https://arca.irht.cnrs.fr/ark:/63955/md9673667d1q"
+												>digital facsimile (b/w)</ref></hi>
+										</bibl>
+										<lb/>
+										<bibl type="description"><hi rend="bold"><ref
+												target="https://bibale.irht.cnrs.fr/47063"
+												>description</ref></hi>
+										</bibl>
+										<lb/>
+										<bibl type="description"><hi rend="bold"><ref
+												target="https://ccfr.bnf.fr/portailccfr/jsp/index_view_direct_anonymous.jsp?record=eadcgm:EADC:D02A10280"
+												>description</ref></hi>
+										</bibl>
+										<lb/>
+										<bibl type="IIIF_Manifest_URL"><hi rend="bold"><ref
+												target="https://api.irht.cnrs.fr/ark:/63955/fbc1ozmc3ik2/manifest.json"
+												>IIIF Manifest</ref></hi>
+										</bibl>
+									</p>
+								</surrogates>
+							</additional>
+						</msDesc>
+					</witness>
+
+					<witness xml:id="P8">
+						<msDesc>
+							<msIdentifier>
+								<settlement>Paris</settlement>
+								<repository>Bibliothèque nationale de France</repository>
+								<idno>latin 11514</idno>
+								<altIdentifier type="external">
+									<idno type="Biblissima"
+										>https://data.biblissima.fr/entity/Q59141</idno>
+								</altIdentifier>
+								<altIdentifier type="external">
+									<idno source="#Bischoff">Bischoff No. 4685</idno>
+								</altIdentifier>
+							</msIdentifier>
+							<head>Biblia latina Veteris Testamenti</head>
+							<msContents>
+								<msItem>
+									<locus>f. 90vb</locus>
+									<title>capitula Ruth</title>
+								</msItem>
+							</msContents>
+							<physDesc>
+								<objectDesc form="codex">
+									<supportDesc material="parch">
+										<extent>215 folios <lb/><dimensions type="leaf" unit="mm">
+												<height quantity="490">height 490 mm</height>
+												<width quantity="355">width 355 mm</width>
+											</dimensions></extent>
+									</supportDesc>
+									<layoutDesc>
+										<layout columns="2"><lb/>2 cols.</layout>
+									</layoutDesc>
+								</objectDesc>
+								<handDesc>
+									<handNote script="minusculeCaroline">Carolingian
+										minuscule.</handNote>
+								</handDesc>
+							</physDesc>
+							<history>
+								<origin>
+									<origDate from-custom="807" to-custom="834">807-834</origDate>
+									<origPlace>Tours, Abbey St. Martin</origPlace>
+								</origin>
+							</history>
+							<additional>
+								<adminInfo>
+									<recordHist>
+										<source>
+											<p>Second period of the Turonian production according to
+												Fischer's classification (<bibl><ref
+												target="#Fischer">p. 259</ref></bibl>). </p>
+										</source>
+									</recordHist>
+								</adminInfo>
+								<surrogates>
+									<p>
+										<bibl type="digital_facsimile" subtype="full"><hi
+												rend="bold"><ref
+												target="https://gallica.bnf.fr/ark:/12148/btv1b90808164"
+												>digital facsimile (b/w)</ref></hi>
+										</bibl>
+										<lb/>
+										<bibl type="description"><hi rend="bold"><ref
+												target="https://archivesetmanuscrits.bnf.fr/ark:/12148/cc73059g"
+												>description</ref></hi>
+										</bibl>
+										<lb/>
+										<bibl type="description"><hi rend="bold"><ref
+												target="https://bibale.irht.cnrs.fr/46912"
+												>description</ref></hi>
+										</bibl>
+										<lb/>
+										<bibl type="IIIF_Manifest_URL"><hi rend="bold"><ref
+												target="https://gallica.bnf.fr/iiif/ark:/12148/btv1b90808164/manifest.json"
+												>IIIF Manifest</ref></hi>
+										</bibl>
+									</p>
+								</surrogates>
+							</additional>
+						</msDesc>
+					</witness>
+
+					<!-- witness xml:id="Bs1">Basel, Universitätsbibliothek, A. N. I. 3<note>ff.</note><note>NON ONLINE</note></witness -->
+
+					<witness xml:id="Z">
+						<msDesc>
+							<msIdentifier>
+								<settlement>Zürich</settlement>
+								<repository>Zentralbibliothek Zürich</repository>
+								<idno>Car C 1</idno>
+								<altIdentifier type="external">
+									<idno source="#Bischoff">Bischoff No. 7589</idno>
+								</altIdentifier>
+							</msIdentifier>
+							<head>Biblia latina Veteris et Novi Testamenti</head>
+							<msContents>
+								<msItem>
+									<locus>f. 86vb</locus>
+									<title>capitula Ruth</title>
+								</msItem>
+							</msContents>
+							<physDesc>
+								<objectDesc form="codex">
+									<supportDesc material="parch">
+										<extent>422 folios <lb/><dimensions type="leaf" unit="mm">
+												<height quantity="480">height 480 mm</height>
+												<width quantity="360">width 360 mm</width>
+											</dimensions></extent>
+									</supportDesc>
+									<layoutDesc>
+										<layout columns="2">2 cols.</layout>
+									</layoutDesc>
+								</objectDesc>
+								<handDesc>
+									<handNote script="minusculeCaroline">Carolingian minuscule by
+										different hands</handNote>
+								</handDesc>
+							</physDesc>
+							<history>
+								<origin>
+									<origDate from-custom="82o" to-custom="830">820-830</origDate>
+									<origPlace>Tours, Abbey St. Martin</origPlace>
+								</origin>
+							</history>
+							<additional>
+								<adminInfo>
+									<recordHist>
+										<source>
+											<p>Third period of the Turonian production under
+												Fridugisus (periode II) according to Fischer's
+												classification (<bibl><ref target="#Fischer">p.
+												261</ref></bibl>). </p>
+										</source>
+									</recordHist>
+								</adminInfo>
+								<surrogates>
+									<p>
+										<bibl type="digital_facsimile" subtype="full"><hi
+												rend="bold"><ref
+												target="https://www.e-manuscripta.ch/zuz/content/zoom/1956415"
+												>digital facsimile</ref></hi>
+										</bibl>
+										<lb/>
+										<bibl type="description"><hi rend="bold"><ref
+												target="https://doi.org/10.7891/e-manuscripta-71492"
+												>description</ref></hi>
+										</bibl>
+										<lb/>
+										<bibl type="description"><hi rend="bold"><ref
+												target="https://bibale.irht.cnrs.fr/99581"
+												>description</ref></hi>
+										</bibl>
+										<lb/>
+										<bibl type="IIIF_Manifest_URL"><hi rend="bold"><ref
+												target="https://www.e-manuscripta.ch/i3f/v20/1956411/manifest"
+												>IIIF Manifest</ref></hi>
+										</bibl>
+									</p>
+								</surrogates>
+							</additional>
+						</msDesc>
+					</witness>
+
+					<witness xml:id="Mb2">
+						<msDesc>
+							<msIdentifier>
+								<settlement>München</settlement>
+								<repository>Bayerische Staatsbibliothek</repository>
+								<idno>Clm 12741</idno>
+								<altIdentifier type="external">
+									<idno type="Biblissima"
+										>https://data.biblissima.fr/entity/Q173853</idno>
+								</altIdentifier>
+								<altIdentifier type="external">
+									<idno source="#Bischoff">Bischoff No. 3117</idno>
+								</altIdentifier>
+							</msIdentifier>
+							<head>Biblia latina Veteris et Novi Testamenti</head>
+							<msContents>
+								<msItem>
+									<locus>f. 82vb</locus>
+									<title>capitula Ruth</title>
+								</msItem>
+							</msContents>
+							<physDesc>
+								<objectDesc form="codex">
+									<supportDesc material="parch">
+										<extent>353 folios <lb/><dimensions type="leaf" unit="mm">
+												<height quantity="550">height 550 mm</height>
+												<width quantity="375">width 375 mm</width>
+											</dimensions></extent>
+									</supportDesc>
+									<layoutDesc>
+										<layout columns="2">2 cols.</layout>
+									</layoutDesc>
+								</objectDesc>
+								<handDesc>
+									<handNote script="minusculeCaroline">Carolingian
+										minuscule</handNote>
+								</handDesc>
+							</physDesc>
+							<history>
+								<origin>
+									<origDate from-custom="830" to-custom="834">830-834</origDate>
+									<origPlace>Tours, Abbey St. Martin</origPlace>
+								</origin>
+							</history>
+							<additional>
+								<adminInfo>
+									<recordHist>
+										<source>
+											<p>Fourth period of the Turonian production under
+												Fridugisus (periode II) according to Fischer's
+												classification (<bibl><ref target="#Fischer">p.
+												262</ref></bibl>). </p>
+										</source>
+									</recordHist>
+								</adminInfo>
+								<surrogates>
+									<p>
+										<bibl subtype="full" type="digital_facsimile"><hi
+												rend="bold"><ref
+												target="https://nbn-resolving.org/urn:nbn:de:bvb:12-bsb00047279-9"
+												>digital facsimile</ref></hi>
+										</bibl><lb/>
+										<bibl type="description"><hi rend="bold"><ref
+												target="https://handschriftenportal.de/search?hspobjectid=HSP-d5e8e9bf-c89f-3314-b4ba-443efed6a1b8"
+												>description</ref></hi>
+										</bibl><lb/>
+										<bibl type="IIIF_Manifest_URL"><hi rend="bold"><ref
+												target="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00047279/manifest"
+												>IIIF Manifest</ref></hi>
+										</bibl><lb/>
+									</p>
+								</surrogates>
+							</additional>
+						</msDesc>
+					</witness>
+
+					<witness xml:id="P2">
+						<msDesc>
+							<msIdentifier>
+								<settlement>Paris</settlement>
+								<repository>Bibliothèque nationale de France</repository>
+								<idno>latin 3</idno>
+								<altIdentifier type="external">
+									<idno type="Biblissima"
+										>https://data.biblissima.fr/w/Item:Q63610</idno>
+								</altIdentifier>
+								<altIdentifier type="external">
+									<idno source="#Bischoff">Bischoff No. 3953</idno>
+								</altIdentifier>
+							</msIdentifier>
+							<head>Biblia latina Veteris et Novi Testamenti</head>
+							<msContents>
+								<msItem>
+									<locus>f. 83vb</locus>
+									<title>capitula Ruth</title>
+								</msItem>
+							</msContents>
+							<physDesc>
+								<objectDesc form="codex">
+									<supportDesc material="parch">
+										<extent>409 folios <lb/><dimensions type="leaf" unit="mm">
+												<height quantity="490">height 490 mm</height>
+												<width quantity="380">width 380 mm</width>
+											</dimensions></extent>
+									</supportDesc>
+									<layoutDesc>
+										<layout columns="2">2 cols.</layout>
+									</layoutDesc>
+								</objectDesc>
+								<handDesc>
+									<handNote script="minusculeCaroline">Carolingian
+										minuscule</handNote>
+								</handDesc>
+							</physDesc>
+							<history>
+								<origin>
+									<origDate from-custom="834" to-custom="843">834-843 (835
+										according to Fischer, <ref target="#Fischer">p.
+										264</ref>)</origDate>
+									<origPlace>Tours, Abbey St. Martin</origPlace>
+								</origin>
+							</history>
+							<additional>
+								<adminInfo>
+									<recordHist>
+										<source>
+											<p>Second period of the Turonian production under
+												Adelard (periode III) according to Fischer's
+												classification (<bibl><ref target="#Fischer">p.
+												264</ref></bibl>). </p>
+										</source>
+									</recordHist>
+								</adminInfo>
+								<surrogates>
+									<p>
+										<bibl subtype="full" type="digital_facsimile"><hi
+												rend="bold"><ref
+												target="https://gallica.bnf.fr/ark:/12148/btv1b8426789n"
+												>digital facsimile</ref></hi>
+										</bibl><lb/>
+										<bibl type="description"><hi rend="bold"><ref
+												target="https://archivesetmanuscrits.bnf.fr/ark:/12148/cc84492"
+												>description</ref></hi>
+										</bibl><lb/>
+										<bibl type="IIIF_Manifest_URL"><hi rend="bold"><ref
+												target="https://gallica.bnf.fr/iiif/ark:/12148/btv1b8426789n/manifest.json"
+												>IIIF Manifest</ref></hi>
+										</bibl><lb/>
+									</p>
+								</surrogates>
+							</additional>
+						</msDesc>
+					</witness>
+
+					<witness xml:id="Bm">
+						<msDesc>
+							<msIdentifier>
+								<settlement>Bamberg</settlement>
+								<repository>Staatsbibliothek</repository>
+								<idno>Msc. Bibl.1 (A.I.5)</idno>
+								<altIdentifier type="external">
+									<idno type="ARCA_IRHT"
+										>https://arca.irht.cnrs.fr/ark:/63955/md46qz20wd82</idno>
+								</altIdentifier>
+								<altIdentifier type="external">
+									<idno source="#Bischoff">Bischoff No. 190</idno>
+								</altIdentifier>
+							</msIdentifier>
+							<head>Biblia latina Veteris et Novi Testamenti</head>
+							<msContents>
+								<msItem>
+									<locus>f. 93vb</locus>
+									<title>capitula Ruth</title>
+								</msItem>
+							</msContents>
+							<physDesc>
+								<objectDesc form="codex">
+									<supportDesc material="parch">
+										<extent>423 folios <lb/><dimensions type="leaf" unit="mm">
+												<height quantity="470">heigth 470 mm</height>
+												<width quantity="355">width 355 mm</width>
+											</dimensions></extent>
+									</supportDesc>
+									<layoutDesc>
+										<layout columns="2"><lb/>2 cols.</layout>
+									</layoutDesc>
+								</objectDesc>
+								<handDesc>
+									<handNote script="minusculeCaroline">Carolingian
+										minuscule</handNote>
+								</handDesc>
+							</physDesc>
+							<history>
+								<origin>
+									<origDate from-custom="834" to-custom="843">834-843</origDate>
+									<origPlace>Tours, Marmoutier Abbey</origPlace>
+								</origin>
+							</history>
+							<additional>
+								<adminInfo>
+									<recordHist>
+										<source>
+											<p>Third period of the Turonian production according to
+												Fischer's classification <bibl>(<ref
+												target="#Fischer">p. 265</ref>). </bibl>
+											</p>
+										</source>
+									</recordHist>
+								</adminInfo>
+								<surrogates>
+									<p>
+										<bibl type="digital_facsimile" subtype="full"><hi
+												rend="bold"><ref
+												target="https://www.digitale-sammlungen.de/en/details/bsb00140662"
+												>digital facsimile</ref></hi>
+										</bibl>
+										<lb/>
+										<bibl type="description"><hi rend="bold"><ref
+												target="https://bibale.irht.cnrs.fr/43718"
+												>description</ref></hi>
+										</bibl>
+										<lb/>
+										<bibl type="description"><hi rend="bold"><ref
+												target="https://opacplus.bsb-muenchen.de/title/BV035334719"
+												>description</ref></hi>
+										</bibl>
+										<lb/>
+										<bibl type="IIIF_Manifest_URL"><hi rend="bold"><ref
+												target="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00140662/manifest"
+												>IIIF Manifest</ref></hi>
+										</bibl>
+									</p>
+								</surrogates>
+							</additional>
+						</msDesc>
+					</witness>
+
+					<witness xml:id="P1">
+						<msDesc>
+							<msIdentifier>
+								<settlement>Paris</settlement>
+								<repository>Bibliothèque nationale de France</repository>
+								<idno>latin 1</idno>
+								<altIdentifier type="external">
+									<idno type="Biblissima"
+										>https://data.biblissima.fr/entity/Q62750</idno>
+								</altIdentifier>
+								<altIdentifier type="external">
+									<idno source="#Bischoff">Bischoff No. 3951</idno>
+								</altIdentifier>
+							</msIdentifier>
+							<head>Biblia latina ("First Bible of Charles the Bald")</head>
+							<msContents>
+								<msItem>
+									<locus>f. 88va</locus>
+									<title>capitula Ruth</title>
+								</msItem>
+							</msContents>
+							<physDesc>
+								<objectDesc form="codex">
+									<supportDesc material="parch">
+										<extent>I + 423 folios <lb/><dimensions type="leaf"
+												unit="mm">
+												<height quantity="495">height 495 mm</height>
+												<width quantity="375">width 375 mm</width>
+											</dimensions></extent>
+									</supportDesc>
+									<layoutDesc>
+										<layout columns="2"><lb/>2 cols.</layout>
+									</layoutDesc>
+								</objectDesc>
+								<handDesc>
+									<handNote script="minusculeCaroline">Carolingian
+										minuscule</handNote>
+								</handDesc>
+							</physDesc>
+							<history>
+								<origin>
+									<origDate from-custom="845" to-custom="851">845-851</origDate>
+									<origPlace>Tours, Abbey St. Martin</origPlace>
+								</origin>
+							</history>
+							<additional>
+								<adminInfo>
+									<recordHist>
+										<source>
+											<p>Fourth period (Abbot Vivian, 843-851) of the Turonian
+												production according to Fischer's classification
+												(<bibl><ref target="#Fischer">p.
+												267</ref></bibl>). </p>
+										</source>
+									</recordHist>
+								</adminInfo>
+								<surrogates>
+									<p>
+										<bibl type="digital_facsimile" subtype="full"><hi
+												rend="bold"><ref
+												target="https://gallica.bnf.fr/ark:/12148/btv1b8455903b"
+												>digital facsimile</ref></hi>
+										</bibl>
+										<lb/>
+										<bibl type="description"><hi rend="bold"><ref
+												target="https://archivesetmanuscrits.bnf.fr/ark:/12148/cc8447n"
+												>description</ref></hi>
+										</bibl>
+										<lb/>
+										<bibl type="IIIF_Manifest_URL"><hi rend="bold"><ref
+												target="https://gallica.bnf.fr/iiif/ark:/12148/btv1b8455903b/manifest.json"
+												>IIIF Manifest</ref></hi>
+										</bibl>
+									</p>
+								</surrogates>
+							</additional>
+						</msDesc>
+					</witness>
+
+					<witness xml:id="P3">
+						<msDesc>
+							<msIdentifier>
+								<settlement>Paris</settlement>
+								<repository>Bibliothèque nationale de France</repository>
+								<idno>latin 47</idno>
+								<altIdentifier type="external">
+									<idno type="Biblissima"
+										>https://data.biblissima.fr/entity/Q64078</idno>
+								</altIdentifier>
+								<altIdentifier type="external">
+									<idno source="#Bischoff">Bischoff No. 3956</idno>
+								</altIdentifier>
+							</msIdentifier>
+							<head>Biblia latina Veteris et Novi Testamenti (from Ex 16:28 to Apc
+								6:9) </head>
+							<msContents>
+								<msItem>
+									<locus>f. 63rb</locus>
+									<title>capitula Ruth</title>
+								</msItem>
+							</msContents>
+							<physDesc>
+								<objectDesc form="codex">
+									<supportDesc material="parch">
+										<extent>III + 176 + III folios <lb/><dimensions type="leaf"
+												unit="mm">
+												<height quantity="490">height 490 mm</height>
+												<width quantity="365">width 365 mm</width>
+											</dimensions></extent>
+									</supportDesc>
+									<layoutDesc>
+										<layout columns="2"><lb/>2 cols.</layout>
+									</layoutDesc>
+								</objectDesc>
+								<handDesc>
+									<handNote script="minusculeCaroline">Carolingian
+										minuscule.</handNote>
+								</handDesc>
+							</physDesc>
+							<history>
+								<origin>
+									<origDate from-custom="860" to-custom="900">860-900</origDate>
+									<origPlace>Tours, Abbey St. Martin</origPlace>
+								</origin>
+							</history>
+							<additional>
+								<adminInfo>
+									<recordHist>
+										<source>
+											<p>Fifth period (Abbot Vivian, 853-c.900) of the
+												Turonian production according to Fischer's
+												classification (<bibl><ref target="#Fischer">p.
+												269</ref></bibl>).</p>
+										</source>
+									</recordHist>
+								</adminInfo>
+								<surrogates>
+									<p>
+										<bibl type="digital_facsimile" subtype="full"><hi
+												rend="bold"><ref
+												target="https://gallica.bnf.fr/ark:/12148/btv1b84267909"
+												>digital facsimile</ref></hi>
+										</bibl>
+										<lb/>
+										<bibl type="description"><hi rend="bold"><ref
+												target="https://archivesetmanuscrits.bnf.fr/ark:/12148/cc85127"
+												>description</ref></hi>
+										</bibl>
+										<lb/>
+										<bibl type="IIIF_Manifest_URL"><hi rend="bold"><ref
+												target="https://gallica.bnf.fr/iiif/ark:/12148/btv1b84267909/manifest.json"
+												>IIIF Manifest</ref></hi>
+										</bibl>
+									</p>
+								</surrogates>
+							</additional>
+						</msDesc>
+					</witness>
+
+					<witness xml:id="deBruyne" corresp="#de_Bruyne">text of Tur series as printed by
+						D. de Bruyne, Sommaires..., <ref
+							target="https://gallica.bnf.fr/ark:/12148/bpt6k8537228/f63">p.
+						49</ref></witness>
+				</listWit>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<tagsDecl>
+				<rendition xml:id="CU">mixed capital and uncial letters</rendition>
+				<rendition xml:id="U">uncial letters</rendition>
+				<rendition xml:id="Ca">capital letters</rendition>
+				<rendition xml:id="red">red color letter(s)</rendition>
+				<rendition xml:id="textink"/>
+				<rendition xml:id="bw">the digital reproduction is b/w, impossible to determine
+					color</rendition>
+				<rendition xml:id="gold">golden letter(s)</rendition>
+			</tagsDecl>
+		</encodingDesc>
+		<profileDesc>
+			<handNotes>
+				<handNote xml:id="m">main scribe</handNote>
+				<handNote xml:id="l">later hand</handNote>
+				<handNote xml:id="u">unknown, impossible to determine</handNote>
+			</handNotes>
+		</profileDesc>
+	</teiHeader>
+	<text>
+		<front>
+			<p>This digital edition presents the reconstruction of the <hi rend="italic"
+					>capitula</hi> of series <hi rend="bold">Tur</hi> (according to <ref
+					target="#de_Bruyne">Donatien de Bruyne's</ref> classification) that precede the
+				Book of Ruth, in the textual form known from the <hi rend="bold">Tours scriptorium
+					(Φ)</hi>. <lb/><lb/> This series is the only one attested in the Tours Bibles
+				and, insofar as the data gathered within the DOBiPS project allow to judge, it is
+				also the most widespread of the three series known to de Bruyne (<ref
+					target="https://gallica.bnf.fr/ark:/12148/bpt6k8537228/f63">p. 49</ref>).
+				However, the presence of a set of <hi rend="italic">capitula</hi> for the book of
+				Ruth is far from consistent: only about 20% of the manuscripts recorded in our
+				database contain one; moreover, its occurrence decreases over time, since the vast
+				majority of the manuscripts that present one date from the 9th century. Note that
+				the Maurdramnus Bible does not present any table of chapters for the book of Ruth
+				(which is contained in its second volume, now <ref
+					target="https://archivesetmanuscrits.bnf.fr/ark:/12148/cc907943/ca59936330134759"
+					>Amiens, Bibliothèque Municipale, 7</ref>). <lb/><lb/>The text of Tur is likely
+				based on a Vulgate version of the book of Ruth, but the limited degree of literal
+				overlap between the individual <hi rend="italic">capitula</hi> and the biblical text
+				makes certainty difficult to reach. The most substantial correspondences are found
+				in <hi rend="italic">capitula</hi> 1 and 10: <list>
+					<item>cap. 1 (Rt 1:1) <hi rend="italic">facta fame in terra iudae</hi> Tur : <hi
+							rend="italic">facta est fames in terra</hi> Vulg.</item>
+					<item>ibid. (ibid.) <hi rend="italic">elimelech de bethleem iuda abiit cum uxore
+							sua noemi et duobus filiis in terra <lb/> moabitide</hi> Tur : <hi
+							rend="italic">abiitque homo de Bethleem Iuda ut peregrinaretur in
+							regione moabitide cum uxore <lb/> sua ac duobus liberis</hi> Vulg. (for
+							<hi rend="italic">filiis</hi> vs <hi rend="italic">liberis</hi> see also
+						the note ad loc.)</item>
+					<item>cap. 10 (Rt 4:17) <hi rend="italic">uocatum est nomen filii obeth hic est
+							pater isai patris dauid</hi> Tur : <hi rend="italic">uocauerunt
+							<lb/>nomen eius Obed hic est pater Isai patris Dauid</hi> Vulg.</item>
+				</list> It should be noted, however, that no pre-Hieronymian text of Ruth survives
+				in a complete and continuous form that would allow for a systematic comparison with
+				Tur.<lb/>Within this series, each <hi rend="italic">capitulum</hi> summarizes a
+				portion of the biblical text of varying length, presenting its content in a fairly
+				complete and factual manner. As a result, Tur provides a good summary of the book of
+				Ruth.<lb/><lb/>With the exception of the last, in <hi rend="bold">Z</hi> (<ref
+					target="https://doi.org/10.7891/e-manuscripta-71492">Zürich, Zentralbibl., Car C
+					1</ref>) each <hi rend="italic">capitulum</hi> is copied only up to the point
+				where the line ends, whereas the remainder is omitted regardless of sense or
+				syntactic coherence. This shows that, already at an early date, the <hi
+					rend="italic">capitula</hi> could be regarded as an unnecessary complement to
+				the biblical text, irrespective of their actual usefulness. Moreover, this also
+				proves that, at least with regard to the Tur series, none of the other manuscripts
+				can descend from Z. <lb/>From a <hi rend="bold">philological perspective</hi>, this
+				is essentially all that can be said about the transmission of this series: our
+				witnesses do not exhibit any further distinctive feature that would allow a
+				convincing establishment of groupings or relationships among them.<lb/><lb/>
+				Throughout the edition, certain words are highlighted in different ways in order to
+				signal noteworthy features. For technical reasons, the <hi rend="bold">filter
+					tool</hi> ("Filtri" button below the text) cannot be customized by the reader,
+				but it is permanently active in order to display certain remarkable features. In the
+				edited text (view mode "Testo di lettura"), colors indicate the reason (the @cause
+				attribute) for specific readings, as follows:<list>
+					<item>grammatical: pink;</item>
+					<item>orthographic: blue.</item>
+				</list>In each witness's text (view mode "Collazione"), the filters highlight (in
+				brown) the points where a correction was made. <lb/>Furthermore, in the edited text
+				readings that diverge from de Bruyne's edition are highlighted in <hi rend="bold"
+					>bold type</hi>.<lb/>Occasional commentary on the readings is provided within
+				the text itself (clickable red dots); further remarks can be found under the
+				apparatus (right-hand panel of the screen "Testo di lettura"), either by clicking on
+				"Nota critica" or by accessing the XML structure (when the information refers to a
+				single witness and is therefore embedded in a witDetail element).<lb/><lb/>The point
+				in the text of Ruth where each witness places the chapter number corresponding to
+				each <hi rend="italic">capitulum</hi> can be accessed either by clicking on the
+				two-page icon next to each <hi rend="italic">capitulum</hi> number, or by clicking
+				on the "Passi paralleli" thumbnail (in the right-hand panel of the "Testo di
+				lettura" screen). <lb/>In Tu, these chapter numbers are often no longer visible
+				because of faded ink.</p>
+		</front>
+		<body>
+			<head>
+				<pb facs="data/images/single/Tu_345v.jpeg" n="Tu_345v"/>
+				<pb facs="data/images/single/Sg1_186.jpeg" n="Sg1_186"/>
+				<pb facs="data/images/single/Tr_91r.jpeg" n="Tr_91r"/>
+				<pb facs="data/images/single/P8_90v.jpeg" n="P8_90v"/>
+				<pb facs="data/images/single/Z_86v.jpeg" n="Z_86v"/>
+				<pb facs="data/images/single/Mb2_82v.jpeg" n="Mb2_82v"/>
+				<pb facs="data/images/single/P2_83v.jpeg" n="P2_83v"/>
+				<pb facs="data/images/single/Bm_93v.jpeg" n="Bm_93v"/>
+				<pb facs="data/images/single/P1_88v.jpeg" n="P1_88v"/>
+				<pb facs="data/images/single/P3_63r.jpeg" n="P3_63r"/>
+				<lb
+					n="[Tu_345v] [Sg1_186] [Tr_91r] [P8_90v] [Z_86v] [Mb2_82v] [P2_83v] [Bm_93v] [P1_88v] [P3_63r]"/>
+				<lb/>
+				<app>
+					<lem>INCIPIUNT CAPITULA</lem>
+					<witDetail wit="#Sg1" rendition="#Ca #red"/>
+					<witDetail wit="#P8" rendition="#CU #bw"/>
+					<rdg wit="#Tu" rendition="#CU #textink">INCiPiuNT CAPITuLa</rdg>
+					<rdgGrp>
+						<rdg wit="#Z #Mb2" rendition="#CU #red">INCiPiuNT CAPituLa LIBRI RUTH</rdg>
+						<rdg wit="#P2" rendition="#CU #red">INCiPiuNT CAPiTula LIBRI RUTH</rdg>
+						<rdg wit="#P3" rendition="#CU #red">INCIPIUNT CAPITULA LIBRI RUTH</rdg>
+					</rdgGrp>
+					<rdgGrp>
+						<rdg wit="#Tr" rendition="#CU #bw">INCiPiuNT CAPituLa IN LIBRO RUTH</rdg>
+						<rdg wit="#Bm" rendition="#CU #red">INCiPiuNT CAPituLa IN LIBRO RUTH</rdg>
+						<rdg wit="#P1" rendition="#CU #red">INCiPiuNT CAPiTuLa IN LIBRO RUTH</rdg>
+					</rdgGrp>
+					<rdg wit="#deBruyne" type="omission" cause="unknown"/>
+				</app>
+			</head>
+			<list>
+				<item n="1">
+					<app>
+						<lem><ref type="parallelPassage"><bibl><title>Ruth 1:1 in diebus unius
+										iudicis</title></bibl><num>I</num></ref></lem>
+						<rdg wit="#Tu" type="omission" cause="rubrication"/>
+					</app>
+					<title><app>
+							<lem>Facta</lem>
+							<rdg wit="#Tu" type="minor" cause="rubrication">acta</rdg>
+						</app>
+						<app>
+							<lem/>
+							<rdg wit="#Z #P2" type="addition" cause="grammatical">est</rdg>
+							<note>The insertion of <q>est</q> may be due to the influence of the
+								corresponding biblical passage (Rt 1:1), <q>facta est fames in
+									terra</q>. Note, however, that the related noun <q>fame</q> was
+								not adapted to the nominative.</note>
+						</app>
+						<app>
+							<lem>fame</lem>
+							<rdg wit="#P8 #P2" type="minor" cause="grammatical">fama</rdg>
+							<rdg wit="#Mb2" type="minor" cause="orthographic_grammatical"
+								>famae</rdg>
+						</app> in terra <app>
+							<lem>iudae</lem>
+							<rdg wit="#Tr #P3" type="minor" cause="orthographic">iud&#553;</rdg>
+							<rdg wit="#P8 #Z" type="minor" cause="grammatical">iudeae</rdg>
+							<rdg wit="#P2" varSeq="1" type="lem">iudae</rdg>
+							<rdg wit="#P2" varSeq="2" type="minor" cause="falseEmendation" hand="#l"
+								rend="above">iudeae</rdg>
+						</app>
+						<app>
+							<lem>elimelech</lem>
+							<rdg wit="#P8" type="minor" cause="orthographic" ana="hebrew"
+								>helimelech</rdg>
+						</app> de <app>
+							<lem>bethleem</lem>
+							<rdg wit="#Sg1" type="minor" cause="orthographic" ana="hebrew"
+								>bethlem</rdg>
+						</app>
+						<app>
+							<lem>iuda</lem>
+							<rdg wit="#Sg1" varSeq="1" type="minor" cause="grammatical"
+								rend="erasure" cert="low">iudae</rdg>
+							<rdg wit="#Sg1" varSeq="2" type="lem" cause="correction" hand="#u"
+								cert="low">iuda</rdg>
+						</app>
+						<app>
+							<lem>abiit cum uxore sua noemi</lem>
+							<rdg wit="#Z" type="omission" cause="space"/>
+							<rdg wit="#P3" type="omission" cause="unknown"/>
+						</app><app>
+							<lem>et</lem>
+							<rdg wit="#Z" type="omission" cause="space"/>
+						</app><app>
+							<lem>duobus</lem>
+							<rdg wit="#Z" type="omission" cause="space"/>
+							<rdg wit="#Bm" type="minor" cause="grammatical">duabus</rdg>
+						</app><app>
+							<lem>filiis</lem>
+							<rdg wit="#Z" type="omission" cause="space"/>
+							<rdg wit="#P2" varSeq="1" type="omission" cause="slip"/>
+							<rdg wit="#P2" varSeq="2" type="lem" cause="correction" hand="#l"
+								rend="above">filiis</rdg>
+							<note>The Vulgate (Rt 1:1) reads <q>duobus liberis</q>, whereas
+									<q>filiis</q> is found in some pre-Hieronymian versions and
+								patristic citations. However, given the proximity of the two terms,
+								it is probably unnecessary to suppose the influence of any external
+								source on the text of this capitulum.</note>
+						</app>
+						<app>
+							<lem>in terra</lem>
+							<rdg wit="#Z" type="omission" cause="space"/>
+						</app>
+						<app>
+							<lem>moabitide</lem>
+							<rdg wit="#P8 #Bm" type="minor" cause="orthographic">moabitidae</rdg>
+							<rdg wit="#Z" type="omission" cause="space"/>
+						</app>
+						<app>
+							<lem>causa</lem>
+							<rdg wit="#Z" type="omission" cause="space"/>
+						</app>
+						<app>
+							<lem>uictualium</lem>
+							<rdg wit="#Tu" type="minor" cause="slip">uictulium</rdg>
+							<rdg wit="#Z" type="omission" cause="space"/>
+						</app>
+						<app>
+							<lem>quo mortuo</lem>
+							<rdg wit="#Sg1" varSeq="1" type="medium" cause="misspelling"
+								>quortuo</rdg>
+							<rdg wit="#Sg1" varSeq="2" type="lem" cause="correction" hand="#l"
+								rend="above">quo mortuo</rdg>
+							<rdg wit="#Z" type="omission" cause="space"/>
+						</app>
+						<app>
+							<lem>filii</lem>
+							<rdg wit="#P8" type="minor" cause="orthographic">fili</rdg>
+							<rdg wit="#Z" type="omission" cause="space"/>
+						</app>
+						<app>
+							<lem>eius accipientes uxores et ipsi mortui sunt</lem>
+							<rdg wit="#Z" type="omission" cause="space"/>
+						</app></title>
+				</item>
+
+				<item n="2">
+					<app>
+						<lem><ref type="parallelPassage"><bibl><title>Ruth 1:10 tecum
+										pergemus</title></bibl><num>II</num></ref></lem>
+						<rdg wit="#Tu" type="omission" cause="rubrication"/>
+					</app>
+					<title><app>
+							<lem>Noemi</lem>
+							<rdg wit="#Tu" type="minor" cause="rubrication">oemi</rdg>
+						</app> reuertentem ad patriam ruth <app>
+							<lem>nurus</lem>
+							<rdg wit="#Bm" type="omission" cause="slip"/>
+						</app>
+						<app>
+							<lem>deserere</lem>
+							<rdg wit="#Bm" type="medium" cause="grammatical">deferre</rdg>
+						</app> noluit <app>
+							<lem/>
+							<rdg wit="#P3" type="addition" cause="unknown">ad patriam suam</rdg>
+						</app><app>
+							<lem>quae</lem>
+							<rdg wit="#Tr" type="minor" cause="orthographic">qu&#553;</rdg>
+							<rdg wit="#Z" type="minor" cause="orthographic">qu&#230;</rdg>
+							<rdg wit="#P3" type="omission" cause="unknown"/>
+						</app>
+						<app>
+							<lem>perueniens</lem>
+							<rdg wit="#Sg1" varSeq="1" type="minor" cause="slip">perueneens</rdg>
+							<rdg wit="#Sg1" varSeq="2" type="lem" cause="correction" hand="#u"
+								rend="overstrike">perueniens</rdg>
+							<rdg wit="#Z" type="omission" cause="space"/>
+							<rdg wit="#P3" type="omission" cause="unknown"/>
+						</app>
+						<app>
+							<lem>in bethleem iuda</lem>
+							<rdg wit="#Z" type="omission" cause="space"/>
+							<rdg wit="#P3" type="omission" cause="unknown"/>
+						</app>
+						<app>
+							<lem>perrexit</lem>
+							<rdg wit="#P8" type="minor" cause="grammatical">perrexerit</rdg>
+							<rdg wit="#Z" type="omission" cause="space"/>
+							<rdg wit="#P3" type="omission" cause="unknown"/>
+						</app>
+						<app>
+							<lem>in agrum</lem>
+							<rdg wit="#Z" type="omission" cause="space"/>
+							<rdg wit="#P3" type="omission" cause="unknown"/>
+						</app>
+						<app>
+							<lem>booz</lem>
+							<rdg wit="#Sg1" type="minor" cause="orthographic" ana="hebrew"
+								>booth</rdg>
+							<rdg wit="#Z" type="omission" cause="space"/>
+							<rdg wit="#P3" type="omission" cause="unknown"/>
+						</app><app>
+							<lem>ad</lem>
+							<rdg wit="#Z" type="omission" cause="space"/>
+							<rdg wit="#P3" type="omission" cause="unknown"/>
+						</app>
+						<app>
+							<lem>colligendas</lem>
+							<rdg wit="#Z" type="omission" cause="space"/>
+							<rdg wit="#P3" type="omission" cause="unknown"/>
+							<rdg wit="#Mb2" varSeq="1" type="minor" cause="grammatical"
+								rend="erasure">colligendum</rdg>
+							<rdg wit="#Mb2" varSeq="2" type="lem" cause="correction" hand="#m"
+								rend="overstrike">colligendas</rdg>
+						</app>
+						<app>
+							<lem>spicas</lem>
+							<rdg wit="#Z" type="omission" cause="unknown"/>
+							<rdg wit="#P3" type="omission" cause="unknown"/>
+						</app></title>
+				</item>
+
+				<item n="3">
+					<app>
+						<lem><ref type="parallelPassage"><bibl><title>Ruth 2:4 dixitque
+										messoribus</title></bibl><num>III</num></ref></lem>
+						<rdg wit="#Tu" type="omission" cause="rubrication"/>
+					</app>
+					<title><app>
+							<lem>Booz</lem>
+							<rdg wit="#Tu" type="minor" cause="rubrication">ooz</rdg>
+							<rdg wit="#Sg1" type="minor" cause="orthographic" ana="hebrew"
+								>booth</rdg>
+						</app> dat licentiam ruth ut de agro eius colligat spicas <app>
+							<lem>et</lem>
+							<rdg wit="#Z" type="omission" cause="space"/>
+						</app>
+						<app>
+							<lem>hora</lem>
+							<rdg wit="#Z" type="omission" cause="space"/>
+							<rdg wit="#Bm" type="minor" cause="orthographic">ora</rdg>
+						</app>
+						<app>
+							<lem>uescendi cum messoribus comedat</lem>
+							<rdg wit="#Z" type="omission" cause="space"/>
+						</app><app>
+							<lem>pro</lem>
+							<rdg wit="#Z" type="omission" cause="space"/>
+							<rdg wit="#Mb2" varSeq="1" type="minor" cause="slip" cert="low"
+								>pr?</rdg>
+							<rdg wit="#Mb2" varSeq="2" type="lem" cause="correction" hand="#m"
+								rend="overstrike" cert="low">pro</rdg>
+						</app>
+						<app>
+							<lem>eo quod audierat eam bene egisse circa socrum</lem>
+							<rdg wit="#Z" type="omission" cause="space"/>
+						</app>
+						<app>
+							<lem>suam</lem>
+							<rdg wit="#P8" type="minor" cause="grammatical">suum</rdg>
+							<rdg wit="#Z" type="omission" cause="space"/>
+						</app></title>
+				</item>
+
+				<item n="4">
+					<app>
+						<lem><ref type="parallelPassage"><bibl><title>Ruth 2:19 dixitque ei socrus
+										sua</title></bibl><num>IIII</num></ref></lem>
+						<rdg wit="#Tu" type="omission" cause="rubrication"/>
+					</app>
+					<title><app>
+							<lem>Inquirenti</lem>
+							<rdg wit="#Tu" type="minor" cause="rubrication">nquirenti</rdg>
+						</app> noemi <app>
+							<lem>indicat</lem>
+							<rdg wit="#Sg1" varSeq="1" type="minor" cause="paleographicConfusion"
+								rend="strikethrough">iudicat</rdg>
+							<rdg wit="#Sg1" varSeq="2" type="lem" cause="correction" hand="#l"
+								rend="above">indicat</rdg>
+							<rdg wit="#P8" type="minor" cause="paleographicConfusion">iudicat</rdg>
+							<rdg wit="#Z" type="medium" cause="grammatical">iudicare</rdg>
+						</app><app>
+							<lem/>
+							<rdg wit="#P2" varSeq="1" type="addition" cause="unknown">?????</rdg>
+							<rdg wit="#P2" varSeq="2" type="lem" cause="correction" hand="#u"
+								rend="erasure"/>
+						</app> ruth quale in agro booz fecerit opus</title>
+				</item>
+
+				<item n="5">
+					<app>
+						<lem><ref type="parallelPassage"><bibl><title>Ruth 2:22 cui dixit
+										socrus</title></bibl><num>V</num></ref></lem>
+						<rdg wit="#Tu" type="omission" cause="rubrication"/>
+					</app>
+					<title><app>
+							<lem>Commonita</lem>
+							<rdg wit="#Tu" type="minor" cause="rubrication">ommonita</rdg>
+							<rdg wit="#Z" varSeq="1" type="minor" cause="slip">commita</rdg>
+							<rdg wit="#Z" varSeq="2" type="lem" cause="correction" hand="#l"
+								rend="above">commonita</rdg>
+							<rdg wit="#Bm" type="minor" cause="orthographic">comonita</rdg>
+						</app> ruth <app>
+							<lem>a</lem>
+							<rdg wit="#Sg1" varSeq="1" type="minor" cause="grammatical"
+								rend="strikethrough">ad</rdg>
+							<rdg wit="#Sg1" varSeq="2" type="lem" cause="correction" hand="#u"
+								>a</rdg>
+							<rdg wit="#Z" type="minor" cause="grammatical">ad</rdg>
+							<rdg wit="#P2" varSeq="1" type="minor" cause="grammatical"
+								rend="subpunctuated">ad</rdg>
+							<rdg wit="#P2" varSeq="2" type="lem" cause="correction" hand="#u"
+								>a</rdg>
+						</app>
+						<app>
+							<lem>socru</lem>
+							<rdg wit="#Sg1 #Z" type="minor" cause="orthographic">sochru</rdg>
+							<rdg wit="#Bm" varSeq="1" type="minor" cause="grammatical">socro</rdg>
+							<rdg wit="#Bm" varSeq="2" type="lem" cause="correction" hand="#l"
+								rend="above">socru</rdg>
+						</app> sua <app>
+							<lem>iungitur</lem>
+							<rdg wit="#P8" type="minor" cause="grammatical">iungit</rdg>
+							<rdg wit="#P1" type="minor" cause="grammatical">iungetur</rdg>
+						</app> puellis booz iterum <app>
+							<lem>ad operandum</lem>
+							<rdg wit="#Z" type="omission" cause="space"/>
+						</app></title>
+				</item>
+
+				<item n="6">
+					<app>
+						<lem><ref type="parallelPassage"><bibl><title>Ruth 3:1 postquam autem
+										reversa</title></bibl><num>VI</num></ref></lem>
+						<rdg wit="#Tu" type="omission" cause="rubrication"/>
+					</app>
+					<title><app>
+							<lem>Reuersa</lem>
+							<rdg wit="#Tu" type="minor" cause="rubrication">euersa</rdg>
+						</app> ruth denuo ad socrum suam <app>
+							<lem>monetur</lem>
+							<rdg wit="#P8" type="minor" cause="paleographicConfusion">mouetur</rdg>
+						</app>
+						<app>
+							<lem>ab</lem>
+							<rdg wit="#Sg1" type="minor" cause="grammatical_slip">ad</rdg>
+						</app> ea <app>
+							<lem>quemadmodum debeat booz</lem>
+							<rdg wit="#Z" type="omission" cause="space"/>
+						</app>
+						<app>
+							<lem>coniugio</lem>
+							<rdg wit="#Sg1" varSeq="1" type="minor" cause="slip">coniugi</rdg>
+							<rdg wit="#Sg1" varSeq="2" type="lem" cause="correction" hand="#l"
+								rend="above">coniugio</rdg>
+							<rdg wit="#Z" type="omission" cause="space"/>
+						</app>
+						<app>
+							<lem>sociari</lem>
+							<rdg wit="#Z" type="omission" cause="space"/>
+						</app></title>
+				</item>
+
+				<item n="7">
+					<app>
+						<lem><ref type="parallelPassage"><bibl><title>Ruth 3:7 cumque comedisset
+										Booz</title></bibl><num>VII</num></ref></lem>
+						<rdg wit="#Tu" type="omission" cause="rubrication"/>
+					</app>
+					<title><app>
+							<lem>Ruth</lem>
+							<rdg wit="#Tu" type="minor" cause="rubrication">uth</rdg>
+						</app>
+						<app>
+							<lem>instructa</lem>
+							<rdg wit="#Sg1" varSeq="1" type="minor" cause="slip">intructa</rdg>
+							<rdg wit="#Sg1" varSeq="2" type="lem" cause="correction" hand="#l"
+								rend="above">instructa</rdg>
+							<rdg wit="#Z" type="substantive" subtype="error"
+								cause="misspelling_paleographicConfusion">infrustra</rdg>
+						</app>
+						<app>
+							<lem>collocauit</lem>
+							<rdg wit="#Tu #P8" type="minor" cause="orthographic">conlocauit</rdg>
+							<rdg wit="#Sg1" type="minor" cause="orthographic_slip">conlouauit</rdg>
+						</app> se nocte ad pedes booz <app>
+							<lem>qui</lem>
+							<rdg wit="#Tr" type="minor" cause="slip">quia</rdg>
+							<rdg wit="#Z" type="omission" cause="space"/>
+							<rdg wit="#Mb2" varSeq="1" type="minor" cause="slip" rend="erasure"
+								>?uia</rdg>
+							<rdg wit="#Mb2" varSeq="2" type="minor" cause="slip" hand="#m"
+								>quia</rdg>
+						</app>
+						<app>
+							<lem>ab</lem>
+							<rdg wit="#Sg1 #P8 #P2" type="omission" cause="slip"/>
+							<rdg wit="#Z" type="omission" cause="space"/>
+						</app><lb/>
+						<app>
+							<lem>eius coitu abstinuit</lem>
+							<rdg wit="#Z" type="omission" cause="space"/>
+						</app></title>
+				</item>
+
+				<item n="8">
+					<app>
+						<lem><ref type="parallelPassage"><bibl><title>Ruth 4:1 ascendit ergo
+										Booz</title></bibl><num>VIII</num></ref></lem>
+						<rdg wit="#Tu" type="omission" cause="rubrication"/>
+					</app>
+					<title><app>
+							<lem>Booz</lem>
+							<rdg wit="#Tu" type="minor" cause="rubrication">ooz</rdg>
+							<rdg wit="#Sg1" type="minor" cause="orthographic" ana="hebrew"
+								>booth</rdg>
+							<rdg wit="#Z" type="minor" cause="orthographic" ana="hebrew">boozh</rdg>
+						</app>
+						<app>
+							<lem>praesentibus</lem>
+							<rdg wit="#P3" type="minor" cause="orthographic">presentibus</rdg>
+						</app>
+						<app>
+							<lem>decem</lem>
+							<rdg wit="#Tr" type="minor" cause="orthographic">decim</rdg>
+							<rdg wit="#P2" type="substantive" subtype="adiaphoric"
+								cause="orthographic">X</rdg>
+						</app> uiris in porta bethleem consuluit <app>
+							<lem>propinquiorem se de</lem>
+							<rdg wit="#Z" type="omission" cause="space"/>
+						</app>
+						<app>
+							<lem>nuptiis</lem>
+							<rdg wit="#Sg1" varSeq="1" type="minor" cause="slip">nptiis</rdg>
+							<rdg wit="#Sg1" varSeq="2" type="lem" cause="correction" hand="#l"
+								rend="above">nuptiis</rdg>
+							<rdg wit="#Z" type="omission" cause="space"/>
+						</app></title>
+				</item>
+
+				<item n="9">
+					<app>
+						<lem><ref type="parallelPassage"><bibl><title>Ruth 4:6 qui
+									respondit</title></bibl><num>VIIII</num></ref></lem>
+						<rdg wit="#Tu" type="omission" cause="rubrication"/>
+					</app>
+					<title><app>
+							<lem>Soluit</lem>
+							<rdg wit="#Tu" type="minor" cause="rubrication">oluit</rdg>
+							<rdg wit="#P8 #P2 #P3" type="minor" cause="grammatical">noluit</rdg>
+						</app>
+						<app>
+							<lem>propinquus</lem>
+							<rdg wit="#P8" type="minor" cause="orthographic">propinqus</rdg>
+						</app> secundum morem calciamentum suum <app>
+							<lem>et dedit</lem>
+							<rdg wit="#Z" type="omission" cause="space"/>
+						</app><lb/>
+						<app>
+							<lem>booz</lem>
+							<rdg wit="#Sg1" type="minor" cause="orthographic" ana="hebrew"
+								>booth</rdg>
+							<rdg wit="#Z" type="omission" cause="space"/>
+						</app>
+						<app>
+							<lem>cessitque</lem>
+							<rdg wit="#Z" type="omission" cause="space"/>
+						</app>
+						<app>
+							<lem>iure</lem>
+							<rdg wit="#Sg1" type="minor" cause="misspelling_palegraphicConfusion"
+								>uire</rdg>
+							<rdg wit="#Z" type="omission" cause="space"/>
+						</app>
+						<app>
+							<lem>propinquitatis et</lem>
+							<rdg wit="#Z" type="omission" cause="space"/>
+						</app>
+						<app>
+							<lem>booz</lem>
+							<rdg wit="#Sg1" type="minor" cause="orthographic" ana="hebrew"
+								>boozh</rdg>
+							<rdg wit="#Z" type="omission" cause="space"/>
+						</app>
+						<app>
+							<lem>ruth accepit uxorem natusque</lem>
+							<rdg wit="#Z" type="omission" cause="space"/>
+						</app><app>
+							<lem/>
+							<rdg wit="#P2 #P3" type="addition_transposition" cause="slip">est</rdg>
+						</app><app>
+							<lem cause="grammatical"><hi rend="bold">illis</hi></lem>
+							<rdg wit="#Z" type="omission" cause="space"/>
+							<rdg wit="#deBruyne" type="minor" subtype="adiaphoric"
+								cause="grammatical">illi</rdg>
+							<note>According to de Bruyne's edition, <q>illi</q> should be the
+								reading of the Bible of San Paolo fuori le Mura; however, the
+								Benedictine edition, although using this manuscrit, does not
+								acknowledge that reading.</note>
+						</app><note>Φ, Tu vs de Bruyne (adiaph.)</note><app>
+							<lem>est</lem>
+							<rdg wit="#P2 #P3" type="omission_transposition" cause="slip"/>
+							<rdg wit="#Z" type="omission" cause="space"/>
+						</app>
+						<app>
+							<lem>filius</lem>
+							<rdg wit="#Sg1" varSeq="1" type="omission" cause="unknown"/>
+							<rdg wit="#Sg1" varSeq="2" type="lem" cause="correction" hand="#l"
+								rend="above">filius</rdg>
+							<rdg wit="#Z" type="omission" cause="space"/>
+						</app>
+						<app>
+							<lem>quem</lem>
+							<rdg wit="#P8" type="minor" cause="grammatical">quae</rdg>
+							<rdg wit="#Z" type="omission" cause="space"/>
+						</app>
+						<app>
+							<lem>noemi</lem>
+							<rdg wit="#Z" type="omission" cause="space"/>
+						</app>
+						<app>
+							<lem>socrus</lem>
+							<rdg wit="#P8" type="minor" cause="grammatical">socru</rdg>
+							<rdg wit="#Z" type="omission" cause="space"/>
+						</app>
+						<app>
+							<lem>nutriendum suscepit</lem>
+							<rdg wit="#P8" type="substantive" subtype="error" cause="space"
+								cert="low">nut</rdg>
+							<rdg wit="#Z" type="omission" cause="space"/>
+						</app></title>
+				</item>
+
+				<item n="10">
+					<app>
+						<lem><ref type="parallelPassage"><bibl><title>Ruth 4:17 natus est filius
+										Noemi (Mb2: 4:17 vicinae autem
+									mulieres)</title></bibl><num>X</num></ref></lem>
+						<rdg wit="#Tu" type="omission" cause="rubrication"/>
+					</app>
+					<title><app>
+							<lem>Vocatum</lem>
+							<rdg wit="#Tu" type="minor" cause="rubrication">ocatum</rdg>
+							<rdg wit="#P8" type="medium" cause="grammatical">uocatumque</rdg>
+						</app> est nomen <app>
+							<lem cause="orthographic"><hi rend="bold">filii obeth</hi></lem>
+							<rdg wit="#Tu" varSeq="1" type="lem" rend="erasure" cert="low">filii
+								obeth</rdg>
+							<rdg wit="#Tu" varSeq="2" type="minor"
+								cause="orthographic_falseEmendation" hand="#u">fili obeth</rdg>
+							<rdg wit="#Sg1" varSeq="1" type="minor" cause="grammatical_orthographic"
+								ana="hebrew">filio boeth</rdg>
+							<rdg wit="#Sg1" varSeq="2" type="minor" cause="falseEmendation"
+								hand="#l" rend="above">filio oboeth</rdg>
+							<rdg wit="#Tr" type="minor" cause="orthographic" ana="hebrew">filii
+								obed</rdg>
+							<rdg wit="#P8" type="substantive" cause="grammatical_orthographic"
+								ana="hebrew">filiobooz</rdg>
+							<rdg wit="#Z" type="minor" cause="orthographic" ana="hebrew"
+								>filioboech</rdg>
+							<rdg wit="#Mb2" type="medium" cause="grammatical_orthographic"
+								ana="hebrew">filio obed</rdg>
+							<rdg wit="#P2" type="medium" cause="grammatical_orthographic"
+								ana="hebrew">filio boeh</rdg>
+							<rdg wit="#Bm" type="minor" cause="grammatical">filiobeth</rdg>
+							<rdg wit="#P1" type="medium" cause="grammatical_orthographic"
+								ana="hebrew">filio obed</rdg>
+							<rdg wit="#P3" type="medium" cause="grammatical_orthographic"
+								ana="hebrew">filiobed</rdg>
+							<note>Since the form of this name is transmitted with considerable
+								variation in our witnesses, the form preferred by both de Bruyne and
+								the Benedictine edition, <q>Obeth</q>, has been retained. In the
+								Weber-Gryson edition of the Vulgate (Rt 4:17), the name appears as
+									<q>Obed</q>.</note>
+						</app>
+						<app>
+							<lem>hic</lem>
+							<rdg wit="#Bm" varSeq="1" type="minor" cause="grammatical">huc</rdg>
+							<rdg wit="#Bm" varSeq="2" type="minor"
+								cause="grammatical_falseEmendation" hand="#u" rend="overstrike"
+								>hoc</rdg>
+							<rdg wit="#P3" type="substantive" subtype="error" cause="misspelling"
+								>id</rdg>
+						</app> est <app>
+							<lem>pater</lem>
+							<rdg wit="#P3" type="minor" cause="grammatical">patris</rdg>
+						</app> isai patris dauid <app>
+							<lem>deinde</lem>
+							<rdg wit="#Z" type="substantive" subtype="error" cause="misspelling"
+								>de</rdg>
+							<rdg wit="#Bm #P3" type="omission" cause="unknown"/>
+							<witDetail wit="#Bm">sp. vac. rel. Bm</witDetail>
+						</app>
+						<app>
+							<lem>sequuntur</lem>
+							<rdg wit="#Tr #Z #Mb2 #P1" type="minor" cause="orthographic"
+								>secuntur</rdg>
+							<rdg wit="#Bm" type="substantive" cause="unknown_omission">tur</rdg>
+							<witDetail wit="#Bm">sp. vac. ante -tur rel. Bm</witDetail>
+							<rdg wit="#P3" type="omission" cause="unknown"/>
+						</app>
+						<app>
+							<lem>generationes a</lem>
+							<rdg wit="#P3" type="omission" cause="unknown"/>
+						</app>
+						<app>
+							<lem>phares usque</lem>
+							<rdg wit="#P8" type="substantive" subtype="error" cause="misspelling"
+								>pharis&#553;usque</rdg>
+							<rdg wit="#P3" type="omission" cause="unknown"/>
+						</app>
+						<app>
+							<lem>ad dauid</lem>
+							<rdg wit="#Sg1" type="medium" cause="misspelling">aduid</rdg>
+							<rdg wit="#P3" type="omission" cause="unknown"/>
+						</app></title>
+				</item>
+			</list>
+			<trailer>
+				<app>
+					<lem>EXPLICIUNT CAPITULA</lem>
+					<rdgGrp>
+						<rdg wit="#Tu" type="omission" cause="unknown"/>
+						<rdg wit="#Sg1" rendition="#CU #textink">EXPLICIT CAPITULA RUTH</rdg>
+						<rdg wit="#Tr" rendition="#Ca #bw">EXPLICUERUNT CAPITULA IN LIBRO RUTH</rdg>
+						<rdg wit="#P8" rendition="#Ca #bw">EXPlicIT</rdg>
+						<witDetail wit="#Z" rendition="#Ca #textink"/>
+						<rdg wit="#Mb2" rendition="#Ca #textink">EXPLICUERUNT CAPITULA</rdg>
+						<rdg wit="#P2" rendition="#Ca #textink">EXPLICIUNT CAPiTuLa IN LIBRO
+							RUTH</rdg>
+						<witDetail wit="#Bm" rendition="#Ca #textink"/>
+						<rdg wit="#P1" rendition="#Ca #textink">EXPLiciuNT CAPiTuLa</rdg>
+						<witDetail wit="#P3" rendition="#Ca #textink"/>
+					</rdgGrp>
+				</app>
+			</trailer>
+		</body>
+	</text>
+</TEI>

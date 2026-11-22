@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Capitula Viewer</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-title" id="siteTitle">Capitula Viewer</div>
+      <div class="brand-sub" id="editionTitle">—</div>
+    </div>
+    <nav class="tabs" role="tablist" aria-label="Views">
+      <button class="tab active" data-view="edition" role="tab">Edition</button>
+      <button class="tab" data-view="witnesses" role="tab">Witnesses</button>
+      <button class="tab" data-view="analysis" role="tab">Analysis</button>
+      <button class="tab" data-view="intro" role="tab">Introduction</button>
+      <button class="tab" data-view="check" role="tab">Encoding check <span class="badge" id="issueBadge"></span></button>
+      <button class="tab" data-view="data" role="tab">Data</button>
+    </nav>
+    <div class="loader">
+      <label class="sr" for="editionSelect">Edition</label>
+      <select id="editionSelect" title="Choose an edition"></select>
+      <label class="btn" title="Open a TEI file from your computer (it is not uploaded anywhere)">
+        Open XML…<input type="file" id="filePicker" accept=".xml,.tei" hidden>
+      </label>
+    </div>
+  </header>
+
+  <div id="status" class="status" hidden></div>
+
+  <main>
+    <!-- ============================ EDITION ============================ -->
+    <section id="view-edition" class="view active">
+      <aside class="toc-panel">
+        <div class="toc-search">
+          <input type="search" id="search" placeholder="Search text, readings, notes…" aria-label="Search">
+        </div>
+        <ol id="toc" class="toc"></ol>
+      </aside>
+
+      <section class="text-panel">
+        <div class="toolbar">
+          <div class="seg" role="group" aria-label="Text shown">
+            <button class="segbtn active" data-mode="critical">Critical text</button>
+            <button class="segbtn" data-mode="witness">Witness</button>
+          </div>
+          <select id="witnessSelect" hidden aria-label="Witness"></select>
+          <div class="seg" id="layerSeg" hidden role="group" aria-label="Layer">
+            <button class="segbtn active" data-layer="first" title="Text as first written (ante correctionem)">first hand</button>
+            <button class="segbtn" data-layer="final" title="Text after all corrections (post correctionem)">final state</button>
+          </div>
+          <details class="dropdown">
+            <summary>Display</summary>
+            <div class="dropdown-body">
+              <label><input type="checkbox" id="optRel" checked> Φ annotations (adiaphora / errors)</label>
+              <label><input type="checkbox" id="optHeat"> Variant density (shading)</label>
+              <label><input type="checkbox" id="optPb"> Page breaks</label>
+              <label><input type="checkbox" id="optBib" checked> Biblical anchors</label>
+              <hr>
+              <label>Highlight cause
+                <select id="optCause"><option value="">—</option></select>
+              </label>
+              <label>Highlight witness
+                <select id="optWit"><option value="">—</option></select>
+              </label>
+            </div>
+          </details>
+          <span class="legend" id="legend"></span>
+        </div>
+        <div id="text" class="text" tabindex="0"></div>
+      </section>
+
+      <aside class="app-panel">
+        <div class="app-head">
+          <div class="nav-btns">
+            <button class="icon" id="prevBlock" title="Previous capitulum (←)">‹</button>
+            <button class="icon" id="nextBlock" title="Next capitulum (→)">›</button>
+          </div>
+          <div id="appTitle" class="app-title">Apparatus</div>
+          <label class="small"><input type="checkbox" id="optHideMinor"> hide orthographic</label>
+        </div>
+        <div id="apparatus" class="apparatus"></div>
+      </aside>
+    </section>
+
+    <!-- ============================ WITNESSES ============================ -->
+    <section id="view-witnesses" class="view">
+      <div class="page">
+        <h2>Witnesses</h2>
+        <p class="lead" id="witLead"></p>
+        <div id="timeline" class="timeline"></div>
+        <div id="witCards" class="cards"></div>
+      </div>
+    </section>
+
+    <!-- ============================ ANALYSIS ============================ -->
+    <section id="view-analysis" class="view">
+      <div class="page wide">
+        <div class="subtabs">
+          <button class="subtab active" data-sub="profile">Φ profile</button>
+          <button class="subtab" data-sub="agreements">Agreements</button>
+          <button class="subtab" data-sub="witstats">Witness profiles</button>
+          <button class="subtab" data-sub="numbering">Numbering</button>
+          <button class="subtab" data-sub="layers">Corrections</button>
+        </div>
+        <div id="analysis"></div>
+      </div>
+    </section>
+
+    <!-- ============================ INTRO ============================ -->
+    <section id="view-intro" class="view">
+      <div class="page prose" id="intro"></div>
+    </section>
+
+    <!-- ============================ CHECK ============================ -->
+    <section id="view-check" class="view">
+      <div class="page" id="check"></div>
+    </section>
+
+    <!-- ============================ DATA ============================ -->
+    <section id="view-data" class="view">
+      <div class="page" id="data"></div>
+    </section>
+  </main>
+
+  <!-- image viewer (docked; built by js/viewer.js) -->
+  <aside id="viewer" class="viewer" hidden aria-label="Manuscript images" tabindex="-1"></aside>
+
+  <div id="tooltip" class="tooltip" hidden></div>
+  <div id="printArea" class="print-area"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/tei-model.js"></script>
+  <script src="js/analysis.js"></script>
+  <script src="js/viewer.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
