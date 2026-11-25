@@ -222,7 +222,20 @@
       }
     });
 
+    // stable key of each block (used to link image zones to capitula)
+    const seen = {};
+    model.blockByKey = new Map();
+    model.blocks.forEach((b) => {
+      let k = b.kind === "head" ? "incipit" : b.kind === "trailer" ? "explicit"
+        : b.kind === "item" ? b.numLabel : b.kind === "section" ? "section" : "added";
+      seen[k] = (seen[k] || 0) + 1;
+      if (seen[k] > 1 || b.kind === "section" || b.kind === "added") k += "@" + seen[k];
+      b.key = k;
+      model.blockByKey.set(k, b);
+    });
+
     finalizeApps(model, issue);
+    parseFacsimile(tei, model, issue);
     validate(model, issue, doc);
     computeStats(model);
     return model;
@@ -327,6 +340,45 @@
     if (ctx.inBlock && ctx.block) ctx.block.pageBreaks.push(page.id);
   }
 
+  /* ------------------------------ image zones ------------------------------ */
+  // <facsimile><surface><graphic url="…/P8_22v.jpg"/><zone n="XII" ulx uly lrx lry/></surface></facsimile>
+  // A zone is linked to a capitulum by @n (its number, or "incipit"/"explicit"),
+  // by @corresp="#item-id", or by item/@facs="#zone-id".
+  function parseFacsimile(tei, model, issue) {
+    model.zones = [];
+    const stem = (f) => basename(f).replace(/\.[a-z0-9]+$/i, "");
+    const pageByStem = new Map(model.pages.map((p) => [stem(p.file), p]));
+    const byXmlId = new Map(model.blocks.filter((b) => b.xmlid).map((b) => [b.xmlid, b]));
+    const zoneOwner = new Map();
+    model.blocks.forEach((b) => (b.facsRefs || []).forEach((z) => zoneOwner.set(z, b)));
+    desc(tei, "surface").forEach((s) => {
+      const g = first(s, "graphic");
+      const url = attr(g, "url") || attr(s, "n");
+      const page = pageByStem.get(stem(url || ""));
+      if (!page) issue("warning", `<surface> for an image not used by any <pb>: "${url}"`, "facsimile");
+      desc(s, "zone").forEach((z) => {
+        const id = xmlId(z);
+        let block = zoneOwner.get(id) || null;
+        const corr = (attr(z, "corresp") || "").replace(/^#/, "");
+        if (!block && corr) block = byXmlId.get(corr) || model.blockByKey.get(corr) || null;
+        const n = attr(z, "n");
+        if (!block && n) block = model.blockByKey.get(n) || model.blockByKey.get(n.toUpperCase()) || null;
+        const zone = { id, page: page ? page.id : null, wit: page ? page.wit : "", block: block ? block.key : null };
+        const pts = attr(z, "points");
+        if (pts) {
+          zone.points = pts.trim().split(/\s+/).map((p) => p.split(",").map(Number));
+          const xs = zone.points.map((p) => p[0]), ys = zone.points.map((p) => p[1]);
+          Object.assign(zone, { ulx: Math.min(...xs), uly: Math.min(...ys), lrx: Math.max(...xs), lry: Math.max(...ys) });
+        } else {
+          ["ulx", "uly", "lrx", "lry"].forEach((k) => { zone[k] = +attr(z, k); });
+        }
+        if ([zone.ulx, zone.uly, zone.lrx, zone.lry].some((v) => isNaN(v))) { issue("warning", `<zone> "${id || n}" without valid coordinates`, "facsimile"); return; }
+        if (!block) issue("warning", `<zone> "${id || n}" is not linked to any capitulum (use @n, @corresp or item/@facs)`, "facsimile");
+        model.zones.push(zone);
+      });
+    });
+  }
+
   /* ------------------------------ blocks ------------------------------ */
   function buildItem(item, ctx, pushBlock) {
     // decide kind: chapter (has a lemma <num>), added chapter (only readings), section heading
@@ -335,6 +387,8 @@
     let kind = lemNum ? "item" : hasLemmaText ? "section" : "added";
     const b = pushBlock(kind, item);
     b.n = attr(item, "n");
+    b.xmlid = xmlId(item);
+    b.facsRefs = splitWitSilent(attr(item, "facs"));
     if (lemNum) b.numLabel = lemmaText(lemNum).replace(/\s+/g, "");
     // the top-level child that carries the number
     let numTop = null;

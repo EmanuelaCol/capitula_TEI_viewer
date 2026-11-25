@@ -16,8 +16,12 @@
     block: 0, app: null, search: "",
     opts: { rel: true, heat: false, pb: false, bib: true, cause: "", hlWit: "", hideMinor: false },
     agree: { filter: "noOrth", measure: "shared", includeEdition: true, includeNum: false, cell: null },
-    viewer: { wit: "", page: 0, zoom: 1, x: 0, y: 0, fit: true }
+    viewer: { wit: "", page: 0, zoom: 1, x: 0, y: 0, fit: true },
+    prox: { scope: "book", filter: "noOrth", errorWeight: 2, layer: "first", includeEdition: false, includeNum: false, exclude: [] },
+    books: { metric: "dev" },
+    allBooks: null, allBooksLoading: null
   };
+  const P = window.CapitulaProximity;
 
   /* ============================== boot ============================== */
   document.addEventListener("DOMContentLoaded", init);
@@ -166,6 +170,8 @@
     $("#apparatus").addEventListener("click", (e) => {
       const p = e.target.closest("[data-page]");
       if (p) { openViewer(p.dataset.wit, p.dataset.page); return; }
+      const bs = e.target.closest("[data-bibsrc]");
+      if (bs) { showBibleText(bs.dataset.bibsrc, bs); return; }
       const ent = e.target.closest(".entry");
       if (ent) selectApp(ent.dataset.app, false, true);
     });
@@ -420,6 +426,9 @@
     // critical text of the block
     if (b.kind !== "added") html += `<div class="ap-text lat">${b.numHTML ? `<span class="num">${b.numHTML}</span> ` : ""}${b.html}</div>`;
     if (b.bibRefs.length) html += `<div class="ap-bib">${b.bibRefs.map((r) => bibLink(r.ref, r.incipit) + (r.incipit ? ` <span class="lat muted">${esc(r.incipit)}</span>` : "")).join("<br>")}</div>`;
+    if (b.bibRefs.length && (C.bibleText || []).length) {
+      html += `<div class="ap-bibtext"><span class="ap-label">Biblical text</span>${C.bibleText.map((src) => `<button class="chip" data-bibsrc="${esc(src.id)}" title="${esc(src.note || "")}">${esc(src.label)}</button>`).join(" ")}<div class="bibtext-out"></div></div>`;
+    }
 
     // Φ annotations
     b.relNotes.forEach((rel) => {
@@ -677,7 +686,9 @@
       page: (id) => S.model.pages.find((x) => x.id === id),
       imageUrl,
       block: () => S.model.blocks[S.block],
-      blockLabel: (b) => b.kind === "item" ? "Cap. " + b.numLabel : b.kind === "head" ? "Incipit" : b.kind === "trailer" ? "Explicit" : (b.plain || "").slice(0, 30)
+      blockLabel: (b) => b.kind === "item" ? "Cap. " + b.numLabel : b.kind === "head" ? "Incipit" : b.kind === "trailer" ? "Explicit" : (b.plain || "").slice(0, 30),
+      zonesFor: (pageId) => (S.model.zones || []).filter((z) => z.page === pageId).concat(markedZones().filter((z) => z.page === pageId)),
+      addZone, undoZone, clearZones, markedZones, zonesTEI, downloadZones
     });
     return VIEW;
   }
@@ -760,8 +771,10 @@
     if (!S.model) return;
     $$(".subtab").forEach((t) => t.classList.toggle("active", t.dataset.sub === S.sub));
     const box = $("#analysis");
-    const fn = { profile: anProfile, agreements: anAgreements, witstats: anWitStats, numbering: anNumbering, layers: anLayers }[S.sub];
+    const fn = { profile: anProfile, agreements: anAgreements, witstats: anWitStats, numbering: anNumbering, layers: anLayers, proximity: anProximity, books: anBooks }[S.sub];
     box.innerHTML = fn ? fn() : "";
+    if (S.sub === "proximity") bindProximity();
+    if (S.sub === "books") bindBooks();
     $$("[data-goapp]", box).forEach((el) => el.addEventListener("click", () => goToApp(el.dataset.goapp)));
     $$("[data-gob]", box).forEach((el) => el.addEventListener("click", () => goToBlock(+el.dataset.gob)));
     if (S.sub === "agreements") bindAgreements();
@@ -941,6 +954,288 @@
     return html;
   }
 
+  /* ============================== ALL BOOKS ============================== */
+  // Loads every configured edition once (for Proximity across books and the Octateuch table).
+  function loadAllBooks() {
+    if (S.allBooks) return Promise.resolve(S.allBooks);
+    if (S.allBooksLoading) return S.allBooksLoading;
+    S.allBooksLoading = Promise.all((C.editions || []).map((ed) => {
+      if (S.edition && S.edition.id === ed.id) return Promise.resolve({ ed, model: S.model });
+      return fetch(ed.file)
+        .then((r) => { if (!r.ok) throw new Error("HTTP " + r.status); return r.text(); })
+        .then((txt) => ({ ed, model: M.parse(txt, { comparanda: C.comparanda || [], group: C.group }) }))
+        .catch((e) => ({ ed, error: e.message }));
+    })).then((list) => { S.allBooks = list; S.allBooksLoading = null; return list; });
+    return S.allBooksLoading;
+  }
+  function bookName(m) {
+    const ed = (S.allBooks || []).find((x) => x.model === m);
+    return ed ? ed.ed.label : m.title;
+  }
+
+  /* ============================== PROXIMITY ============================== */
+  function proximityData() {
+    const o = S.prox;
+    let models = [S.model];
+    if (o.scope === "all") {
+      if (!S.allBooks) return null;
+      models = S.allBooks.filter((x) => x.model).map((x) => x.model);
+    }
+    return P.build(models, Object.assign({ minCommon: 20 }, o));
+  }
+
+  function anProximity() {
+    const m = S.model;
+    const o = S.prox;
+    const g = (m.groups[0] || {}).label || "Φ";
+    const nEd = (C.editions || []).length;
+    let html = `<h2>Proximity between witnesses</h2>
+      <p class="lead">How close the witnesses are to each other, measured on the apparatus: for each pair, the share of entries (where both are extant) in which they read differently. Readings classified as errors (<code>@subtype="error"</code>) can weigh more, because shared errors are stronger evidence of relationship than shared adiaphora. The tree (neighbour-joining) and the map (multidimensional scaling) are two pictures of the same distances.</p>
+      <p class="caveat"><b>Proximity, not a stemma.</b> The tree has no root and does not distinguish shared innovations from shared retentions; contamination and corrections blur it. Use it to formulate questions, then check them on the readings.</p>
+      <div class="controls">
+        <label>Scope <select id="pxScope"><option value="book">this book</option>${nEd > 1 ? `<option value="all">all books (${nEd} editions)</option>` : ""}</select></label>
+        <label>Variants <select id="pxFilter">${Object.entries(A.FILTERS).map(([k, f]) => `<option value="${k}">${esc(f.label)}</option>`).join("")}</select></label>
+        <label>Weight of errors <select id="pxWeight"><option value="1">1 (no weighting)</option><option value="2">2</option><option value="3">3</option><option value="5">5</option></select></label>
+        <label>Layer <select id="pxLayer"><option value="first">first hand</option><option value="final">final state (after corrections)</option><option value="both">first hand + corrected states as separate witnesses</option></select></label>
+        <label><input type="checkbox" id="pxEd"> include printed edition</label>
+        <label><input type="checkbox" id="pxNum"> include chapter numbers</label>
+      </div>`;
+    if (o.scope === "all" && !S.allBooks) {
+      loadAllBooks().then(() => { if (S.view === "analysis" && S.sub === "proximity") renderAnalysis(); });
+      return html + `<p class="muted">Loading all editions…</p>`;
+    }
+    const allWits = [];
+    (o.scope === "all" ? S.allBooks.filter((x) => x.model).map((x) => x.model) : [m]).forEach((mm) => mm.witnesses.forEach((w) => {
+      if ((o.includeEdition || w.kind !== "edition") && !allWits.includes(w.id)) allWits.push(w.id);
+    }));
+    html += `<div class="controls wits-toggle"><span>Witnesses</span>${allWits.map((w) => `<label><input type="checkbox" data-pxwit="${esc(w)}"${o.exclude.includes(w) ? "" : " checked"}> ${esc(w)}</label>`).join("")}</div>`;
+    const data = proximityData();
+    S._prox = data;
+    if (!data || data.taxa.length < 3) return html + `<p class="muted">At least three witnesses with readings are needed.</p>`;
+    const tree = P.nj(data.D, data.taxa.map((t) => t.id));
+    S._proxTree = tree;
+    const coords = P.mds(data.D);
+    const failed = o.scope === "all" ? (S.allBooks || []).filter((x) => x.error) : [];
+    const hasPc = data.taxa.some((t) => t.corrected), hasEd = data.taxa.some((t) => t.role === "edition");
+    html += `<p class="small muted">${data.chars.length} apparatus entries${o.scope === "all" ? ` from ${data.nBooks} books` : ""}, ${data.taxa.length} witnesses.${failed.length ? ` Not loaded: ${failed.map((x) => esc(x.ed.label)).join(", ")}.` : ""}</p>`;
+    html += `<div class="exports"><button class="btn small" id="pxNexus">NEXUS (SplitsTree, PAUP)</button><button class="btn small" id="pxNewick">Tree (Newick)</button><button class="btn small" id="pxCsv">Distances (CSV)</button></div>`;
+    html += `<div class="prox-grid"><figure class="prox-fig"><figcaption>Neighbour-joining tree</figcaption>${P.treeSVG(data, tree)}</figure>
+      <figure class="prox-fig"><figcaption>Map of distances <span class="muted small">(the two axes keep ${Math.round((coords.explained || 0) * 100)}% of the variation)</span></figcaption>${P.mapSVG(data, coords)}</figure></div>`;
+    html += P.legend(g, hasPc, hasEd);
+    if (data.weak.length) html += `<p class="small muted">Few entries in common (fewer than 20) for: ${data.weak.slice(0, 12).map((w) => `${esc(w[0])}–${esc(w[1])} (${w[2]})`).join(", ")}${data.weak.length > 12 ? " …" : ""}. Their distance is less reliable.</p>`;
+
+    // nearest neighbours
+    const n = data.taxa.length;
+    const rows = data.taxa.map((t, i) => {
+      const others = data.taxa.map((u, j) => ({ u, j, d: data.D[i][j], c: data.common[i][j] })).filter((x) => x.j !== i && x.c > 0).sort((a, b) => a.d - b.d);
+      return { t, near: others.slice(0, 3) };
+    });
+    html += `<h3>Nearest witnesses</h3><table class="data near"><thead><tr><th>witness</th><th>closest</th><th>second</th><th>third</th></tr></thead><tbody>` +
+      rows.map(({ t, near }) => `<tr><th>${esc(t.id)}</th>${near.map((x) => `<td><b>${esc(x.u.id)}</b> <span class="muted">${(x.d * 100).toFixed(1)}% · ${x.c} entries</span></td>`).join("")}${"<td></td>".repeat(3 - near.length)}</tr>`).join("") +
+      `</tbody></table><p class="small muted">Percentage = weighted share of disagreements; “entries” = apparatus entries where both witnesses are extant.</p>`;
+    html += `<details class="prox-matrix"><summary>Distance matrix</summary><div class="matrix-wrap"><table class="matrix"><thead><tr><th></th>${data.taxa.map((t) => `<th>${esc(t.id)}</th>`).join("")}</tr></thead><tbody>` +
+      data.taxa.map((t, i) => `<tr><th>${esc(t.id)}</th>${data.taxa.map((u, j) => i === j ? `<td class="diag"></td>` : `<td class="cell" style="--s:${(1 - Math.min(1, data.D[i][j] / Math.max(...data.D[i].filter((_, k) => k !== i)))).toFixed(2)}" title="${esc(t.id)}–${esc(u.id)}: ${data.common[i][j]} entries">${(data.D[i][j] * 100).toFixed(0)}</td>`).join("")}</tr>`).join("") +
+      `</tbody></table></div><p class="small muted">Weighted disagreement in %; darker = closer.</p></details>`;
+    return html;
+  }
+
+  function bindProximity() {
+    const o = S.prox;
+    const set = (id, key, num) => {
+      const el = $(id);
+      if (!el) return;
+      if (el.type === "checkbox") el.checked = o[key]; else el.value = String(o[key]);
+      el.addEventListener("change", (e) => { o[key] = el.type === "checkbox" ? e.target.checked : num ? +e.target.value : e.target.value; renderAnalysis(); });
+    };
+    set("#pxScope", "scope"); set("#pxFilter", "filter"); set("#pxWeight", "errorWeight", true);
+    set("#pxLayer", "layer"); set("#pxEd", "includeEdition"); set("#pxNum", "includeNum");
+    if ($("#pxNexus")) $("#pxNexus").addEventListener("click", () => exportProximity("nexus"));
+    if ($("#pxNewick")) $("#pxNewick").addEventListener("click", () => exportProximity("newick"));
+    if ($("#pxCsv")) $("#pxCsv").addEventListener("click", () => exportProximity("csv"));
+    $$("#analysis [data-pxwit]").forEach((el) => el.addEventListener("change", () => {
+      const w = el.dataset.pxwit;
+      o.exclude = el.checked ? o.exclude.filter((x) => x !== w) : o.exclude.concat(w);
+      renderAnalysis();
+    }));
+    $$("#analysis .taxon").forEach((el) => el.addEventListener("click", () => { S.wit = el.dataset.wit; setView("edition"); setMode("witness"); }));
+  }
+
+  function exportProximity(kind) {
+    const go = () => {
+      const data = proximityData();
+      if (!data || data.taxa.length < 3) { alert("At least three witnesses with readings are needed."); return; }
+      const slug = S.prox.scope === "all" ? "octateuch" : edSlug();
+      const src = S.prox.scope === "all" ? (C.editions || []).map((e) => e.file).join(", ") : S.source;
+      if (kind === "nexus") download(slug + "-witnesses.nex", P.nexus(data, { source: src }));
+      if (kind === "newick") download(slug + "-nj-tree.nwk", P.newick(P.nj(data.D, data.taxa.map((t) => t.id))) + "\n");
+      if (kind === "csv") download(slug + "-distances.csv", P.distanceCSV(data), "text/csv;charset=utf-8");
+    };
+    if (S.prox.scope === "all" && !S.allBooks) loadAllBooks().then(go); else go();
+  }
+
+  /* ============================== OCTATEUCH ============================== */
+  const BOOK_METRICS = {
+    dev: { label: "deviations from the critical text, per 100 entries", short: "deviations / 100", f: (p) => p.present ? 100 * p.deviations / p.present : NaN },
+    sing: { label: "singular readings, per 100 entries", short: "singular / 100", f: (p) => p.present ? 100 * p.singular / p.present : NaN },
+    corr: { label: "corrected passages, per 100 entries", short: "corrected / 100", f: (p) => p.present ? 100 * p.layers / p.present : NaN },
+    lac: { label: "lacunose entries, % of all entries", short: "% lacunose", f: (p) => (p.present + p.absent) ? 100 * p.absent / (p.present + p.absent) : NaN }
+  };
+
+  function anBooks() {
+    let html = `<h2>The witnesses across the Octateuch</h2>
+      <p class="lead">The same manuscript, book by book. Does a witness behave consistently — many singular readings, or many corrections, in every book — or does its profile change, which may point to a change of exemplar or of scribe? First hand; orthographic variants, slips and corrections excluded; chapter numbers excluded.</p>`;
+    if (!S.allBooks) {
+      loadAllBooks().then(() => { if (S.view === "analysis" && S.sub === "books") renderAnalysis(); });
+      return html + `<p class="muted">Loading all editions…</p>`;
+    }
+    const books = S.allBooks.filter((x) => x.model);
+    const failed = S.allBooks.filter((x) => x.error);
+    const metric = BOOK_METRICS[S.books.metric];
+    html += `<div class="controls"><label>Measure <select id="bkMetric">${Object.entries(BOOK_METRICS).map(([k, v]) => `<option value="${k}">${esc(v.label)}</option>`).join("")}</select></label></div>`;
+    const profs = books.map((b) => ({ b, prof: new Map(A.witnessProfiles(b.model, "noOrth", false).map((p) => [p.id, p])), entries: b.model.apps.filter((a) => !a.isNum).length }));
+    const wits = [];
+    books.forEach((b) => b.model.witnesses.forEach((w) => { if (!wits.find((x) => x.id === w.id)) wits.push({ id: w.id, role: w.role, kind: w.kind }); }));
+    let max = 0;
+    const val = (p) => (p ? metric.f(p) : NaN);
+    profs.forEach((x) => x.prof.forEach((p) => { const v = val(p); if (!isNaN(v)) max = Math.max(max, v); }));
+    const pooled = (wid) => {
+      const acc = { present: 0, absent: 0, deviations: 0, singular: 0, layers: 0 };
+      let any = false;
+      profs.forEach((x) => { const p = x.prof.get(wid); if (p) { any = true; Object.keys(acc).forEach((k) => { acc[k] += p[k]; }); } });
+      return any ? acc : null;
+    };
+    html += `<div class="matrix-wrap"><table class="data books"><thead><tr><th>witness</th>${profs.map((x) => `<th><button class="linkbtn" data-ed="${esc(x.b.ed.id)}" title="open this edition">${esc(x.b.ed.label)}</button></th>`).join("")}<th>all books</th></tr></thead><tbody>`;
+    html += `<tr class="muted small"><th>entries</th>${profs.map((x) => `<td class="n">${x.entries}</td>`).join("")}<td class="n">${profs.reduce((s, x) => s + x.entries, 0)}</td></tr>`;
+    wits.forEach((w) => {
+      html += `<tr><th>${witSpans([w.id])}</th>`;
+      profs.forEach((x) => {
+        const p = x.prof.get(w.id);
+        const v = val(p);
+        if (!p) { html += `<td class="na" title="not collated in this book">—</td>`; return; }
+        if (isNaN(v)) { html += `<td class="na" title="lacunose throughout">lac.</td>`; return; }
+        html += `<td title="${esc(w.id)} in ${esc(x.b.ed.label)}: ${p.deviations} deviations, ${p.singular} singular, ${p.layers} corrected, ${p.absent} lacunose, ${p.present} entries extant"><div class="bar" style="--w:${max ? (v / max).toFixed(3) : 0}"><span>${v.toFixed(1)}</span></div></td>`;
+      });
+      const pp = pooled(w.id);
+      const pv = val(pp);
+      html += `<td>${pp && !isNaN(pv) ? `<b>${pv.toFixed(1)}</b>` : "—"}</td></tr>`;
+    });
+    html += `</tbody></table></div><p class="small muted">Measure: ${esc(metric.label)}. “—” = witness not collated for that book. Hover a cell for the counts.${failed.length ? ` Not loaded: ${failed.map((x) => `${esc(x.ed.label)} (${esc(x.error)})`).join(", ")}.` : ""}</p>`;
+    html += `<p class="small muted">For the relations between witnesses across all books, see <button class="linkbtn" id="bkProx">Proximity → all books</button>.</p>`;
+    return html;
+  }
+
+  function bindBooks() {
+    const sel = $("#bkMetric");
+    if (sel) { sel.value = S.books.metric; sel.addEventListener("change", (e) => { S.books.metric = e.target.value; renderAnalysis(); }); }
+    $$("#analysis [data-ed]").forEach((b) => b.addEventListener("click", () => {
+      const ed = C.editions.find((x) => x.id === b.dataset.ed);
+      if (!ed) return;
+      $("#editionSelect").value = ed.id;
+      S.block = 0; S.app = null;
+      loadFromUrl(ed.file, ed.imageBase || "", ed);
+      updateUrlParam("edition", ed.id);
+    }));
+    if ($("#bkProx")) $("#bkProx").addEventListener("click", () => { S.prox.scope = "all"; S.sub = "proximity"; renderAnalysis(); });
+  }
+
+  /* ============================== BIBLICAL TEXT ============================== */
+  const bibleCache = new Map();
+  function parseRef(ref) {
+    const m = String(ref).match(/^([1-4]?\s?[A-Za-z]+)\.?\s*(\d+)[:.,](\d+)/);
+    return m ? { abbr: m[1].replace(/\s/g, ""), ch: +m[2], v: +m[3] } : null;
+  }
+  // from this block's anchor to the verse before the next anchor (same chapter), max 25 verses
+  function passageOf(b) {
+    const m = S.model;
+    const start = parseRef(b.bibRefs[0].ref);
+    if (!start) return null;
+    let end = start.v;
+    let single = true;
+    const next = m.blocks.slice(b.idx + 1).find((x) => x.bibRefs && x.bibRefs.length);
+    const nx = next && parseRef(next.bibRefs[0].ref);
+    if (nx && nx.abbr === start.abbr && nx.ch === start.ch && nx.v > start.v) { end = Math.min(nx.v - 1, start.v + 24); single = false; }
+    return Object.assign({}, start, { end, single });
+  }
+
+  async function showBibleText(srcId, btn) {
+    const src = (C.bibleText || []).find((x) => x.id === srcId);
+    const b = S.model.blocks[S.block];
+    const out = btn.closest(".ap-bibtext").querySelector(".bibtext-out");
+    if (!src || !b || !b.bibRefs.length) return;
+    const ps = passageOf(b);
+    if (!ps) { out.innerHTML = `<p class="muted small">Reference not recognised: ${esc(b.bibRefs[0].ref)}</p>`; return; }
+    const refLabel = `${ps.abbr} ${ps.ch}:${ps.v}${ps.end > ps.v ? "–" + ps.end : ""}`;
+    out.innerHTML = `<p class="muted small">Loading ${esc(refLabel)}…</p>`;
+    try {
+      let verses = [];
+      if (src.format === "json") {
+        if (!bibleCache.has(src.url)) bibleCache.set(src.url, fetch(src.url).then((r) => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); }));
+        const map = await bibleCache.get(src.url);
+        for (let v = ps.v; v <= ps.end; v++) {
+          const t = map[`${ps.abbr} ${ps.ch}:${v}`];
+          if (t) verses.push({ v, text: t });
+        }
+      } else {
+        const book = (C.bookNames || {})[ps.abbr] || ps.abbr;
+        const url = src.url.replace("{book}", encodeURIComponent(book)).replace("{chapter}", ps.ch).replace("{verses}", ps.end > ps.v ? `${ps.v}-${ps.end}` : ps.v);
+        if (!bibleCache.has(url)) bibleCache.set(url, fetch(url).then((r) => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); }));
+        const json = await bibleCache.get(url);
+        verses = (json.verses || []).map((x) => ({ v: x.verse, text: String(x.text || "").trim() }));
+      }
+      if (!verses.length) throw new Error("no verses found");
+      out.innerHTML = `<div class="bibtext"><div class="bt-ref">${esc(src.label)} · ${esc(refLabel)}${ps.single ? ` <span class="muted">(anchor verse only)</span>` : ""}</div><p class="lat">${verses.map((x) => `<sup>${x.v}</sup>${esc(x.text)}`).join(" ")}</p>${src.note ? `<div class="muted small">${esc(src.note)}</div>` : ""}</div>`;
+    } catch (e) {
+      bibleCache.forEach((v, k) => { v.catch(() => bibleCache.delete(k)); });
+      out.innerHTML = `<p class="muted small">Could not load the text (${esc(e.message)}): the service may be unreachable or you may be offline. The reference link above opens the passage online.</p>`;
+    }
+  }
+
+  /* ============================== IMAGE ZONES ============================== */
+  // Zones drawn by the editor are kept in this browser (per edition) until
+  // they are copied into the TEI file as <facsimile>/<surface>/<zone>.
+  const zoneKey = () => "capv.zones." + edSlug();
+  function loadMarked() { try { return JSON.parse(localStorage.getItem(zoneKey()) || "[]"); } catch (e) { return []; } }
+  function saveMarked(list) { try { localStorage.setItem(zoneKey(), JSON.stringify(list)); } catch (e) { /* ignore */ } }
+  function markedZones() {
+    const byFile = new Map(S.model.pages.map((p) => [p.file, p]));
+    return loadMarked().map((z) => { const p = byFile.get(z.file); return p ? Object.assign({}, z, { page: p.id, wit: p.wit, marked: true }) : null; }).filter(Boolean);
+  }
+  function addZone(z) {
+    const p = S.model.pages.find((x) => x.id === z.page);
+    const b = S.model.blocks[S.block];
+    if (!p || !b) return null;
+    const list = loadMarked();
+    const rec = { file: p.file, facs: p.facs, block: b.key, ulx: Math.round(z.ulx), uly: Math.round(z.uly), lrx: Math.round(z.lrx), lry: Math.round(z.lry) };
+    list.push(rec);
+    saveMarked(list);
+    return rec;
+  }
+  function undoZone() { const l = loadMarked(); l.pop(); saveMarked(l); }
+  function clearZones() { saveMarked([]); }
+  function zonesTEI() {
+    const list = loadMarked();
+    if (!list.length) return "";
+    const ncname = (s) => { const t = String(s).replace(/[^A-Za-z0-9_.-]/g, "_"); return /^[A-Za-z_]/.test(t) ? t : "z" + t; };
+    const bySurface = new Map();
+    list.forEach((z) => { if (!bySurface.has(z.file)) bySurface.set(z.file, []); bySurface.get(z.file).push(z); });
+    const used = new Set();
+    let out = `<!-- Zones drawn in the Capitula Viewer (${new Date().toISOString().slice(0, 10)}).\n     Paste inside <TEI>, after </teiHeader> and before <text>;\n     merge with an existing <facsimile> if there is one.\n     Coordinates are pixels of the image file; @n = capitulum. -->\n<facsimile>\n`;
+    bySurface.forEach((zs, file) => {
+      const stem = file.replace(/\.[a-z0-9]+$/i, "");
+      out += `  <surface xml:id="${ncname("surf_" + stem)}">\n    <graphic url="${M.esc(zs[0].facs || file)}"/>\n`;
+      zs.forEach((z) => {
+        let id = ncname(`zone_${stem}_${z.block}`), k = 2;
+        while (used.has(id)) id = ncname(`zone_${stem}_${z.block}_${k++}`);
+        used.add(id);
+        out += `    <zone xml:id="${id}" n="${M.esc(z.block)}" ulx="${z.ulx}" uly="${z.uly}" lrx="${z.lrx}" lry="${z.lry}"/>\n`;
+      });
+      out += `  </surface>\n`;
+    });
+    return out + `</facsimile>\n`;
+  }
+  function downloadZones() { const t = zonesTEI(); if (t) download(edSlug() + "-zones.xml", t, "application/xml"); }
+
+
   /* ============================== INTRO ============================== */
   function renderIntro() {
     const m = S.model;
@@ -968,7 +1263,9 @@
         <li><b>Corrections.</b> When a witness has several textual layers (<code>@varSeq</code>) they are shown as a sequence: <span class="lat">induo</span> <span class="muted">a.c.</span> → <span class="lat">induco</span> <span class="muted">p.c., hand uncertain, s.l.</span></li>
         <li><b>Witness view.</b> Choose “Witness” above the text to read any manuscript as first written or after correction, with deviations from the critical text underlined.</li>
         <li><b>Images.</b> Each capitulum lists the folios on which it is found in each witness; click to open the image beside the text.</li>
-        <li><b>Analysis.</b> Profiles, agreement matrices, numbering and corrections are computed live from the encoding, so they update with the XML.</li>
+        <li><b>Analysis.</b> Profiles, agreement matrices, numbering and corrections are computed live from the encoding, so they update with the XML. <b>Proximity</b> draws a tree and a map of the distances between witnesses (a measure of proximity, not a stemma) and exports them for phylogenetic software; <b>Octateuch</b> compares the profile of each witness across all the books.</li>
+        <li><b>Biblical text.</b> For capitula with a biblical anchor, the apparatus panel can show the corresponding verses.</li>
+        <li><b>Zones on the images.</b> If the TEI contains <code>&lt;facsimile&gt;/&lt;zone&gt;</code>, the area of the selected capitulum is outlined on the image. With the ✎ button you can draw these areas yourself and copy the TEI to paste into the file.</li>
       </ul>
       <h2>Classification of variants in this file</h2>
       <p>Following the working paper (<a href="https://zenodo.org/records/16761174" target="_blank" rel="noopener">Zenodo 16761174</a>), <code>@type</code> records the formal nature and extent of a variant, <code>@cause</code> its probable origin, <code>@subtype</code> the editor’s assessment (error / adiaphoric).</p>
@@ -1056,6 +1353,7 @@
         <button class="btn" id="exJson">Edition model (JSON)</button>
         <button class="btn" id="exIssues">Encoding report (TXT)</button>
         <button class="btn" id="exPrint">Print edition (text + apparatus)</button>
+        <button class="btn" id="exNexus" title="Character matrix and distances for SplitsTree, PAUP and other phylogenetic software (settings of Analysis → Proximity)">Witness matrix (NEXUS)</button>
         <a class="btn" id="exXml" href="${esc(S.source)}" download>Source TEI/XML</a>
       </div>
       <h3>Source</h3>
@@ -1069,6 +1367,7 @@
     $("#exJson").addEventListener("click", exportJSON);
     $("#exIssues").addEventListener("click", () => download(edSlug() + "-encoding-report.txt", m.issues.map((i) => `[${i.level}] ${i.msg}${i.where ? "  — " + i.where : ""}`).join("\n")));
     $("#exPrint").addEventListener("click", printEdition);
+    $("#exNexus").addEventListener("click", () => exportProximity("nexus"));
     if (!S.edition) $("#exXml").removeAttribute("href");
   }
 

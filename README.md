@@ -23,6 +23,10 @@ Altre funzioni:
 - **Agreements**: matrice delle concordanze tra testimoni, sia come innovazioni condivise rispetto al testo sia come percentuale di accordo. Si possono escludere le varianti ortografiche e i numeri di capitolo; cliccando una cella si vedono le lezioni condivise.
 - **Witness profiles**: per ogni testimone, il numero di divergenze, di lezioni singolari e di correzioni, suddivise per `@cause`.
 - **Numbering**: concordanza della numerazione dei capitoli (es. Sg1 e P8, con le correzioni).
+- **Proximity**: distanze tra i testimoni calcolate dall'apparato (quota di voci in cui due testimoni leggono diversamente), disegnate come albero *neighbour-joining* (senza radice) e come mappa (*multidimensional scaling*). Le lezioni classificate come errore (`@subtype="error"`) possono pesare di più degli adiafori. Si può lavorare su un solo libro o su tutto l'Ottateuco, sulla prima mano, sullo stato finale o su entrambi (lo stato corretto diventa un testimone a sé, "Sg1 p.c.", utile per la contaminazione), ed escludere singoli testimoni. È una misura di **prossimità, non uno stemma**. Esportazione in NEXUS (matrice dei caratteri + distanze, per SplitsTree o PAUP), Newick e CSV.
+- **Octateuch**: profilo di ogni testimone libro per libro (divergenze, lezioni singolari, correzioni, lacune ogni 100 voci), per vedere se un manoscritto cambia comportamento da un libro all'altro.
+- **Testo biblico**: per i capitula con ancoraggio biblico, il pannello dell'apparato mostra i versetti corrispondenti, dal versetto d'ancoraggio a quello che precede l'ancoraggio successivo. La fonte si configura in `js/config.js`: un servizio web (preimpostata la Vulgata Clementina di bible-api.com, che **non** è la Vulgata critica) o un file JSON locale (per esempio per la *Vetus Latina*).
+- **Zone sulle immagini**: se il TEI contiene `<facsimile>/<surface>/<zone>`, l'area del capitulum selezionato viene contornata sull'immagine (tratto spesso; le altre zone tratteggiate) e il pulsante **cap.** la ingrandisce. Con **✎** si disegna l'area a mano: il viewer scrive il TEI da incollare nel file (menu **zones** → *copy TEI*). Le zone disegnate restano nel browser finché non vengono copiate nel TEI.
 - **Witnesses**: cronologia dei testimoni (dai `origDate`) e schede con identificatori (Biblissima, TM, Bischoff, ARCA), facsimili, manifest IIIF e link per aprirli in Mirador.
 - **Encoding check**: controlli automatici sull'XML (riferimenti `#`, vocabolari di `@type`/`@cause` confrontati con il working paper, `lem/@wit`, letture duplicate, `@varSeq`, `<pb>`, date) e verifica che tutte le immagini si carichino.
 - **Data**: esportazione dell'apparato in CSV, dei testi dei testimoni in TXT, del modello in JSON, del report di controllo, e stampa dell'edizione con apparato negativo, impaginata per il bianco e nero.
@@ -38,6 +42,7 @@ css/style.css       stile (anche per la stampa)
 js/config.js        CONFIGURAZIONE: edizioni, immagini, gruppi di testimoni
 js/tei-model.js     lettura del TEI → modello dati + controlli di codifica
 js/analysis.js      analisi (concordanze, profili, numerazione, correzioni)
+js/proximity.js     distanze, albero neighbour-joining, mappa MDS, esportazione NEXUS/Newick
 js/app.js           interfaccia
 js/viewer.js        visualizzatore delle immagini
 tei/*.xml           le edizioni (Genesi–Rut, dai file del repository DOBIPS)
@@ -77,6 +82,19 @@ In `js/config.js`:
 
 Se nel TEI ci sono `<listWit xml:id="…">` annidate, il viewer usa quelle.
 
+### Zone (collegamento testo–immagine)
+
+```xml
+<facsimile>
+  <surface xml:id="surf_Tu_73r">
+    <graphic url="data/images/single/Tu_73r.jpg"/>   <!-- stesso file del <pb facs> -->
+    <zone xml:id="zone_Tu_73r_I" n="I" ulx="100" uly="180" lrx="900" lry="300"/>
+  </surface>
+</facsimile>
+```
+
+La zona si collega al capitulum con `@n` (numero del capitulum nel testo critico, oppure `incipit`/`explicit`), con `@corresp="#id-dell-item"` o con `item/@facs="#id-della-zona"`. Le coordinate sono pixel del file immagine; si può usare anche `@points`.
+
 ## Convenzioni TEI che il viewer legge
 
 - `teiHeader`: `titleStmt/title`, `editionStmt`, `publicationStmt` (mostrato nell'introduzione), `listBibl/bibl[@xml:id]`, `listWit/witness` con `msDesc` (identificativi, `origDate/@from-custom @to-custom`, `origPlace`, `recordHist/source`, `surrogates/bibl[@type]/ref`), `tagsDecl/rendition` (mani `m`, `l`, `u`; tipi di scrittura e colori delle rubriche).
@@ -88,6 +106,8 @@ Se nel TEI ci sono `<listWit xml:id="…">` annidate, il viewer usa quelle.
 
 - La segmentazione in `<app>` minimi (scelta per EVT) resta: le concordanze sono calcolate per voce d'apparato e non per unità sintattiche più ampie.
 - Le annotazioni “Φ … vs …” vengono interpretate con semplici regole testuali (errore/adiaforo, testimoni nominati). Una codifica strutturata, per esempio `@ana` sul `lem`, sarebbe più robusta.
-- Le immagini sono pagine intere: il collegamento tra testo e immagine è per foglio, non per riga.
+- Senza `<zone>` nel TEI il collegamento tra testo e immagine è per foglio. Le zone si possono disegnare nel viewer; l'importazione delle righe ALTO/PAGE prodotte da eScriptorium o Transkribus non è ancora prevista.
+- Proximity: i testimoni vicini al testo critico tendono a raggrupparsi tra loro anche solo per lezioni conservate (non innovazioni condivise); l'albero va letto con le liste delle concordanze (scheda *Agreements*).
+- Il testo biblico da un servizio web richiede la connessione; per la conferenza conviene un file JSON locale.
 
 Licenza: da definire (si suggerisce CC BY 4.0 per i dati e MIT per il codice).

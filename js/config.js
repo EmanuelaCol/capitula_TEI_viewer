@@ -41,6 +41,22 @@ window.CAPITULA_CONFIG = {
   comparanda: ["Am1", "Am2", "Tu"],
   group: { id: "Phi", label: "Φ", name: "Tours Bibles" },
 
+  // Biblical text shown beside each capitulum that has a biblical anchor
+  // (<ref type="parallelPassage">): from the anchor verse to the verse before
+  // the next anchor. Two formats:
+  //   "bible-api": a web service answering like https://bible-api.com
+  //                ({book} {chapter} {verses} are filled in; {book} = English name from bookNames)
+  //   "json":      a local file mapping references to verses, e.g. {"Gn 1:1": "In principio…", …}
+  //                with the same book abbreviations as the TEI (useful for the Vetus Latina,
+  //                or for a critical Vulgate text you are allowed to republish)
+  bibleText: [
+    { id: "vulgate", label: "Vulgate (Clementine)", format: "bible-api",
+      url: "https://bible-api.com/{book}%20{chapter}:{verses}?translation=clementine",
+      note: "Clementine Vulgate (1592) from bible-api.com: a late text, not the critical Vulgate." }
+    // { id: "vl", label: "Vetus Latina", format: "json", url: "bible/vetus-latina.json",
+    //   note: "…" }
+  ],
+
   // Link for biblical references found in notes and <ref type="parallelPassage">.
   // {ref} is replaced by the reference with the book abbreviation expanded.
   bibleLink: "https://www.biblegateway.com/passage/?search={ref}&version=VULGATE",
