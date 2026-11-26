@@ -1103,6 +1103,18 @@
       </encodingDesc>
       <profileDesc> </profileDesc>
    </teiHeader>
+   <!-- Areas of the capitula on the images, drawn in the Capitula Viewer (2026-11-26).
+        Coordinates are pixels of the image file; @n = number of the capitulum. -->
+   <facsimile>
+      <surface xml:id="surf_Am1_72r">
+         <graphic url="data/images/single/Am1_72r.jpeg"/>
+         <zone xml:id="zone_Am1_72r_I" n="I" ulx="444" uly="200" lrx="825" lry="284"/>
+      </surface>
+      <surface xml:id="surf_Tu_73r">
+         <graphic url="data/images/single/Tu_73r.jpg"/>
+         <zone xml:id="zone_Tu_73r_I" n="I" ulx="39" uly="104" lrx="444" lry="195"/>
+      </surface>
+   </facsimile>
    <text>
       <front>
          <p>This digital edition presents the reconstruction of the capitula of Series A (according
