@@ -25,6 +25,10 @@
     label: "only readings classified as substantive (@type=\"substantive\")",
     pass: (r) => !r.isLacuna && r.type === "substantive"
   };
+  FILTERS.substantiveErrors = {
+    label: "only substantive readings classified as errors (@type=\"substantive\" + @subtype=\"error\")",
+    pass: (r) => !r.isLacuna && r.type === "substantive" && r.subtype === "error"
+  };
   FILTERS.errors = {
     label: "only readings classified as errors (@subtype=\"error\")",
     pass: (r) => !r.isLacuna && r.subtype === "error"
