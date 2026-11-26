@@ -19,6 +19,17 @@
     }
   };
 
+  // the editor's own classification: @type="substantive" (more than 50% of the lemma
+  // changed, see the working paper) and @subtype="error"
+  FILTERS.substantiveOnly = {
+    label: "only readings classified as substantive (@type=\"substantive\")",
+    pass: (r) => !r.isLacuna && r.type === "substantive"
+  };
+  FILTERS.errors = {
+    label: "only readings classified as errors (@subtype=\"error\")",
+    pass: (r) => !r.isLacuna && r.subtype === "error"
+  };
+
   // key of the reading of witness w at app, after filtering
   function keyFor(model, app, w, filter, layer) {
     const res = M.witnessReading(model, app, w, layer || "first");
