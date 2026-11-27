@@ -172,6 +172,10 @@
       if (p) { openViewer(p.dataset.wit, p.dataset.page); return; }
       const bs = e.target.closest("[data-bibsrc]");
       if (bs) { showBibleText(bs.dataset.bibsrc, bs); return; }
+      const bc = e.target.closest("[data-btch]");
+      if (bc) { showBibleText(bc.dataset.btsrc, bc, +bc.dataset.btch); return; }
+      const gb = e.target.closest("[data-gob]");
+      if (gb) { e.preventDefault(); selectBlock(+gb.dataset.gob, true); return; }
       const ent = e.target.closest(".entry");
       if (ent) selectApp(ent.dataset.app, false, true);
     });
@@ -771,7 +775,7 @@
     if (!S.model) return;
     $$(".subtab").forEach((t) => t.classList.toggle("active", t.dataset.sub === S.sub));
     const box = $("#analysis");
-    const fn = { profile: anProfile, agreements: anAgreements, witstats: anWitStats, numbering: anNumbering, layers: anLayers, proximity: anProximity, books: anBooks }[S.sub];
+    const fn = { profile: anProfile, agreements: anAgreements, witstats: anWitStats, numbering: anNumbering, layers: anLayers, proximity: anProximity, books: anBooks, bible: anBible }[S.sub];
     box.innerHTML = fn ? fn() : "";
     if (S.sub === "proximity") bindProximity();
     if (S.sub === "books") bindBooks();
@@ -1081,6 +1085,38 @@
     lac: { label: "lacunose entries, % of all entries", short: "% lacunose", f: (p) => (p.present + p.absent) ? 100 * p.absent / (p.present + p.absent) : NaN }
   };
 
+  /* ============================== BIBLICAL CHAPTERS ============================== */
+  // which capitula begin in each chapter of the book, from the biblical anchors
+  function anBible() {
+    const anchors = bibleAnchors();
+    let html = `<h2>Biblical chapters and capitula</h2>
+      <p class="lead">For each chapter of the biblical book, the capitula whose biblical anchor (<code>&lt;ref type="parallelPassage"&gt;</code>) falls in it. A chapter with no capitulum is covered by the capitulum before it; a chapter with several is divided among them.</p>`;
+    if (!anchors.length) return html + `<p class="muted">This edition has no biblical anchors yet.</p>`;
+    const codes = Array.from(new Set(anchors.map((a) => a.code)));
+    codes.forEach((code) => {
+      const list = anchors.filter((a) => a.code === code);
+      const n = Math.max((C.bookChapters || {})[code] || 0, ...list.map((a) => a.ch));
+      const byCh = new Map();
+      list.forEach((a) => { if (!byCh.has(a.ch)) byCh.set(a.ch, []); byCh.get(a.ch).push(a); });
+      const none = [], multi = [];
+      for (let c = 1; c <= n; c++) { const k = (byCh.get(c) || []).reduce((s, a) => s + a.blocks.length, 0); if (!k) none.push(c); else if (k > 1) multi.push(c); }
+      if (codes.length > 1) html += `<h3>${esc(list[0].abbr)}</h3>`;
+      html += `<p>${n} chapters · ${n - none.length} with at least one capitulum · <b>${multi.length}</b> with more than one · <b>${none.length}</b> with none${none.length ? ` (${none.join(", ")})` : ""}.</p>`;
+      html += `<table class="data bible-cov"><thead><tr><th>chapter</th><th>capitula beginning in it</th></tr></thead><tbody>`;
+      for (let c = 1; c <= n; c++) {
+        const as = byCh.get(c) || [];
+        const cells = as.flatMap((a) => a.blocks.map((i) => {
+          const b = S.model.blocks[i];
+          const txt = b.plain.length > 70 ? b.plain.slice(0, 68) + "…" : b.plain;
+          return `<div><a href="#" data-gob="${i}"><b>${esc(capLabel(i))}</b></a> <span class="muted">${a.ch}:${a.v}</span> <span class="lat">${esc(txt)}</span></div>`;
+        })).join("");
+        html += `<tr${as.length ? "" : ` class="none"`}><th>${esc(list[0].abbr)} ${c}</th><td>${cells || `<i class="muted">no capitulum</i>`}</td></tr>`;
+      }
+      html += `</tbody></table>`;
+    });
+    return html;
+  }
+
   function anBooks() {
     let html = `<h2>The witnesses across the Octateuch</h2>
       <p class="lead">The same manuscript, book by book. Does a witness behave consistently — many singular readings, or many corrections, in every book — or does its profile change, which may point to a change of exemplar or of scribe? First hand; orthographic variants, slips and corrections excluded; chapter numbers excluded.</p>`;
@@ -1144,46 +1180,102 @@
     const m = String(ref).match(/^([1-4]?\s?[A-Za-z]+)\.?\s*(\d+)[:.,](\d+)/);
     return m ? { abbr: m[1].replace(/\s/g, ""), ch: +m[2], v: +m[3] } : null;
   }
-  // from this block's anchor to the verse before the next anchor (same chapter), max 25 verses
-  function passageOf(b) {
+  const bookCode = (abbr) => (C.bookCodes || {})[abbr] || abbr;
+  const cmpCV = (a, b) => a.ch - b.ch || a.v - b.v;
+  // every biblical anchor of the edition, in biblical order: {abbr, code, ch, v, blocks: [idx…]}
+  function bibleAnchors() {
     const m = S.model;
+    if (m._anchors) return m._anchors;
+    const byKey = new Map();
+    m.blocks.forEach((b) => {
+      if (!b.bibRefs || !b.bibRefs.length) return;
+      const r = parseRef(b.bibRefs[0].ref);
+      if (!r) return;
+      const code = bookCode(r.abbr);
+      const k = `${code} ${r.ch}:${r.v}`;
+      if (!byKey.has(k)) byKey.set(k, Object.assign(r, { code, blocks: [] }));
+      byKey.get(k).blocks.push(b.idx);
+    });
+    m._anchors = Array.from(byKey.values()).sort((x, y) => x.code.localeCompare(y.code) || cmpCV(x, y));
+    return m._anchors;
+  }
+  const capLabel = (i) => { const b = S.model.blocks[i]; return b.numLabel || (b.kind === "added" ? "add." : String(i)); };
+  // passage of a block: from its anchor to the verse before the next anchor
+  // (in biblical order, same book; the last capitulum runs to the end of the book)
+  function passageOf(b) {
     const start = parseRef(b.bibRefs[0].ref);
     if (!start) return null;
-    let end = start.v;
-    let single = true;
-    const next = m.blocks.slice(b.idx + 1).find((x) => x.bibRefs && x.bibRefs.length);
-    const nx = next && parseRef(next.bibRefs[0].ref);
-    if (nx && nx.abbr === start.abbr && nx.ch === start.ch && nx.v > start.v) { end = Math.min(nx.v - 1, start.v + 24); single = false; }
-    return Object.assign({}, start, { end, single });
+    const code = bookCode(start.abbr);
+    const list = bibleAnchors().filter((a) => a.code === code);
+    const next = list.find((a) => cmpCV(a, start) > 0);
+    const last = (C.bookChapters || {})[code] || start.ch;
+    const end = next ? (next.v > 1 ? { ch: next.ch, v: next.v - 1 } : { ch: next.ch - 1, v: Infinity }) : { ch: Math.max(last, start.ch), v: Infinity };
+    return { abbr: start.abbr, code, start: { ch: start.ch, v: start.v }, end, anchors: list };
+  }
+  async function loadChapter(src, abbr, code, ch) {
+    if (src.format === "json") {
+      if (!bibleCache.has(src.url)) bibleCache.set(src.url, fetch(src.url).then((r) => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); }));
+      const map = await bibleCache.get(src.url);
+      const verses = [];
+      for (let v = 1, miss = 0; miss < 3; v++) {
+        const t = map[`${abbr} ${ch}:${v}`];
+        if (t) { verses.push({ v, text: t }); miss = 0; } else miss++;
+      }
+      return verses;
+    }
+    const url = src.url.replace("{book}", encodeURIComponent(code)).replace("{chapter}", ch);
+    if (!bibleCache.has(url)) bibleCache.set(url, fetch(url).then((r) => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); }));
+    const json = await bibleCache.get(url);
+    return (json.verses || []).map((x) => ({ v: x.verse, text: String(x.text || "").trim() }));
   }
 
-  async function showBibleText(srcId, btn) {
+  // the whole chapter, divided at the anchors of the capitula; chArg = another chapter of the book
+  async function showBibleText(srcId, btn, chArg) {
     const src = (C.bibleText || []).find((x) => x.id === srcId);
     const b = S.model.blocks[S.block];
     const out = btn.closest(".ap-bibtext").querySelector(".bibtext-out");
     if (!src || !b || !b.bibRefs.length) return;
     const ps = passageOf(b);
     if (!ps) { out.innerHTML = `<p class="muted small">Reference not recognised: ${esc(b.bibRefs[0].ref)}</p>`; return; }
-    const refLabel = `${ps.abbr} ${ps.ch}:${ps.v}${ps.end > ps.v ? "–" + ps.end : ""}`;
-    out.innerHTML = `<p class="muted small">Loading ${esc(refLabel)}…</p>`;
+    const nCh = (C.bookChapters || {})[ps.code] || 999;
+    const ch = Math.max(1, Math.min(nCh, chArg || ps.start.ch));
+    const endTxt = ps.end.v === Infinity ? (ps.end.ch === ps.start.ch ? "end of chapter" : `end of ch. ${ps.end.ch}`) : (ps.end.ch === ps.start.ch ? String(ps.end.v) : `${ps.end.ch}:${ps.end.v}`);
+    const passLabel = `${ps.abbr} ${ps.start.ch}:${ps.start.v}${cmpCV(ps.end, ps.start) > 0 ? " – " + endTxt : ""}`;
+    out.innerHTML = `<p class="muted small">Loading ${esc(ps.abbr)} ${ch}…</p>`;
     try {
-      let verses = [];
-      if (src.format === "json") {
-        if (!bibleCache.has(src.url)) bibleCache.set(src.url, fetch(src.url).then((r) => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); }));
-        const map = await bibleCache.get(src.url);
-        for (let v = ps.v; v <= ps.end; v++) {
-          const t = map[`${ps.abbr} ${ps.ch}:${v}`];
-          if (t) verses.push({ v, text: t });
-        }
-      } else {
-        const book = (C.bookNames || {})[ps.abbr] || ps.abbr;
-        const url = src.url.replace("{book}", encodeURIComponent(book)).replace("{chapter}", ps.ch).replace("{verses}", ps.end > ps.v ? `${ps.v}-${ps.end}` : ps.v);
-        if (!bibleCache.has(url)) bibleCache.set(url, fetch(url).then((r) => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); }));
-        const json = await bibleCache.get(url);
-        verses = (json.verses || []).map((x) => ({ v: x.verse, text: String(x.text || "").trim() }));
-      }
+      const verses = await loadChapter(src, ps.abbr, ps.code, ch);
       if (!verses.length) throw new Error("no verses found");
-      out.innerHTML = `<div class="bibtext"><div class="bt-ref">${esc(src.label)} · ${esc(refLabel)}${ps.single ? ` <span class="muted">(anchor verse only)</span>` : ""}</div><p class="lat">${verses.map((x) => `<sup>${x.v}</sup>${esc(x.text)}`).join(" ")}</p>${src.note ? `<div class="muted small">${esc(src.note)}</div>` : ""}</div>`;
+      // chapters inside the passage that no capitulum begins
+      const begun = new Set(ps.anchors.map((a) => a.ch));
+      const emptyCh = [];
+      for (let c = ps.start.ch + 1; c <= ps.end.ch; c++) if (!begun.has(c)) emptyCh.push(c);
+      // split the chapter at the anchors; the opening segment belongs to the last earlier anchor
+      const inCh = ps.anchors.filter((a) => a.ch === ch);
+      const nCaps = inCh.reduce((n, a) => n + a.blocks.length, 0);
+      const before = ps.anchors.filter((a) => a.ch < ch).pop() || null;
+      const segs = [];
+      let cur = { owner: before, cont: true, verses: [] };
+      verses.forEach((x) => {
+        const a = inCh.find((y) => y.v === x.v);
+        if (a) { if (cur.verses.length) segs.push(cur); cur = { owner: a, cont: false, verses: [] }; }
+        cur.verses.push(x);
+      });
+      if (cur.verses.length) segs.push(cur);
+      const isCur = (seg) => seg.owner && seg.owner.blocks.includes(b.idx);
+      const lab = (seg) => {
+        if (!seg.owner) return `<div class="bt-cap"><span class="muted">before the first capitulum</span></div>`;
+        const names = seg.owner.blocks.map((i) => i === b.idx ? `<b>${esc(capLabel(i))}</b>` : `<a href="#" data-gob="${i}" title="go to capitulum ${esc(capLabel(i))}">${esc(capLabel(i))}</a>`).join(" · ");
+        return `<div class="bt-cap">cap. ${names}${seg.cont ? ` <span class="muted">(continued)</span>` : ""}</div>`;
+      };
+      const navBtn = (c, sym, t) => `<button class="chip" data-btch="${c}" data-btsrc="${esc(src.id)}"${c < 1 || c > nCh ? " disabled" : ""} title="${t}">${sym}</button>`;
+      const note = [`This capitulum: <b>${esc(passLabel)}</b>.`];
+      if (!nCaps) note.push(`<b>No capitulum begins in chapter ${ch}.</b>`);
+      else if (nCaps > 1) note.push(`${nCaps} capitula begin in this chapter.`);
+      if (emptyCh.length) note.push(`Chapter${emptyCh.length > 1 ? "s" : ""} ${emptyCh.join(", ")} of the passage ${emptyCh.length > 1 ? "have" : "has"} no capitulum.`);
+      out.innerHTML = `<div class="bibtext"><div class="bt-ref"><span>${esc(src.label)} · ${esc(ps.abbr)} ${ch}</span><span class="bt-nav">${navBtn(ch - 1, "◂", "previous chapter")} ${navBtn(ch + 1, "▸", "next chapter")}</span></div>
+        <div class="bt-note small">${note.join(" ")}</div>
+        ${segs.map((seg) => `<div class="bt-seg${isCur(seg) ? " cur" : ""}">${lab(seg)}<p class="lat">${seg.verses.map((x) => `<sup>${x.v}</sup>${esc(x.text)}`).join(" ")}</p></div>`).join("")}
+        ${src.note ? `<div class="muted small">${esc(src.note)}</div>` : ""}</div>`;
     } catch (e) {
       bibleCache.forEach((v, k) => { v.catch(() => bibleCache.delete(k)); });
       out.innerHTML = `<p class="muted small">Could not load the text (${esc(e.message)}): the service may be unreachable or you may be offline. The reference link above opens the passage online.</p>`;
